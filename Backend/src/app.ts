@@ -4,6 +4,8 @@ import express from "express";
 import { authRoutes } from "./modules/auth/auth.route";
 import cookieParser from "cookie-parser";
 import { globalErrorHandler } from "./middleware/globalErrorHandler";
+import { userRoutes } from "./modules/user/user.route";
+import { categoriesRoutes } from "./modules/category/category.route";
 const app = express();
 
 // Middleware
@@ -19,6 +21,8 @@ app.use(
 );
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/categories", categoriesRoutes);
 // Default route for testing
 app.get("/", (_req, res) => {
   res.send("API is running");
