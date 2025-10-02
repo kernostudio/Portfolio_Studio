@@ -16,7 +16,7 @@ router.delete(
   authorize(["admin"]),
   categoriesController.deleteCategory
 );
-router.put(
+router.patch(
   "/:id",
   authenticate,
   authorize(["admin"]),

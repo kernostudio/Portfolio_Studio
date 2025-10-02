@@ -4,7 +4,7 @@ import { authenticate, authorize } from "../../middleware/auth.middleware";
 
 const router = Router();
 router.get("/", authenticate, authorize(["admin"]), userController.getAllUsers);
-router.put(
+router.patch(
   "/:id",
   authenticate,
   authorize(["admin"]),

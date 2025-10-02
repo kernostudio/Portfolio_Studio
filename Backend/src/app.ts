@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import { globalErrorHandler } from "./middleware/globalErrorHandler";
 import { userRoutes } from "./modules/user/user.route";
 import { categoriesRoutes } from "./modules/category/category.route";
+import { adminTemplatesRoutes } from "./modules/templateAdmin/template.route";
+import { userTemplateRoutes } from "./modules/userTemplate/userTemplate.route";
 const app = express();
 
 // Middleware
@@ -23,6 +25,8 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoriesRoutes);
+app.use("/api/admin/templates", adminTemplatesRoutes);
+app.use("/api/user-templates", userTemplateRoutes);
 // Default route for testing
 app.get("/", (_req, res) => {
   res.send("API is running");
