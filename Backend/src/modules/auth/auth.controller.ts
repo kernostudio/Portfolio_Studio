@@ -65,10 +65,28 @@ const userProfile = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const updateUserProfile = catchAsync(async (req: Request, res: Response) => {
+  const email = req.user.email;
+
+  const avatarUrl = req.file ? (req.file as any).path : undefined;
+
+  const result = await authService.updateUserProfile(email, {
+    fullName: req.body.fullName,
+    avatarUrl: avatarUrl,
+  });
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Profile updated successfully",
+    data: result,
+  });
+});
 
 export const authController = {
   RegisterUser,
   userLogin,
   userLogout,
   userProfile,
+  updateUserProfile,
 };

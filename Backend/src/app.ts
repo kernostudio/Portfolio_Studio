@@ -8,6 +8,7 @@ import { userRoutes } from "./modules/user/user.route";
 import { categoriesRoutes } from "./modules/category/category.route";
 import { adminTemplatesRoutes } from "./modules/templateAdmin/template.route";
 import { userTemplateRoutes } from "./modules/userTemplate/userTemplate.route";
+import { cleanupCloudinaryOnError } from "./middleware/cleanUpMediaOnError";
 const app = express();
 
 // Middleware
@@ -39,5 +40,6 @@ app.use((req, res, next) => {
     message: "Route Not Found",
   });
 });
+app.use(cleanupCloudinaryOnError);
 app.use(globalErrorHandler);
 export default app;

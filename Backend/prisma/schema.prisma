@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  
 }
 
 datasource db {
@@ -15,50 +14,51 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String         @id @default(uuid())
   fullName  String
-  email     String   @unique
+  email     String         @unique
   password  String
-  role      String   @default("user") // "user", "admin"
+  role      String         @default("user") // "user", "admin"
   avatarUrl String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
   templates UserTemplate[]
   history   History[]
 }
 
 model Template {
-  id          String   @id @default(uuid())
-  title       String
-  description String?
-  categoryId  String
-  html        String
-  placeholders Json
-  sections     Json
-  previewUrl   String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  category    Category @relation(fields: [categoryId], references: [id])
+  id            String         @id @default(uuid())
+  title         String
+  description   String?
+  categoryId    String
+  html          String
+  placeholders  Json
+  sections      Json
+  previewUrl    String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  category      Category       @relation(fields: [categoryId], references: [id])
   userTemplates UserTemplate[]
 }
 
 model Category {
-  id          String   @id @default(uuid())
-  name        String   @unique
+  id          String     @id @default(uuid())
+  name        String     @unique
   description String?
   templates   Template[]
 }
 
 model UserTemplate {
-  id         String   @id @default(uuid())
-  userId     String
-  templateId String
-  filledValues Json
-  sectionsData Json?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id])
-  template   Template @relation(fields: [templateId], references: [id])
+  id              String                @id @default(uuid())
+  userId          String
+  templateId      String
+  filledValues    Json
+  sectionsData    Json?
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  user            User                  @relation(fields: [userId], references: [id])
+  template        Template              @relation(fields: [templateId], references: [id])
+  publishRequests UserTemplatePublish[]
 }
 
 model History {
@@ -69,4 +69,21 @@ model History {
   user      User     @relation(fields: [userId], references: [id])
 }
 
+enum PublishStatus {
+  pending
+  approved
+  rejected
+}
 
+model UserTemplatePublish {
+  id             String        @id @default(uuid())
+  userTemplateId String
+  domainType     String
+  domain         String?
+  note           String?
+  status         PublishStatus @default(pending) // Enum: pending | approved | rejected
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  userTemplate UserTemplate @relation(fields: [userTemplateId], references: [id])
+}

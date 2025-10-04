@@ -27,4 +27,5 @@ router.get(
   authorize(["admin", "user"]),
   userTemplateController.getAllUserTemplates
 );
+// usertemplateupdate
 export const userTemplateRoutes = router;

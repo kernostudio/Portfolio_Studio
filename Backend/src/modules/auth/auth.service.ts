@@ -73,9 +73,27 @@ const userProfile = async (email: string) => {
     user,
   };
 };
+const updateUserProfile = async (
+  email: string,
+  payload: Partial<Prisma.UserUpdateInput>
+) => {
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  if (!user) {
+    throw new AppError(httpStatus.UNAUTHORIZED, "User not found");
+  }
+
+  const updatedUser = await prisma.user.update({
+    where: { email },
+    data: payload,
+  });
+
+  return updatedUser;
+};
 
 export const authService = {
   createUser,
   userLogin,
   userProfile,
+  updateUserProfile,
 };
