@@ -32,6 +32,7 @@ const createUser = async (payload: Prisma.UserCreateInput) => {
     userId: user.id,
     name: user.fullName,
     email: user.email,
+    role: user.role,
     token,
   };
 };
@@ -59,6 +60,7 @@ const userLogin = async (payload: Prisma.UserCreateInput) => {
     userId: user.id,
     name: user.fullName,
     email: user.email,
+    role: user.role,
     token,
   };
 };

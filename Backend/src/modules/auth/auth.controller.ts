@@ -18,6 +18,7 @@ const RegisterUser = catchAsync(async (req: Request, res: Response) => {
       userId: result.userId,
       name: result.name,
       email: result.email,
+      role: result.role,
       token: result.token.accessToken,
     },
   });
@@ -36,6 +37,7 @@ const userLogin = catchAsync(async (req: Request, res: Response) => {
       userId: result.userId,
       name: result.name,
       email: result.email,
+      role: result.role,
       token: result.token.accessToken,
     },
   });
