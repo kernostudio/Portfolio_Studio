@@ -46,14 +46,17 @@ export default function Navbar() {
             </div>
           </div>
           <div className="hidden md:block">
-            <button className="flex gap-1 items-center bg-gradient-to-b from-[#A78BFA] to-[#7C3AED] text-white px-4 py-2 rounded-full mt-2 hover:bg-purple-600 transition">
+            <Link
+              href="/templates"
+              className="flex gap-1 items-center bg-gradient-to-b from-[#A78BFA] to-[#7C3AED] text-white px-4 py-2 rounded-full mt-2 hover:bg-purple-600 transition"
+            >
               Get Started
               <Image
                 className="rounded-full bg-white w-5 h-5"
                 src={butonIcon}
                 alt="icon"
               ></Image>
-            </button>
+            </Link>
           </div>
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
@@ -89,14 +92,17 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <button className="flex justify-center gap-1 items-center bg-gradient-to-b from-[#A78BFA] to-[#7C3AED] text-white px-4 py-2 rounded-full mt-2 hover:bg-purple-600 transition">
+            <Link
+              href="/templates"
+              className="flex justify-center gap-1 items-center bg-gradient-to-b from-[#A78BFA] to-[#7C3AED] text-white px-4 py-2 rounded-full mt-2 hover:bg-purple-600 transition"
+            >
               Get Started
               <Image
                 className="rounded-full bg-white w-5 h-5"
                 src={butonIcon}
                 alt="icon"
               ></Image>
-            </button>
+            </Link>
           </div>
         </div>
       )}

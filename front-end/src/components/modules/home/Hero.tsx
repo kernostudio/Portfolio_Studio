@@ -7,6 +7,7 @@ import user1 from "../../../../public/img/user.png";
 import user2 from "../../../../public/img/user (1).png";
 import user3 from "../../../../public/img/user (2).png";
 import user4 from "../../../../public/img/user (3).png";
+import Link from "next/link";
 
 export default function Hero() {
   const reviewers = [user1, user2, user3, user4];
@@ -26,14 +27,17 @@ export default function Hero() {
             required.
           </p>
           <div className="mt-5">
-            <button className="flex justify-center gap-1 md:h-[48px] lg:w-[206px] items-center bg-gradient-to-b from-[#A78BFA] to-[#7C3AED] text-white p-2 rounded-full lg:text-xl hover:bg-purple-600 transition">
+            <Link
+              href="/templates"
+              className="flex justify-center gap-1 md:h-[48px] lg:w-[206px] items-center bg-gradient-to-b from-[#A78BFA] to-[#7C3AED] text-white p-2 rounded-full lg:text-xl hover:bg-purple-600 transition"
+            >
               Start Building Free
               <Image
                 className="rounded-full bg-white w-5 h-5"
                 src={buttonIcon}
                 alt="icon"
               ></Image>
-            </button>
+            </Link>
           </div>
           <div className="flex flex-col  space-y-4 mt-10">
             {/* Stars */}
