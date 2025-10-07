@@ -4,15 +4,22 @@ import { userService } from "./user.service";
 import { sendResponse } from "../../utils/sendResponse";
 import httpStatus from "http-status";
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  const result = await userService.getAllUsers();
+  const { page = 1, limit = 10, search } = req.query;
+
+  const result = await userService.getAllUsers({
+    page: Number(page),
+    limit: Number(limit),
+    search: search as string | undefined,
+  });
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "get all user successfully",
+    message: "Users fetched successfully",
     data: result,
   });
 });
+
 const updateUser = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const id = req.params.id;

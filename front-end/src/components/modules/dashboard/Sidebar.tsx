@@ -48,7 +48,7 @@ const Sidebar = () => {
   const adminLinks = [
     {
       name: "Profile",
-      href: "/profile",
+      href: "/dashboard/profile",
       icon: <ImProfile className="w-5 h-5" />,
     },
     {
@@ -58,18 +58,23 @@ const Sidebar = () => {
     },
     {
       name: "Create Template",
-      href: "/dashboard/create-category",
+      href: "/dashboard/create-template",
       icon: <MdOutlineCreateNewFolder className="w-5 h-5" />,
     },
     {
       name: "Manage Users",
-      href: "/dashboard/users",
+      href: "/dashboard/manage-user",
       icon: <FaUserFriends className="w-5 h-5" />,
     },
     {
       name: "Manage Templates",
       href: "/dashboard/manage-templates",
       icon: <CgTemplate className="w-5 h-5" />,
+    },
+    {
+      name: "Home",
+      href: "/templates",
+      icon: <BiHome className="w-5 h-5" />,
     },
   ];
 
@@ -103,7 +108,7 @@ const Sidebar = () => {
         } lg:translate-x-0 transition-transform duration-300 ease-in-out`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mt-8 mb-8">
           <h2 className="text-2xl font-bold">Dashboard</h2>
           <button
             className="lg:hidden text-white"

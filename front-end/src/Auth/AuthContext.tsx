@@ -14,6 +14,7 @@ import {
   updateUserProfile,
   UserData,
 } from "./authapi";
+import { ToastContainer } from "react-toastify";
 
 export interface User {
   id: string;
@@ -91,7 +92,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       name: response.data.name,
       email: response.data.email,
       role: response.data.role,
-      token: response.data.token?.accessToken,
     };
     setUser(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
@@ -100,12 +100,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (userData: UserData) => {
     const response = await loginUser(userData);
+    const profileResponse = await fetchUserProfile();
     const loggedInUser: User = {
       id: response.data.userId,
       name: response.data.name,
       email: response.data.email,
-      role: response.data.role, // ✅ Make sure API sends this
-      token: response.data.token?.accessToken,
+      role: response.data.role,
+      avatarUrl: profileResponse.data.user.avatarUrl,
     };
     setUser(loggedInUser);
     localStorage.setItem("user", JSON.stringify(loggedInUser));
@@ -136,6 +137,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     <AuthContext.Provider
       value={{ user, loading, register, login, logout, updateProfile, setUser }}
     >
+      <ToastContainer />
       {children}
     </AuthContext.Provider>
   );

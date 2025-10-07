@@ -15,14 +15,22 @@ export const authenticate = async (
   res: Response,
   next: NextFunction
 ) => {
-  const token = await req.headers.authorization;
-  if (!token) throw new AppError(httpStatus.UNAUTHORIZED, "Unauthorized");
-
   try {
+    // ✅ Read token from cookie
+    const token = req.cookies.accessToken;
+
+    if (!token) {
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        "Unauthorized: No token provided"
+      );
+    }
+
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET || "secret"
     ) as JwtPayload;
+
     const user = await prisma.user.findUnique({
       where: { id: decoded.id },
     });
@@ -30,13 +38,21 @@ export const authenticate = async (
     if (!user) {
       throw new AppError(httpStatus.UNAUTHORIZED, "User no longer exists");
     }
-    (req as any).user = decoded;
+
+    // ✅ Attach user info to request
+    (req as any).user = {
+      id: user.id,
+      email: user.email,
+      role: user.role as "user" | "admin",
+    };
+
     next();
   } catch (err) {
-    throw new AppError(httpStatus.FORBIDDEN, "Invalid token");
+    throw new AppError(httpStatus.FORBIDDEN, "Invalid or expired token");
   }
 };
 
+// Authorization remains same
 export const authorize =
   (roles: ("user" | "admin")[]) =>
   (req: Request, res: Response, next: NextFunction) => {
@@ -44,10 +60,11 @@ export const authorize =
     if (!user) {
       throw new AppError(httpStatus.UNAUTHORIZED, "Unauthorized");
     }
-    if (!roles.includes(user.role))
+    if (!roles.includes(user.role)) {
       throw new AppError(
         httpStatus.FORBIDDEN,
-        "Forbidden admin can access only"
+        "Forbidden: admin can access only"
       );
+    }
     next();
   };

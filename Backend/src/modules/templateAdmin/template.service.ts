@@ -77,36 +77,31 @@ const getSingleTemplate = async (id: string) => {
   return template;
 };
 const getAllTemplate = async (query: any) => {
-  const { page, limit, search } = query;
+  const { page, limit, search, category } = query;
   const skip = (page - 1) * limit;
-  const where: Prisma.TemplateWhereInput = search
-    ? {
-        OR: [
-          { title: { contains: search, mode: "insensitive" } },
-          { description: { contains: search, mode: "insensitive" } },
-        ],
-      }
-    : {};
 
-  const total = await prisma.template.count({
-    where,
-  });
+  const where: Prisma.TemplateWhereInput = {
+    ...(search && {
+      OR: [
+        { title: { contains: search, mode: "insensitive" } },
+        { description: { contains: search, mode: "insensitive" } },
+      ],
+    }),
+    ...(category ? { categoryId: category } : {}),
+  };
+
+  const total = await prisma.template.count({ where });
+
   const template = await prisma.template.findMany({
     where,
     skip,
     take: limit,
     include: { category: true },
   });
-  if (!template) {
-    throw new AppError(httpStatus.NOT_FOUND, "no templates found");
-  }
-  const data = {
-    total,
-    page,
-    template,
-  };
-  return data;
+
+  return { total, page, template };
 };
+
 export const adminTemplateService = {
   createTemplate,
   updateTemplate,

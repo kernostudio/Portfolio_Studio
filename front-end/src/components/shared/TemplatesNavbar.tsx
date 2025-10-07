@@ -6,20 +6,38 @@ import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "@/Auth/AuthContext";
-
+import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosPublic from "@/hooks/axiosPublic";
+interface UserProfile {
+  id: string;
+  fullName: string;
+  email: string;
+  role?: string;
+  avatarUrl?: string | null;
+}
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const { user, loading } = useAuth();
-
+  const axiosPublic = UseAxiosPublic();
   const toggleMenu = () => setIsOpen(!isOpen);
-
+  const {
+    data: profile,
+    isLoading,
+    refetch,
+  } = useQuery<UserProfile>({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/api/auth/profile"); // cookies sent automatically
+      return res.data.data.user as UserProfile;
+    },
+  });
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Templates", href: "/templates" },
   ];
 
-  // Wait until AuthProvider loads user state
   if (loading) return null;
 
   return (
@@ -54,12 +72,18 @@ export default function Navbar() {
           {/* Right section */}
           <div className="hidden lg:flex items-center gap-3">
             {user ? (
-              <Link href={`/dashboard`} className="flex items-center">
-                {user.avatarUrl ? (
-                  <img
-                    src={user.avatarUrl}
+              <Link
+                href={`/dashboard`}
+                className="flex border-2 px-2 gap-1 rounded-full border-purple-700 hover:border-purple-900 items-center"
+              >
+                Dashboard
+                {profile?.avatarUrl ? (
+                  <Image
+                    src={profile?.avatarUrl}
                     alt="User Avatar"
-                    className="w-10 h-10 rounded-full object-cover"
+                    width={10}
+                    height={10}
+                    className="w-10 h-10 rounded-full  object-cover"
                   />
                 ) : (
                   <FaUserCircle className="w-10 h-10 text-gray-600" />
@@ -124,10 +148,12 @@ export default function Navbar() {
               className="flex items-center gap-2 font-medium text-gray-700 hover:text-purple-600"
             >
               {user.avatarUrl ? (
-                <img
+                <Image
+                  width={8}
+                  height={8}
                   src={user.avatarUrl}
                   alt="User Avatar"
-                  className="w-8 h-8 rounded-full object-cover"
+                  className=" rounded-full object-cover"
                 />
               ) : (
                 <FaUserCircle className="w-8 h-8" />

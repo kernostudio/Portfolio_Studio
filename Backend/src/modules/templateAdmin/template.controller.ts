@@ -53,6 +53,7 @@ const getAllTemplate = catchAsync(async (req: Request, res: Response) => {
     page: req.query.page ? Number(req.query.page) : 1,
     limit: req.query.limit ? Number(req.query.limit) : 10,
     search: req.query.search,
+    category: req.query.category as string | undefined,
   };
   const result = await adminTemplateService.getAllTemplate(query);
 

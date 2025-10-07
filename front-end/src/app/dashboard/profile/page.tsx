@@ -1,5 +1,9 @@
-import React from "react";
+import Profile from "@/components/modules/dashboard/profile/Profile";
 
 export default function ProfilePage() {
-  return <div>ProfileP</div>;
+  return (
+    <div>
+      <Profile></Profile>
+    </div>
+  );
 }

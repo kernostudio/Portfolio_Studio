@@ -2,13 +2,51 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "../../config/config";
 import AppError from "../../errorHelpers/errorHelper";
 import httpStatus from "http-status";
-const getAllUsers = async () => {
-  const users = await prisma.user.findMany();
-  if (users.length <= 0) {
-    throw new AppError(httpStatus.NOT_FOUND, "users not found");
+const getAllUsers = async ({
+  page,
+  limit,
+  search,
+}: {
+  page: number;
+  limit: number;
+  search?: string;
+}) => {
+  const skip = (page - 1) * limit;
+
+  const where: Prisma.UserWhereInput = search
+    ? {
+        OR: [
+          { fullName: { contains: search, mode: "insensitive" } },
+          { email: { contains: search, mode: "insensitive" } },
+        ],
+      }
+    : {};
+
+  const [users, total] = await Promise.all([
+    prisma.user.findMany({
+      where,
+      skip,
+      take: limit,
+      orderBy: { createdAt: "desc" },
+    }),
+    prisma.user.count({ where }),
+  ]);
+
+  if (users.length === 0) {
+    throw new AppError(httpStatus.NOT_FOUND, "No users found");
   }
-  return users;
+
+  return {
+    users,
+    meta: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    },
+  };
 };
+
 const updateUser = async (payload: Prisma.UserUpdateInput, id: string) => {
   const user = await prisma.user.findUnique({
     where: { id },

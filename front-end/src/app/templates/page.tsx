@@ -1,5 +1,5 @@
-import AllTemplates from "@/components/modules/templates/AllTemplates";
-import HeroTemplates from "@/components/modules/templates/HeroTemplates";
+import AllTemplates from "@/components/modules/templatesPage/AllTemplates";
+import HeroTemplates from "@/components/modules/templatesPage/HeroTemplates";
 
 export default function TemplatesPage() {
   return (
