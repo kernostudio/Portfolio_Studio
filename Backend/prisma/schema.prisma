@@ -31,9 +31,9 @@ model Template {
   title         String
   description   String?
   categoryId    String
-  html          String
+  slug   String
   placeholders  Json
-  sections      Json
+  templateImgUrl String
   previewUrl    String?
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt

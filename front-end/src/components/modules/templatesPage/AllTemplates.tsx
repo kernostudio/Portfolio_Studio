@@ -7,12 +7,13 @@ import { useRouter } from "next/navigation"; // import useRouter
 import useAxiosPublic from "@/hooks/axiosPublic";
 import TemplatesSidebar from "./TemplateSideBar";
 import Image from "next/image";
+import { useAuth } from "@/Auth/AuthContext";
 
 interface Template {
   id: string;
   title: string;
-  description: string;
-  image: string;
+  description?: string;
+  templateImgUrl?: string;
   category: { id: string; name: string };
 }
 
@@ -24,6 +25,7 @@ interface TemplateResponse {
 
 export default function AllTemplates() {
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
   const router = useRouter(); // initialize router
 
   const [filters, setFilters] = useState({
@@ -49,7 +51,7 @@ export default function AllTemplates() {
   const templates = data?.template ?? [];
 
   const handleCardClick = (id: string) => {
-    router.push(`/templates/${id}`); // navigate to template details page
+    router.push(`/templateDetails/${id}`); // navigate to template details page
   };
 
   return (
@@ -64,23 +66,45 @@ export default function AllTemplates() {
         {templates.map((template: any) => (
           <div
             key={template.id}
-            className="p-4 border h-60 border-gray-200 rounded-2xl bg-white hover:shadow-lg transition cursor-pointer"
-            onClick={() => handleCardClick(template.id)} // make card clickable
+            className="p-4 border border-gray-200 rounded-2xl bg-white hover:shadow-lg transition"
           >
-            {template.image && (
-              <Image
-                src={template.image}
-                alt={template.title}
-                width={400}
-                height={240}
-                className="rounded-xl mb-4 object-cover"
-              />
+            {template.templateImgUrl && (
+              <div className="w-full h-40 relative mb-4 rounded-xl overflow-hidden">
+                <Image
+                  src={template.templateImgUrl}
+                  alt={template.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
             )}
             <h3 className="text-lg font-semibold">{template.title}</h3>
             <p className="text-sm text-gray-500 mb-2">
               {template.category?.name || "Uncategorized"}
             </p>
             <p className="text-gray-600 text-sm">{template.description}</p>
+
+            <div className="flex gap-2 mt-4">
+              <button
+                onClick={() => handleCardClick(template.id)}
+                className="bg-indigo-600 text-sm text-white px-3 py-2 rounded hover:bg-indigo-700 transition"
+              >
+                Preview
+              </button>
+
+              <button
+                onClick={() =>
+                  user
+                    ? router.push(`/templateCustomize/${template.id}`) // logged in, go to edit
+                    : router.push(
+                        `/templates/signin?redirectTo=/templateCustomize/${template.id}`
+                      )
+                }
+                className="flex-1 bg-yellow-500 text-white px-3 py-2 rounded hover:bg-yellow-600 transition"
+              >
+                Edit Template
+              </button>
+            </div>
           </div>
         ))}
       </div>

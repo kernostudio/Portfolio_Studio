@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { authenticate, authorize } from "../../middleware/auth.middleware";
 import { adminTemplateController } from "./template.controller";
+import { multerUpload } from "../../config/multer.config";
 
 const router = Router();
 router.post(
   "/",
   authenticate,
+  multerUpload.single("file"),
   authorize(["admin"]),
   adminTemplateController.createTemplate
 );

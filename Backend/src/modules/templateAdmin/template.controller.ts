@@ -3,9 +3,29 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import httpStatus from "http-status";
 import { adminTemplateService } from "./template.service";
+import AppError from "../../errorHelpers/errorHelper";
 const createTemplate = catchAsync(async (req: Request, res: Response) => {
-  const payload = req.body;
-  const result = await adminTemplateService.createTemplate(payload);
+  const payload = { ...req.body };
+
+  // Parse placeholders if it's a string
+  if (typeof payload.placeholders === "string") {
+    try {
+      payload.placeholders = JSON.parse(payload.placeholders);
+    } catch {
+      throw new AppError(
+        httpStatus.BAD_REQUEST,
+        "Invalid JSON for placeholders"
+      );
+    }
+  }
+
+  const templateImgUrl = req.file ? (req.file as any).path : undefined;
+  const templatePayload = {
+    ...payload,
+    templateImgUrl,
+  };
+
+  const result = await adminTemplateService.createTemplate(templatePayload);
 
   sendResponse(res, {
     success: true,
@@ -14,6 +34,7 @@ const createTemplate = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
 const updateTemplate = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const id = req.params.id;

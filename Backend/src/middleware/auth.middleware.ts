@@ -39,7 +39,6 @@ export const authenticate = async (
       throw new AppError(httpStatus.UNAUTHORIZED, "User no longer exists");
     }
 
-    // ✅ Attach user info to request
     (req as any).user = {
       id: user.id,
       email: user.email,
@@ -48,6 +47,12 @@ export const authenticate = async (
 
     next();
   } catch (err) {
+    res.clearCookie("accessToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
+
     throw new AppError(httpStatus.FORBIDDEN, "Invalid or expired token");
   }
 };

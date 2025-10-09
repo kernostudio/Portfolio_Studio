@@ -16,9 +16,9 @@ interface TemplateFormData {
   title: string;
   description?: string;
   categoryId: string;
-  html: string;
-  placeholders: string;
-  sections: string;
+  slug: string;
+  placeholders: string; // JSON as string
+  templateImg?: File;
   previewUrl?: string;
 }
 
@@ -27,12 +27,13 @@ export default function CreateTemplateForm() {
     title: "",
     description: "",
     categoryId: "",
-    html: "",
     placeholders: "",
-    sections: "",
+    slug: "",
+    templateImg: undefined,
     previewUrl: "",
   });
 
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const axiosPublic = useAxiosPublic();
 
   const {
@@ -48,22 +49,25 @@ export default function CreateTemplateForm() {
   });
 
   const createTemplateMutation = useMutation({
-    mutationFn: async (newTemplate: TemplateFormData) => {
-      const res = await axiosPublic.post("/api/admin/templates", newTemplate);
+    mutationFn: async (fd: FormData) => {
+      const res = await axiosPublic.post("/api/admin/templates", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       return res.data;
     },
     onSuccess: () => {
       toast.success("✅ Template created successfully!");
-      // Reset form after success
+      // Reset form
       setFormData({
         title: "",
         description: "",
         categoryId: "",
-        html: "",
+        slug: "",
         placeholders: "",
-        sections: "",
+        templateImg: undefined,
         previewUrl: "",
       });
+      setImagePreview(null);
     },
     onError: (error: any) => {
       const message =
@@ -79,33 +83,49 @@ export default function CreateTemplateForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prev) => ({ ...prev, templateImg: file }));
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate required fields
-    if (!formData.title || !formData.categoryId || !formData.html) {
+    if (!formData.title || !formData.categoryId) {
       toast.error("Please fill all required fields!");
       return;
     }
 
     try {
-      const preparedData = {
-        ...formData,
-        placeholders: formData.placeholders
-          ? JSON.parse(formData.placeholders)
-          : {},
-        sections: formData.sections ? JSON.parse(formData.sections) : {},
-      };
-      createTemplateMutation.mutate(preparedData);
+      // Parse JSON safely
+      const parsedPlaceholders = formData.placeholders
+        ? JSON.parse(formData.placeholders)
+        : {};
+
+      const fd = new FormData();
+      fd.append("title", formData.title);
+      fd.append("description", formData.description || "");
+      fd.append("categoryId", formData.categoryId);
+      fd.append("slug", formData.slug);
+      fd.append("placeholders", JSON.stringify(parsedPlaceholders)); // backend should parse this
+      fd.append("previewUrl", formData.previewUrl || "");
+
+      if (formData.templateImg) {
+        fd.append("file", formData.templateImg); // must match Multer field name
+      }
+
+      createTemplateMutation.mutate(fd);
     } catch {
-      toast.error("Invalid JSON in placeholders or sections!");
+      toast.error("Invalid JSON in placeholders!");
     }
   };
 
   return (
     <div className="flex justify-center items-center w-full min-h-[calc(100vh-120px)] px-4">
       <div className="w-full md:w-8/12 lg:w-8/12 xl:w-6/12 bg-white rounded-2xl shadow-md p-8">
-        {/* Header */}
         <div className="flex items-center gap-2 mb-6">
           <FiFilePlus className="text-indigo-600 text-2xl" />
           <h2 className="text-2xl font-semibold text-gray-800">
@@ -113,56 +133,57 @@ export default function CreateTemplateForm() {
           </h2>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Title */}
           <div>
-            <label
-              htmlFor="title"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Title <span className="text-red-500">*</span>
             </label>
             <input
-              id="title"
               name="title"
               value={formData.title}
               onChange={handleChange}
-              required
               placeholder="Enter template title"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+              required
+            />
+          </div>
+          {/* slug */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Slug <span className="text-red-500">*</span>
+            </label>
+            <input
+              name="slug"
+              value={formData.slug}
+              onChange={handleChange}
+              placeholder="Enter template slug"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+              required
             />
           </div>
 
           {/* Description */}
           <div>
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Description
             </label>
             <textarea
-              id="description"
               name="description"
               value={formData.description}
               onChange={handleChange}
               placeholder="Enter short description (optional)"
               rows={3}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
-            ></textarea>
+            />
           </div>
 
           {/* Category */}
           <div>
-            <label
-              htmlFor="categoryId"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Category <span className="text-red-500">*</span>
             </label>
             <select
-              id="categoryId"
               name="categoryId"
               value={formData.categoryId}
               onChange={handleChange}
@@ -184,74 +205,47 @@ export default function CreateTemplateForm() {
             </select>
           </div>
 
-          {/* HTML */}
-          <div>
-            <label
-              htmlFor="html"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              HTML Code <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              id="html"
-              name="html"
-              value={formData.html}
-              onChange={handleChange}
-              required
-              placeholder="<div>Your HTML here</div>"
-              rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none font-mono"
-            ></textarea>
-          </div>
-
           {/* Placeholders */}
           <div>
-            <label
-              htmlFor="placeholders"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Placeholders (JSON)
             </label>
             <textarea
-              id="placeholders"
               name="placeholders"
               value={formData.placeholders}
               onChange={handleChange}
-              placeholder='e.g. { "name": "John", "email": "john@example.com" }'
-              rows={3}
+              placeholder='e.g. { "root": { "bgColor": "#ffffff" } }'
+              rows={5}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none font-mono"
-            ></textarea>
+            />
           </div>
 
-          {/* Sections */}
+          {/* Template Image Upload */}
           <div>
-            <label
-              htmlFor="sections"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Sections (JSON)
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Template Image
             </label>
-            <textarea
-              id="sections"
-              name="sections"
-              value={formData.sections}
-              onChange={handleChange}
-              placeholder='e.g. { "header": "Welcome", "footer": "Thanks" }'
-              rows={3}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none font-mono"
-            ></textarea>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full border-gray-300 rounded-lg border-2 p-2"
+            />
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="mt-2 w-32 h-32 object-cover rounded-lg border"
+              />
+            )}
           </div>
 
           {/* Preview URL */}
           <div>
-            <label
-              htmlFor="previewUrl"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Preview URL
             </label>
             <input
-              id="previewUrl"
               name="previewUrl"
               type="text"
               value={formData.previewUrl}

@@ -22,10 +22,9 @@ const createTemplate = async (
     data: {
       title: payload.title,
       description: payload.description,
-      html: payload.html,
+      templateImgUrl: payload.templateImgUrl,
       placeholders: payload.placeholders,
-      sections: payload.sections,
-
+      slug: payload.slug,
       category: {
         connect: { id: payload.categoryId },
       },

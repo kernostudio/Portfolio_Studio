@@ -28,7 +28,7 @@ export default function SignUpPage() {
     try {
       await register({ fullName, email, password });
       toast.success("Registration successful!");
-      route.push("/dashboard");
+      route.push("/templates/signin");
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Something went wrong");
     } finally {

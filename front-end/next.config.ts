@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com"], // ✅ allow Cloudinary images
+    domains: ["res.cloudinary.com", "i.ibb.co"], // ✅ allow Imgbb images too
   },
 };
 

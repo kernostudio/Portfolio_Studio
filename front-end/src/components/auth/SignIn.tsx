@@ -3,7 +3,7 @@
 
 import { useAuth } from "@/Auth/AuthContext";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -16,11 +16,13 @@ export default function SignInPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { user } = useAuth();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") || "/dashboard";
   useEffect(() => {
     if (user) {
-      router.replace("/dashboard");
+      router.replace(redirectTo);
     }
-  }, [user, router]);
+  }, [user, router, redirectTo]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -28,7 +30,7 @@ export default function SignInPage() {
     try {
       await login({ email, password });
       toast.success("Signin successful!");
-      router.push("/dashboard");
+      router.push(redirectTo);
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Something went wrong");
     } finally {
