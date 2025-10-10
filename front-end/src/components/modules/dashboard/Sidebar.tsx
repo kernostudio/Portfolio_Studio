@@ -30,7 +30,7 @@ const Sidebar = () => {
     },
     {
       name: "My Templates",
-      href: "/dashboard/templates",
+      href: `/dashboard/myTemplates/${user?.id}`,
       icon: <AiOutlineFileText className="w-5 h-5" />,
     },
     {

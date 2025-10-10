@@ -96,7 +96,7 @@ export default function ProductDesigner({ placeholder }: PageProps) {
       `}</style>
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--nav-bg)]">
+      <nav className="sticky top-0 left-0 right-0 z-20 bg-[var(--nav-bg)]">
         <div className="w-11/12 mx-auto">
           <div className="flex items-center justify-between h-16">
             <div style={{ color: "var(--nav-text)", fontWeight: "bold" }}>
@@ -240,7 +240,7 @@ export default function ProductDesigner({ placeholder }: PageProps) {
         <div className="lg:flex justify-between space-y-14 lg:space-y-0 mt-20 gap-20">
           {work.items.map((item, idx) => (
             <div key={idx}>
-              <img src={item.image} alt={item.title} />
+              <img className="w-full" src={item.image} alt={item.title} />
               <p className="mt-1">{item.date}</p>
               <h1 className="font-bold text-2xl">{item.title}</h1>
               <p>{item.desc}</p>
@@ -250,13 +250,13 @@ export default function ProductDesigner({ placeholder }: PageProps) {
       </section>
 
       {/* CONTACT */}
-      <section id="/contact" className="max-w-6xl mx-auto px-6 py-12">
+      <section id="/contact" className="w-11/12 mx-auto  py-12">
         <h2 className="text-2xl lg:text-6xl font-bold mb-4">
           {contact.heading}
         </h2>
         <div className="mt-12 lg:flex justify-between gap-10">
-          <img src={contact.image} alt="contact" />
-          <div className="space-y-5">
+          <img className="w-full lg:w-1/2" src={contact.image} alt="contact" />
+          <div className="space-y-5 mt-6 lg:mt-0">
             <p>{contact.text}</p>
             <p>{contact.email}</p>
             <p>{contact.phone}</p>
