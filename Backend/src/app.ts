@@ -10,6 +10,7 @@ import { adminTemplatesRoutes } from "./modules/templateAdmin/template.route";
 import { userTemplateRoutes } from "./modules/userTemplate/userTemplate.route";
 import { cleanupCloudinaryOnError } from "./middleware/cleanUpMediaOnError";
 import { uploadRouter } from "./modules/upload/upload";
+import { userTemplatePublishRoutes } from "./modules/userTemplatePublish/userTemplatePublish.route";
 const app = express();
 
 // Middleware
@@ -29,6 +30,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/categories", categoriesRoutes);
 app.use("/api/admin/templates", adminTemplatesRoutes);
 app.use("/api/user-templates", userTemplateRoutes);
+app.use("/api/user-templatesPublish", userTemplatePublishRoutes);
 app.use("/api", uploadRouter);
 
 // Default route for testing

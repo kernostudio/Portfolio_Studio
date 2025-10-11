@@ -70,11 +70,43 @@ const deleteUserTemplate = async (userTemplateId: string, userId: string) => {
 
   return template;
 };
+const updateUserTemplate = async (
+  userTemplateId: string,
+  userId: string,
+  data: {
+    filledValues?: any;
+  }
+) => {
+  // Check if exists
+  const templateExist = await prisma.userTemplate.findFirst({
+    where: {
+      id: userTemplateId,
+      userId: userId,
+    },
+  });
+
+  if (!templateExist) {
+    throw new AppError(httpStatus.NOT_FOUND, "Template doesn't exist");
+  }
+
+  // ✅ Update filledValues or sectionsData
+  const updatedTemplate = await prisma.userTemplate.update({
+    where: { id: userTemplateId },
+    data: {
+      ...(data.filledValues && { filledValues: data.filledValues }),
+    },
+  });
+
+  return updatedTemplate;
+};
+
 const getAllUserTemplates = async (userId: string) => {
   const templates = await prisma.userTemplate.findMany({
     where: { userId },
     select: {
       id: true,
+      createdAt: true, // ✅ include this
+      updatedAt: true, // ✅ include this
       template: {
         select: {
           title: true,
@@ -97,4 +129,5 @@ export const userTemplateService = {
   getSingleUserTemplate,
   getAllUserTemplates,
   deleteUserTemplate,
+  updateUserTemplate,
 };

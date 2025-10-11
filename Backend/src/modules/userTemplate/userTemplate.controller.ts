@@ -48,6 +48,25 @@ const deleteUserTemplate = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const updateUserTemplate = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const templateId = req.params.templateId;
+  const { filledValues } = req.body;
+
+  const result = await userTemplateService.updateUserTemplate(
+    templateId,
+    userId,
+    { filledValues }
+  );
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Template updated successfully",
+    data: result,
+  });
+});
+
 const getAllUserTemplates = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
@@ -66,4 +85,5 @@ export const userTemplateController = {
   getSingleUserTemplate,
   getAllUserTemplates,
   deleteUserTemplate,
+  updateUserTemplate,
 };

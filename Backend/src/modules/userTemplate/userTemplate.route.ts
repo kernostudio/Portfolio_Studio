@@ -21,6 +21,12 @@ router.delete(
   authorize(["admin", "user"]),
   userTemplateController.deleteUserTemplate
 );
+router.patch(
+  "/:userId/:templateId",
+  authenticate,
+  authorize(["admin", "user"]),
+  userTemplateController.updateUserTemplate
+);
 router.get(
   "/:id",
   authenticate,
