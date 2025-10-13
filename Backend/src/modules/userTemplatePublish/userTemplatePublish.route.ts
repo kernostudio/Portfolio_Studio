@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticate, authorize } from "../../middleware/auth.middleware";
-import * as controller from "./userTemplatePublish.controller";
+import { templatePublishController } from "./userTemplatePublish.controller";
 
 const router = Router();
 
@@ -8,14 +8,20 @@ router.post(
   "/",
   authenticate,
   authorize(["user", "admin"]),
-  controller.createPublishRequest
+  templatePublishController.createPublishRequest
+);
+router.post(
+  "/:id",
+  authenticate,
+  authorize(["user", "admin"]),
+  templatePublishController.getSinglePublishRequest
 );
 
 router.patch(
   "/:id",
   authenticate,
   authorize(["admin"]),
-  controller.updatePublishStatus
+  templatePublishController.updatePublishStatus
 );
 
 export const userTemplatePublishRoutes = router;

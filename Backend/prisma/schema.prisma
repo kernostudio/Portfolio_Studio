@@ -85,5 +85,5 @@ model UserTemplatePublish {
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
 
-  userTemplate UserTemplate @relation(fields: [userTemplateId], references: [id])
+  userTemplate UserTemplate @relation(fields: [userTemplateId], references: [id],onDelete: Cascade)
 }

@@ -1,9 +1,11 @@
-import SignInPage from "@/components/auth/SignIn";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const SignInPage = dynamic(() => import("@/components/auth/SignIn"), {
+  ssr: false,
+});
 
 export default function SigninPage() {
-  return (
-    <div>
-      <SignInPage></SignInPage>
-    </div>
-  );
+  return <SignInPage />;
 }

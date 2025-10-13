@@ -26,6 +26,39 @@ export const createPublishRequest = async (
 
   return publish;
 };
+export const getSinglePublishRequest = async (userTemplateId: string) => {
+  // Check if the userTemplate exists
+  const template = await prisma.userTemplate.findUnique({
+    where: { id: userTemplateId },
+  });
+
+  if (!template) {
+    throw new AppError(httpStatus.NOT_FOUND, "User template not found");
+  }
+
+  // Fetch the publish request related to this userTemplate
+  const publish = await prisma.userTemplatePublish.findFirst({
+    where: { userTemplateId },
+    include: {
+      userTemplate: {
+        include: {
+          template: true,
+          user: true,
+        },
+      },
+    },
+  });
+
+  // ✅ If no publish request found, return default response
+  if (!publish) {
+    return {
+      status: "not_requested",
+      message: "No publish request found for this template",
+    };
+  }
+
+  return publish;
+};
 
 export const updatePublishStatus = async (
   publishId: string,

@@ -59,9 +59,8 @@ export default function MyTemplates({ id }: { id: string }) {
     queryKey: ["userTemplates", id],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/user-templates/${id}`);
-      console.log("API Response:", res.data); // Debug log
+      console.log("Full API Response:", res.data);
 
-      // Handle both array and single object responses
       const responseData = res.data?.data;
 
       // If it's a single object, wrap it in an array
@@ -107,7 +106,6 @@ export default function MyTemplates({ id }: { id: string }) {
     router.push(`/edit-user-owned-template/${templateId}`);
   };
 
-  // inside your React component (MyTemplates or ProductDesignerEdit)
   const handlePublish = async (templateId: string) => {
     const { value: formValues } = await Swal.fire({
       title: "Publish template",
@@ -141,15 +139,16 @@ export default function MyTemplates({ id }: { id: string }) {
     if (!formValues) return;
 
     const payload = {
-      domainType: formValues.domainType, // 'subdomain' | 'custom'
+      domainType: formValues.domainType,
       domain: formValues.domain,
       note: formValues.note,
+      userTemplateId: templateId,
     };
 
     try {
       await axiosPublic.post(`/api/user-templatesPublish`, payload);
       toast.success("Publish request submitted! Admin will review it.");
-      refetch(); // refresh list so publishRequests shows up
+      refetch();
     } catch (err) {
       console.error("Publish request failed", err);
       toast.error("Failed to submit publish request.");
@@ -167,55 +166,8 @@ export default function MyTemplates({ id }: { id: string }) {
     });
   };
 
-  const getPublishStatus = (template: UserTemplate) => {
-    // If no publish requests, it's a draft
-    if (!template.publishRequests || template.publishRequests.length === 0) {
-      return {
-        status: "draft",
-        label: "Draft",
-        color: "bg-gray-100 text-gray-800 border border-gray-300",
-      };
-    }
-
-    // Get the latest publish request
-    const latestRequest = template.publishRequests.reduce((latest, current) => {
-      return new Date(current.createdAt) > new Date(latest.createdAt)
-        ? current
-        : latest;
-    });
-
-    const statusConfig = {
-      pending: {
-        label: "Pending Review",
-        color: "bg-yellow-100 text-yellow-800 border border-yellow-300",
-      },
-      approved: {
-        label: "Published",
-        color: "bg-green-100 text-green-800 border border-green-300",
-      },
-      rejected: {
-        label: "Rejected",
-        color: "bg-red-100 text-red-800 border border-red-300",
-      },
-    };
-
-    const config = statusConfig[
-      latestRequest.status as keyof typeof statusConfig
-    ] || {
-      label: latestRequest.status,
-      color: "bg-gray-100 text-gray-800 border border-gray-300",
-    };
-
-    return {
-      status: latestRequest.status,
-      ...config,
-    };
-  };
-
   // Mobile Card View
   const MobileTemplateCard = ({ template }: { template: UserTemplate }) => {
-    const publishStatus = getPublishStatus(template);
-
     return (
       <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
         <div className="flex justify-between items-start mb-3">
@@ -269,7 +221,7 @@ export default function MyTemplates({ id }: { id: string }) {
                   className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                 >
                   <Globe className="w-4 h-4" />
-                  {publishStatus.status === "approved" ? "Manage" : "Publish"}
+                  Publish
                 </button>
                 <button
                   onClick={() => {
@@ -287,11 +239,6 @@ export default function MyTemplates({ id }: { id: string }) {
         </div>
 
         <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-          <span
-            className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${publishStatus.color}`}
-          >
-            {publishStatus.label}
-          </span>
           <div className="flex items-center gap-1">
             <Calendar className="w-3 h-3" />
             {formatDate(template.updatedAt)}
@@ -319,7 +266,7 @@ export default function MyTemplates({ id }: { id: string }) {
             className="flex items-center gap-1 px-3 py-1 text-sm text-purple-600 hover:bg-purple-50 rounded"
           >
             <Globe className="w-4 h-4" />
-            {publishStatus.status === "approved" ? "Manage" : "Publish"}
+            Publish
           </button>
         </div>
       </div>
@@ -379,13 +326,7 @@ export default function MyTemplates({ id }: { id: string }) {
                 </div>
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                <div className="flex items-center gap-1">
-                  Created At
-                  <ArrowUpDown className="w-4 h-4" />
-                </div>
+                Created At
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 <div className="flex items-center gap-1">
@@ -401,8 +342,6 @@ export default function MyTemplates({ id }: { id: string }) {
           <tbody className="bg-white divide-y divide-gray-200">
             {templates.length > 0 ? (
               templates.map((template: UserTemplate) => {
-                const publishStatus = getPublishStatus(template);
-
                 return (
                   <tr
                     key={template.id}
@@ -417,13 +356,6 @@ export default function MyTemplates({ id }: { id: string }) {
                           ID: {template.id.slice(0, 8)}...
                         </div>
                       </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span
-                        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${publishStatus.color}`}
-                      >
-                        {publishStatus.label}
-                      </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <div className="flex items-center gap-1">
@@ -456,11 +388,7 @@ export default function MyTemplates({ id }: { id: string }) {
                         <button
                           onClick={() => handlePublish(template.id)}
                           className="flex items-center gap-1 p-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors"
-                          title={
-                            publishStatus.status === "approved"
-                              ? "Manage Publishing"
-                              : "Publish"
-                          }
+                          title="Publish"
                         >
                           <Globe className="w-4 h-4" />
                         </button>
@@ -478,7 +406,7 @@ export default function MyTemplates({ id }: { id: string }) {
               })
             ) : (
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center">
+                <td colSpan={4} className="px-6 py-12 text-center">
                   <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
                   <p className="text-gray-500">
                     No templates found for this user.
@@ -498,8 +426,6 @@ export default function MyTemplates({ id }: { id: string }) {
         <div className="grid grid-cols-1 gap-4 p-4">
           {templates.length > 0 ? (
             templates.map((template: UserTemplate) => {
-              const publishStatus = getPublishStatus(template);
-
               return (
                 <div
                   key={template.id}
@@ -514,11 +440,6 @@ export default function MyTemplates({ id }: { id: string }) {
                         ID: {template.id.slice(0, 8)}...
                       </p>
                     </div>
-                    <span
-                      className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${publishStatus.color}`}
-                    >
-                      {publishStatus.label}
-                    </span>
                   </div>
 
                   <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
@@ -550,11 +471,7 @@ export default function MyTemplates({ id }: { id: string }) {
                     <button
                       onClick={() => handlePublish(template.id)}
                       className="flex items-center gap-1 p-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors"
-                      title={
-                        publishStatus.status === "approved"
-                          ? "Manage Publishing"
-                          : "Publish"
-                      }
+                      title="Publish"
                     >
                       <Globe className="w-4 h-4" />
                     </button>

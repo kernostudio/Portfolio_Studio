@@ -23,6 +23,20 @@ export const createPublishRequest = catchAsync(
     });
   }
 );
+export const getSinglePublishRequest = catchAsync(
+  async (req: Request, res: Response) => {
+    const userTemplateId = req.params.id;
+
+    const result = await service.getSinglePublishRequest(userTemplateId);
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "get publish request successfully",
+      data: result,
+    });
+  }
+);
 
 export const updatePublishStatus = catchAsync(
   async (req: Request, res: Response) => {
@@ -39,3 +53,8 @@ export const updatePublishStatus = catchAsync(
     });
   }
 );
+export const templatePublishController = {
+  getSinglePublishRequest,
+  createPublishRequest,
+  updatePublishStatus,
+};
