@@ -209,7 +209,7 @@ export default function UiUxDesigner({
               </div>
             </div>
 
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center justify-between gap-5">
               {nav.links.map((link, idx) => (
                 <button
                   key={idx}
@@ -415,7 +415,7 @@ export default function UiUxDesigner({
               {services.items.map((service, index) => (
                 <div
                   key={index}
-                  className="border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-2xl p-6 w-64"
+                  className="border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-2xl p-6 "
                   style={{
                     backgroundColor: service.bgColor,
                   }}
@@ -536,7 +536,7 @@ export default function UiUxDesigner({
                   {item.url ? (
                     <a
                       href={item.url}
-                      className="text-gray-600 hover:text-orange-600 transition-colors text-sm font-medium block mb-2 group-hover:translate-x-2 transition-transform duration-300"
+                      className="text-gray-600 hover:text-orange-600 transition-colors break-words  text-sm font-medium block mb-2 group-hover:translate-x-2 transition-transform duration-300"
                     >
                       {item.value}
                     </a>
