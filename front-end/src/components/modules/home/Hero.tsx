@@ -1,100 +1,175 @@
 "use client";
 
-import Image from "next/image";
-import buttonIcon from "../../../../public/img/Group.png";
-import heroImg from "../../../../public/img/image 206.png";
-import user1 from "../../../../public/img/user.png";
-import user2 from "../../../../public/img/user (1).png";
-import user3 from "../../../../public/img/user (2).png";
-import user4 from "../../../../public/img/user (3).png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
-  const reviewers = [user1, user2, user3, user4];
+  const router = useRouter();
   return (
-    <div className="w-11/12 mx-auto mt-20">
-      <div className="lg:flex justify-between gap-4">
-        <div className="lg:w-1/2">
-          <h1 className="md:text-[68px] text-3xl font-medium leading-tight">
-            Create <span className="text-[#A78BFA]">Stunning</span> <br />
-            <span className="text-[#7C3AED]">Portfolios</span> in <br />
-            Minutes
+    <div className="w-11/12 mx-auto mt-10 ">
+      <div className="flex justify-center ">
+        <div>
+          <h1 className="lg:text-5xl md:text-2xl text-xl text-center">
+            Create <span className="font-bold">Stunning</span>
           </h1>
-
-          <p className="text-[16px] text-sm mt-5 font-light">
-            Browse stunning templates by category, customize with simple edits,
-            <br /> and publish with one click. No coding or design skills
+          <h1 className="lg:text-5xl md:text-2xl text-center mt-3 text-xl">
+            <span className="font-bold">Portfolios</span> in Minutes
+          </h1>
+          <p className="text-center mt-3 md:text-[18px] ">
+            Browse Stunning templates by category, customize,with{" "}
+            <br className="hidden md:block" /> simple edits,and publish with one
+            click. No coding or design <br className="hidden md:block" /> skills
             required.
           </p>
-          <div className="mt-5">
-            <Link
-              href="/templates"
-              className="flex justify-center gap-1 md:h-[48px] lg:w-[206px] items-center bg-gradient-to-b from-[#A78BFA] to-[#7C3AED] text-white p-2 rounded-full lg:text-xl hover:bg-purple-600 transition"
-            >
-              Start Building Free
-              <Image
-                className="rounded-full bg-white w-5 h-5"
-                src={buttonIcon}
-                alt="icon"
-              ></Image>
-            </Link>
-          </div>
-          <div className="flex flex-col  space-y-4 mt-10">
-            {/* Stars */}
-            <div className="flex space-x-1">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-yellow-400"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.431L24 9.748l-6 5.849L19.335 24 12 20.201 4.665 24 6 15.597 0 9.748l8.332-1.73z" />
-                </svg>
-              ))}
-            </div>
-
-            <p className=" text-gray-700 text-sm lg:text-base">
-              Over 1K+ Client Review’s
-            </p>
-
-            <div className="flex -space-x-3">
-              {reviewers.map((img, idx) => (
-                <Image
-                  key={idx}
-                  src={img}
-                  alt={`Reviewer ${idx + 1}`}
-                  className="w-12 h-12 rounded-full border-2 border-white object-cover"
-                />
-              ))}
-            </div>
-          </div>
         </div>
-        <div className="mt-9 lg:mt-20 lg:w-1/2 relative rounded-2xl overflow-hidden">
-          {/* Image */}
-          <Image
-            src={heroImg}
-            alt="computer"
-            className="w-full lg:h-[498px] object-cover"
-          />
+      </div>
+      <div className="flex justify-center ">
+        <div className="relative  lg:w-[48%] ">
+          <div className="relative w-full lg:w-[350px] h-[300px] bg-white rounded-2xl   p-6 z-10 mt-6 lg:mt-28">
+            <h2 className="text-lg font-semibold text-gray-400">Name</h2>
+            <hr className="my-2 text-gray-200" />
 
-          <div className="absolute bottom-0 left-0 w-full  border-t border-b rounded-b-2xl rounded-t-2xl bg-white/5 backdrop-blur-xs text-white p-4 flex justify-between">
-            <div className="">
-              <h3 className="font-semibold">10 years</h3>
-              <p className="lg:text-sm text-xs">Global Impact</p>
+            <section className="mb-4">
+              <h3 className="text-xs font-bold text-gray-400 uppercase mb-2">
+                Professional Summary
+              </h3>
+              <div className="space-y-2">
+                <div className="h-3 bg-gray-100 rounded"></div>
+                <div className="h-3 bg-gray-100 rounded"></div>
+                <div className="h-3 w-3/4 bg-gray-100 rounded"></div>
+              </div>
+            </section>
+
+            <section className="mb-4">
+              <h3 className="text-xs font-bold text-gray-400 uppercase mb-2">
+                Skill
+              </h3>
+              <div className="space-y-2">
+                <div className="h-3 bg-gray-100 rounded"></div>
+                <div className="h-3 w-5/6 bg-gray-100 rounded"></div>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="text-xs font-bold text-gray-400 uppercase mb-2">
+                Experience
+              </h3>
+              <div className="space-y-2">
+                <div className="h-3 bg-gray-100 rounded"></div>
+                <div className="h-3 w-5/6 bg-gray-100 rounded"></div>
+              </div>
+            </section>
+          </div>
+
+          <div className="relative w-full lg:w-auto bg-white rounded-2xl shadow p-6 z-20 mt-6 lg:-mt-[355px] h-[420px] lg:ml-56">
+            <h2 className="text-lg font-semibold text-gray-600">
+              Ariful Islam
+            </h2>
+            <div className="flex gap-1 my-2">
+              <div className="h-3 w-1/4 bg-gray-100 rounded"></div>
+              <div className="h-3 w-1/4 bg-gray-100 rounded"></div>
+              <div className="h-3 w-1/4 bg-gray-100 rounded"></div>
             </div>
-            <div className="">
-              <h3 className="font-semibold">9 years</h3>
-              <p className="lg:text-sm text-xs">Creative Solutions</p>
+
+            <section className="mb-4">
+              <h3 className="text-xs font-bold pt-1 text-gray-800 uppercase mb-2">
+                Professional Summary
+              </h3>
+              <p className="text-[10px] inline-block px-1">
+                <span className="bg-blue-200">
+                  Motivated and dedicated individual seeking opportunities to
+                </span>{" "}
+                <span className="bg-blue-200">
+                  apply skills and grow professionally. Strong work ethic with
+                  the
+                </span>{" "}
+                <span className="bg-blue-200">
+                  ability to adapt to new challenges.
+                </span>
+              </p>
+            </section>
+
+            <section className="mb-4">
+              <h3 className="text-xs font-bold text-gray-800 uppercase mb-2">
+                Skill
+              </h3>
+              <p className="text-xs">
+                Java, Python, Go, Apache Kafka, RaviitMQ, Kubernetes, CI/CD with{" "}
+                <span className="bg-blue-200">
+                  Jenkins, Prometheus, Node.js Typescript, Multimedia, HLS
+                </span>
+              </p>
+            </section>
+
+            <section>
+              <h3 className="text-xs font-bold text-gray-800 uppercase mb-2">
+                Experience
+              </h3>
+              <p className="text-xs">
+                Once you have your refined resume, explore our job board and
+                instantly get hundreds of job matches where you’ll be the top
+                applicant!{" "}
+                <span className="bg-blue-200">Create, edit, and apply</span> -
+                all from one place!
+              </p>
+              <div className="space-y-1 pt-3">
+                <div className="h-3 bg-gray-100 rounded"></div>
+                <div className="h-3 w-1/2 bg-gray-100 rounded"></div>
+                <div className="h-3 bg-gray-100 rounded"></div>
+                <div className="h-3 w-1/2 bg-gray-100 rounded"></div>
+              </div>
+            </section>
+
+            <img
+              src="https://i.ibb.co.com/pBhQzDxY/Vector-1.png"
+              alt="line indicator"
+              className="absolute hidden lg:block top-3 -left-40 w-[150px] h-[43px]"
+            />
+            <img
+              src="https://i.ibb.co.com/bRDX8pNF/doublestar.png"
+              alt="star icon"
+              className="absolute -top-5 -left-5 w-[40px] h-[40px]"
+            />
+            <div className="absolute bottom-10 h-[32px] right-0 bg-white shadow-md px-4 py-2 rounded-full text-sm flex items-center gap-2 border border-gray-200 z-40">
+              <img
+                src="https://i.ibb.co.com/bRDX8pNF/doublestar.png"
+                alt="icon"
+                className="w-4 h-4"
+              />
+              <span className="font-medium text-xs">Summary Enhanced</span>
             </div>
-            <div className="">
-              <h3 className="font-semibold">7 years</h3>
-              <p className="lg:text-sm text-xs">Brand Strategy</p>
+
+            <div className="absolute bottom-0 h-[32px] right-0 bg-white shadow-md px-4 py-2 rounded-full text-sm flex items-center gap-2 border border-gray-200 z-40">
+              <img
+                src="https://i.ibb.co.com/bRDX8pNF/doublestar.png"
+                alt="icon"
+                className="w-4 h-4"
+              />
+              <span className="font-medium text-xs">
+                Relevant Skills Highlighted
+              </span>
+            </div>
+
+            <div className="absolute -bottom-9 h-[32px] right-0 bg-white shadow-md px-4 py-2 rounded-full text-sm flex items-center gap-2 border border-gray-200 z-40">
+              <img
+                src="https://i.ibb.co.com/bRDX8pNF/doublestar.png"
+                alt="icon"
+                className="w-4 h-4"
+              />
+              <span className="font-medium text-xs">
+                Recent Work Experience Enhanced
+              </span>
             </div>
           </div>
         </div>
       </div>
+      <div className="mt-16 lg:mt-0"></div>
+      <Link
+        href="/templates"
+        className="bg-black lg:ml-64  h-[46px] text-white px-4 py-2 rounded-xl font-medium hover:bg-blue-700 "
+      >
+        Start Building Portfolio
+      </Link>
     </div>
   );
 }

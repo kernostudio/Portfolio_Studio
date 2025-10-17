@@ -7,6 +7,7 @@ export default function Features() {
       <h1 className="font-medium text-xl md:text-[46px]">
         Everything You <br /> Need to Stand Out
       </h1>
+
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
         {/* First Row */}
         <div className="lg:col-span-2 h-[350px] border border-gray-300 bg-[#F6F8FC] rounded-xl shadow-md p-6 flex justify-between items-center hover:shadow-xl transition-shadow duration-300">
