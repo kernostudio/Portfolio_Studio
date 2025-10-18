@@ -12,8 +12,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex h-screen bg-gray-100">
         <Sidebar />
 
-        <div className="flex-1 flex flex-col ">
-          <main className="p-6 overflow-auto flex-1">{children}</main>
+        <div className="flex-1 flex flex-col  ">
+          <main className="p-6 overflow-auto border-2 border-r-0 border-b-0 flex-1">
+            {children}
+          </main>
         </div>
       </div>
     </ProtectedRoute>

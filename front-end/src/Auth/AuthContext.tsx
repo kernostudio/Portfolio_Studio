@@ -46,11 +46,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Verify user by calling backend (which checks cookie validity)
+  // ✅ Verify user by calling backend (which checks cookie validity) - FIXED
   useEffect(() => {
     const verifyUser = async () => {
       try {
+        // Don't check localStorage first - always verify with backend first
         const response = await fetchUserProfile();
+        if (response === null) {
+          setUser(null);
+          localStorage.removeItem("user");
+          return;
+        }
         if (response.data?.user) {
           const profileUser: User = {
             id: response.data.user.id,
@@ -62,20 +68,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           setUser(profileUser);
           localStorage.setItem("user", JSON.stringify(profileUser));
         } else {
+          // If backend says no user, clear everything
           setUser(null);
           localStorage.removeItem("user");
         }
       } catch (error: any) {
         console.error("Auth check failed:", error);
-
-        if (
-          error.response?.status === 401 ||
-          error.response?.status === 403 ||
-          error.response?.data?.message === "Invalid or expired token"
-        ) {
-          setUser(null);
-          localStorage.removeItem("user");
-        }
+        // On ANY error, clear user state
+        setUser(null);
+        localStorage.removeItem("user");
       } finally {
         setLoading(false);
       }
@@ -87,15 +88,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // ✅ Register new user
   const register = async (userData: UserData) => {
     const response = await registerUser(userData);
-    const newUser: User = {
+    const profileResponse = await fetchUserProfile();
+    const registeredUser: User = {
       id: response.data.userId,
       name: response.data.name,
       email: response.data.email,
       role: response.data.role,
+      avatarUrl: profileResponse.data.user.avatarUrl,
     };
-    // setUser(newUser);
-    // localStorage.setItem("user", JSON.stringify(newUser));
-    return newUser;
+    setUser(registeredUser);
+    localStorage.setItem("user", JSON.stringify(registeredUser));
+    return registeredUser;
   };
 
   // ✅ Login user (backend sets cookie)
@@ -119,10 +122,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       await logoutUser(); // calls backend to clear cookie
     } catch (err) {
-      console.error("Logout failed:", err);
+      console.error("Logout API call failed:", err);
     } finally {
+      // Always clear frontend state regardless of API call success
       setUser(null);
       localStorage.removeItem("user");
+
+      // Force a hard refresh to ensure all components reset
+      window.location.href = "/";
     }
   };
 

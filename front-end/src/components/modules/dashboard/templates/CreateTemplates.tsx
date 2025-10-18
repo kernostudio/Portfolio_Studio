@@ -4,7 +4,7 @@
 import useAxiosPublic from "@/hooks/axiosPublic";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState, ChangeEvent, FormEvent } from "react";
-import { FiFilePlus } from "react-icons/fi";
+import { FiFilePlus, FiUpload } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 interface Category {
@@ -124,146 +124,179 @@ export default function CreateTemplateForm() {
   };
 
   return (
-    <div className="flex justify-center items-center w-full min-h-[calc(100vh-120px)] px-4">
-      <div className="w-full md:w-8/12 lg:w-8/12 xl:w-6/12 bg-white rounded-2xl shadow-md p-8">
-        <div className="flex items-center gap-2 mb-6">
-          <FiFilePlus className="text-indigo-600 text-2xl" />
-          <h2 className="text-2xl font-semibold text-gray-800">
-            Create Template
-          </h2>
+    <div className="flex justify-center items-center w-full min-h-[calc(100vh-120px)] px-4 py-8">
+      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-2 bg-gray-200 rounded-xl">
+            <FiFilePlus className="text-black text-2xl" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Create Template
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Design your perfect template
+            </p>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Title */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Title <span className="text-red-500">*</span>
-            </label>
-            <input
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              placeholder="Enter template title"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
-              required
-            />
-          </div>
-          {/* slug */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Slug <span className="text-red-500">*</span>
-            </label>
-            <input
-              name="slug"
-              value={formData.slug}
-              onChange={handleChange}
-              placeholder="Enter template slug"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
-              required
-            />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Title & Slug in grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                Title <span className="text-red-500">*</span>
+              </label>
+              <input
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                placeholder="Enter template title"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black outline-none transition-all bg-gray-50"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                Slug <span className="text-red-500">*</span>
+              </label>
+              <input
+                name="slug"
+                value={formData.slug}
+                onChange={handleChange}
+                placeholder="Enter template slug"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
+                required
+              />
+            </div>
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-800 mb-2">
               Description
             </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Enter short description (optional)"
+              placeholder="Describe your template purpose and features..."
               rows={3}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none resize-none transition-all bg-gray-50"
             />
           </div>
 
-          {/* Category */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Category <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="categoryId"
-              value={formData.categoryId}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white"
-            >
-              <option value="">Select a category</option>
-              {isLoading ? (
-                <option disabled>Loading...</option>
-              ) : isError ? (
-                <option disabled>Error loading categories</option>
-              ) : (
-                categories.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))
-              )}
-            </select>
+          {/* Category & Preview URL in grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                Category <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="categoryId"
+                value={formData.categoryId}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50 appearance-none"
+              >
+                <option value="">Choose category</option>
+                {isLoading ? (
+                  <option disabled>Loading categories...</option>
+                ) : isError ? (
+                  <option disabled>Error loading categories</option>
+                ) : (
+                  categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))
+                )}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                Preview URL
+              </label>
+              <input
+                name="previewUrl"
+                type="text"
+                value={formData.previewUrl}
+                onChange={handleChange}
+                placeholder="https://example.com/preview"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
+              />
+            </div>
           </div>
 
           {/* Placeholders */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Placeholders (JSON)
+            <label className="block text-sm font-semibold text-gray-800 mb-2">
+              Placeholders Configuration
             </label>
             <textarea
               name="placeholders"
               value={formData.placeholders}
               onChange={handleChange}
-              placeholder='e.g. { "root": { "bgColor": "#ffffff" } }'
-              rows={5}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none font-mono"
+              placeholder='{"root": {"bgColor": "#ffffff"}, "header": {"text": "Your Header"}}'
+              rows={4}
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none resize-none font-mono text-sm bg-gray-50 transition-all"
             />
+            <p className="text-xs text-gray-500 mt-2">
+              Enter valid JSON format for template placeholders
+            </p>
           </div>
 
           {/* Template Image Upload */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-800 mb-2">
               Template Image
             </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="w-full border-gray-300 rounded-lg border-2 p-2"
-            />
-            {imagePreview && (
-              <img
-                src={imagePreview}
-                alt="Preview"
-                className="mt-2 w-32 h-32 object-cover rounded-lg border"
+            <div className="border-2 border-dashed border-gray-300 rounded-2xl p-6 text-center hover:border-black transition-all bg-gray-50">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+                id="template-image"
               />
+              <label htmlFor="template-image" className="cursor-pointer block">
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <FiUpload className="text-2xl text-gray-400" />
+                  <span className="text-sm text-gray-600">
+                    Click to upload template image
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    PNG, JPG, WEBP up to 5MB
+                  </span>
+                </div>
+              </label>
+            </div>
+            {imagePreview && (
+              <div className="mt-4 flex items-center gap-4">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="w-20 h-20 object-cover rounded-xl border-2 border-indigo-200"
+                />
+                <span className="text-sm text-green-600 font-medium">
+                  Image ready for upload
+                </span>
+              </div>
             )}
           </div>
 
-          {/* Preview URL */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Preview URL
-            </label>
-            <input
-              name="previewUrl"
-              type="text"
-              value={formData.previewUrl}
-              onChange={handleChange}
-              placeholder="https://example.com/preview"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
-            />
-          </div>
-
-          {/* Submit */}
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={createTemplateMutation.isPending}
-            className="w-full flex items-center justify-center gap-2 border-2 bg-purple-800 text-white font-medium py-2.5 rounded-lg transition-all duration-300 hover:bg-indigo-700 shadow-md disabled:opacity-60"
+            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
           >
-            <FiFilePlus />{" "}
+            <FiFilePlus className="text-lg" />
             {createTemplateMutation.isPending
-              ? "Creating..."
+              ? "Creating Template..."
               : "Create Template"}
           </button>
         </form>

@@ -1,5 +1,5 @@
 import Footer from "@/components/shared/Footer";
-import TemplatesNavbar from "@/components/shared/TemplatesNavbar";
+import Navbar from "@/components/shared/Navbar";
 
 export default function TemplatesLayout({
   children,
@@ -8,7 +8,7 @@ export default function TemplatesLayout({
 }) {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <TemplatesNavbar></TemplatesNavbar>
+      <Navbar></Navbar>
       <main className="flex-grow">{children}</main>
       <Footer></Footer>
     </div>

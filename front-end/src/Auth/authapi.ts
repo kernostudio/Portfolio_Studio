@@ -34,11 +34,21 @@ export const logoutUser = async () => {
 };
 
 // Fetch current logged-in user profile
+// authapi.ts
 export const fetchUserProfile = async () => {
-  const response = await axios.get(`${API_BASE_URL}/auth/profile`, {
-    withCredentials: true,
-  });
-  return response.data;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/auth/profile`, {
+      withCredentials: true,
+    });
+    return response.data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    if (error.response?.status === 403) {
+      // User not logged in
+      return null;
+    }
+    throw error; // Other errors we still want to throw
+  }
 };
 
 // Update user profile

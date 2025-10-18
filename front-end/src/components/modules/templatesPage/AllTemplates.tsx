@@ -3,11 +3,13 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation"; // import useRouter
+import { useRouter } from "next/navigation";
 import useAxiosPublic from "@/hooks/axiosPublic";
-import TemplatesSidebar from "./TemplateSideBar";
+
 import Image from "next/image";
 import { useAuth } from "@/Auth/AuthContext";
+import TemplatesFilter from "./TemplateFilter";
+import TemplateCard from "./TemplateCard";
 
 interface Template {
   id: string;
@@ -26,11 +28,11 @@ interface TemplateResponse {
 export default function AllTemplates() {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-  const router = useRouter(); // initialize router
+  const router = useRouter();
 
   const [filters, setFilters] = useState({
     search: "",
-    category: "", // empty string = "All"
+    category: "",
   });
 
   const { data, isLoading, isError } = useQuery<TemplateResponse, Error>({
@@ -51,61 +53,38 @@ export default function AllTemplates() {
   const templates = data?.template ?? [];
 
   const handleCardClick = (id: string) => {
-    router.push(`/templateDetails/${id}`); // navigate to template details page
+    router.push(`/templateDetails/${id}`);
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 w-11/12 mx-auto mt-10 mb-10">
-      <TemplatesSidebar onFilterChange={setFilters} />
+    <div className="w-11/12 mx-auto mt-10   pb-10">
+      {/* Filter Card at Top */}
+      <TemplatesFilter onFilterChange={setFilters} />
 
-      <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {isLoading && <p>Loading templates...</p>}
-        {isError && <p>Failed to load templates.</p>}
-        {!isLoading && templates.length === 0 && <p>No templates found.</p>}
+      {/* Templates Grid */}
+      <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {isLoading && (
+          <div className="col-span-full text-center py-8">
+            <p>Loading templates...</p>
+          </div>
+        )}
+        {isError && (
+          <div className="col-span-full text-center py-8">
+            <p className="text-red-600">Failed to load templates.</p>
+          </div>
+        )}
+        {!isLoading && templates.length === 0 && (
+          <div className="col-span-full text-center py-8">
+            <p>No templates found.</p>
+          </div>
+        )}
 
         {templates.map((template: any) => (
-          <div
+          <TemplateCard
+            template={template}
             key={template.id}
-            className="p-4 border border-gray-200 rounded-2xl bg-white hover:shadow-lg transition"
-          >
-            {template.templateImgUrl && (
-              <div className="w-full h-40 relative mb-4 rounded-xl overflow-hidden">
-                <Image
-                  src={template.templateImgUrl}
-                  alt={template.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
-            <h3 className="text-lg font-semibold">{template.title}</h3>
-            <p className="text-sm text-gray-500 mb-2">
-              {template.category?.name || "Uncategorized"}
-            </p>
-            <p className="text-gray-600 text-sm">{template.description}</p>
-
-            <div className="flex gap-2 mt-4">
-              <button
-                onClick={() => handleCardClick(template.id)}
-                className="bg-indigo-600 text-sm text-white px-3 py-2 rounded hover:bg-indigo-700 transition"
-              >
-                Preview
-              </button>
-
-              <button
-                onClick={() =>
-                  user
-                    ? router.push(`/templateCustomize/${template.id}`) // logged in, go to edit
-                    : router.push(
-                        `/templates/signin?redirectTo=/templateCustomize/${template.id}`
-                      )
-                }
-                className="flex-1 bg-yellow-500 text-white px-3 py-2 rounded hover:bg-yellow-600 transition"
-              >
-                Edit Template
-              </button>
-            </div>
-          </div>
+            user={user}
+          ></TemplateCard>
         ))}
       </div>
     </div>

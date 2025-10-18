@@ -7,7 +7,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="border-t mt-20 bg-[#F9FBFF] border-gray-300">
+    <footer className="border-t  bg-[#F9FBFF] border-gray-300">
       <div className="w-10/12 mx-auto pt-10">
         <div className="lg:flex justify-between lg:items-center space-y-8 lg:space-y-0">
           <h1 className="text-xl">

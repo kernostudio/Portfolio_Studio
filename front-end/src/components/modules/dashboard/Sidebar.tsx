@@ -18,7 +18,7 @@ import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { CgTemplate } from "react-icons/cg";
 
 const Sidebar = () => {
-  const { user, setUser } = useAuth();
+  const { user, setUser, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
@@ -82,8 +82,7 @@ const Sidebar = () => {
 
   // 🔹 Logout handler
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
+    logout();
     router.push("/templates/signin");
   };
 
@@ -103,7 +102,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static top-0 left-0 h-full w-64 bg-gradient-to-b from-[#7C3AED] to-[#5B21B6] text-white p-6 z-40 transform ${
+        className={`fixed lg:static top-0 left-0 h-full w-64  text-black p-6 z-40 transform ${
           open ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 transition-transform duration-300 ease-in-out`}
       >

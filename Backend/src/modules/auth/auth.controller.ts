@@ -3,7 +3,7 @@ import { authService } from "./auth.service";
 import { sendResponse } from "../../utils/sendResponse";
 import httpStatus from "http-status";
 import { catchAsync } from "../../utils/catchAsync";
-import { setAuthCookie } from "../../utils/setCookie";
+import { clearAuthCookie, setAuthCookie } from "../../utils/setCookie";
 
 const RegisterUser = catchAsync(async (req: Request, res: Response) => {
   const result = await authService.createUser(req.body);
@@ -43,11 +43,7 @@ const userLogin = catchAsync(async (req: Request, res: Response) => {
   });
 });
 const userLogout = catchAsync(async (req: Request, res: Response) => {
-  res.clearCookie("accessToken", {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-  });
+  clearAuthCookie(res);
 
   sendResponse(res, {
     success: true,

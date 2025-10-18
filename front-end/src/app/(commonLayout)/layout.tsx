@@ -9,7 +9,7 @@ export default function CommonLayout({
   return (
     <div className="flex flex-col w-full min-h-screen">
       <Navbar></Navbar>
-      <main className="flex-grow">{children}</main>
+      <main className="flex-grow pb-28">{children}</main>
       <Footer></Footer>
     </div>
   );

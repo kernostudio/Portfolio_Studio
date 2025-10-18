@@ -56,21 +56,29 @@ export default function CreateCategoryForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-120px)]">
-      <div className="w-full md:w-8/12 lg:w-6/12 bg-white rounded-2xl shadow-md p-8">
-        <div className="flex items-center gap-2 mb-6">
-          <FiPlusCircle className="text-indigo-600 text-2xl" />
-          <h2 className="text-2xl font-semibold text-gray-800">
-            Create Category
-          </h2>
+    <div className="flex justify-center items-center min-h-[calc(100vh-120px)] px-4 py-8">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-2 bg-gray-100 rounded-xl">
+            <FiPlusCircle className="text-black text-2xl" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Create Category
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Add a new template category
+            </p>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Category Name */}
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-semibold text-gray-800 mb-2"
             >
               Category Name <span className="text-red-500">*</span>
             </label>
@@ -81,8 +89,8 @@ export default function CreateCategoryForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="Enter category name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+              placeholder="e.g., Business Cards, Social Media"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black outline-none transition-all bg-gray-50 placeholder-gray-400"
             />
           </div>
 
@@ -90,7 +98,7 @@ export default function CreateCategoryForm() {
           <div>
             <label
               htmlFor="description"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-semibold text-gray-800 mb-2"
             >
               Description
             </label>
@@ -99,21 +107,24 @@ export default function CreateCategoryForm() {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Enter a short description (optional)"
+              placeholder="Describe what this category is used for..."
               rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black outline-none resize-none transition-all bg-gray-50 placeholder-gray-400"
             ></textarea>
+            <p className="text-xs text-gray-500 mt-2">
+              Optional: Help users understand this category&apos;s purpose
+            </p>
           </div>
 
-          {/* Button */}
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={createCategoryMutation.isPending}
-            className="w-full flex items-center justify-center gap-2 border-2 bg-purple-800 text-white font-medium py-2.5 rounded-lg transition-all duration-300 hover:bg-indigo-700 shadow-md disabled:opacity-70"
+            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-700 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-400 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
           >
-            <FiPlusCircle />{" "}
+            <FiPlusCircle className="text-lg" />
             {createCategoryMutation.isPending
-              ? "Creating..."
+              ? "Creating Category..."
               : "Create Category"}
           </button>
         </form>

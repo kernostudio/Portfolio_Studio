@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function Hero() {
   const router = useRouter();
   return (
-    <div className="w-11/12 mx-auto mt-10 ">
+    <div className="w-11/12 mx-auto pt-10 bg-gradient-to-r from-[#f9fbff] via-[#e3f3ff] to-[#f9fbff] ">
       <div className="flex justify-center ">
         <div>
           <h1 className="lg:text-5xl md:text-2xl text-xl text-center">
@@ -23,7 +23,7 @@ export default function Hero() {
           </p>
         </div>
       </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center  ">
         <div className="relative  lg:w-[48%] ">
           <div className="relative w-full lg:w-[350px] h-[300px] bg-white rounded-2xl   p-6 z-10 mt-6 lg:mt-28">
             <h2 className="text-lg font-semibold text-gray-400">Name</h2>
@@ -163,10 +163,10 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="mt-16 lg:mt-0"></div>
+      <div className="pt-16 lg:pt-0"></div>
       <Link
         href="/templates"
-        className="bg-black lg:ml-64  h-[46px] text-white px-4 py-2 rounded-xl font-medium hover:bg-blue-700 "
+        className="bg-black lg:ml-64  h-[46px] text-white px-4 py-2 rounded-xl font-medium hover:bg-gray-700 "
       >
         Start Building Portfolio
       </Link>
