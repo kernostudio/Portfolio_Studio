@@ -1,22 +1,50 @@
 // routes/upload.ts
-import express from "express";
+import express, { Router } from "express";
 import { multerUpload } from "../../config/multer.config";
+import { authenticate } from "../../middleware/auth.middleware";
 
-const router = express.Router();
+const router = Router();
+
+// Add a GET route for testing
+// router.get("/upload", (req, res) => {
+//   res.json({
+//     success: true,
+//     message: "Upload endpoint is working!",
+//     timestamp: new Date().toISOString(),
+//   });
+// });
 
 // Single file upload
-router.post("/upload", multerUpload.single("file"), (req, res) => {
-  try {
-    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+router.post(
+  "/upload",
 
-    // Multer + Cloudinary already uploads the file
-    // req.file contains info about uploaded file
-    const fileUrl = req.file.path; // Cloudinary URL
-    res.status(200).json({ url: fileUrl });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Upload failed" });
+  multerUpload.single("file"),
+  (req, res) => {
+    try {
+      console.log("Upload request received:", req.file);
+
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          error: "No file uploaded",
+        });
+      }
+
+      const fileUrl = req.file.path;
+      console.log("File uploaded to Cloudinary:", fileUrl);
+
+      res.status(200).json({
+        success: true,
+        url: fileUrl,
+      });
+    } catch (err) {
+      console.error("Upload error:", err);
+      res.status(500).json({
+        success: false,
+        error: "Upload failed",
+      });
+    }
   }
-});
+);
 
 export const uploadRouter = router;

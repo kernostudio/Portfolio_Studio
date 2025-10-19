@@ -24,7 +24,7 @@ export default function SignUpPage() {
 
   useEffect(() => {
     if (user) {
-      route.replace("/dashboard");
+      route.replace("/dashboard/profile");
     }
   }, [user, route]);
 

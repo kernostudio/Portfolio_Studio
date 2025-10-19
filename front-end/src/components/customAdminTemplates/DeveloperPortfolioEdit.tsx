@@ -5,7 +5,7 @@ import UseAxiosPublic from "@/hooks/axiosPublic";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import DeveloperPortfolio from "./DeveloperPortfolio";
-import Navbar from "../shared/TemplatesNavbar";
+import NavBarDashboard from "../shared/NavBarDashboard";
 
 export default function DeveloperPortfolioEdit({ placeholder, id }) {
   const [formData, setFormData] = useState(placeholder || {});
@@ -54,12 +54,15 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
     formDataFile.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:5000/api/upload", {
-        method: "POST",
-        body: formDataFile,
+      const res = await axiosPublic.post("/api/upload", formDataFile, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      const data = await res.json();
-      if (data.url) handleChange(section, key, data.url, index, subKey);
+
+      const data = res.data;
+      if (data.url) {
+        handleChange(section, key, data.url, index, subKey);
+        toast.success("Image uploaded successfully!");
+      }
     } catch (err) {
       console.error("Upload failed:", err);
       toast.error("Image upload failed!");
@@ -85,7 +88,9 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
         await axiosPublic.patch(`/api/user-templates/${user?.id}/${id}`, {
           filledValues: formData,
         });
-        toast.success("Template updated successfully!");
+        toast.success(
+          "Template updated successfully check dashboard my templates!"
+        );
       } catch (error) {
         // If not found (404), create it
         if (error.response && error.response.status === 404) {
@@ -94,7 +99,9 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
             templateId: id,
             filledValues: formData,
           });
-          toast.success("Template created successfully!");
+          toast.success(
+            "Template created successfully check dashboard my templates!"
+          );
         } else {
           // Other errors (not 404)
           console.error("❌ Unexpected error:", error);
@@ -1909,16 +1916,18 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <Navbar />
-
+    <div className="min-h-screen bg-white">
+      <NavBarDashboard />
+      <div className="w-11/12 mx-auto">
+        <h1 className="font-bold ">Portfolio Studio Editor</h1>
+      </div>
       <div className="flex flex-col lg:flex-row gap-6 max-w-8xl mx-auto p-4 lg:p-6">
         {/* LEFT COLUMN - Navigation and Form Editor */}
         <div className="lg:w-2/5 flex flex-col gap-6">
           {/* SIDEBAR NAVIGATION */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
             <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-              <span>📋</span> Sections
+              <span>📋</span>Page Sections
             </h2>
             <nav className="space-y-2">
               {sections.map((section) => (
@@ -1927,7 +1936,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                   onClick={() => setActiveSection(section.id)}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 ${
                     activeSection === section.id
-                      ? "bg-purple-50 text-purple-700 border border-purple-200 shadow-sm"
+                      ? "bg-black text-white  border  shadow-sm"
                       : "text-slate-600 hover:bg-slate-50 hover:text-slate-800"
                   }`}
                 >
@@ -1941,7 +1950,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
               type="submit"
               form="template-form"
               disabled={uploading}
-              className="w-full mt-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full mt-6 border-2 font-semibold py-3 px-4 rounded-xl hover:bg-gray-700 transition-all hover:text-white duration-200 shadow-lg  disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {uploading ? (
                 <>
@@ -1982,7 +1991,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
         </div>
 
         {/* RIGHT COLUMN - Live Preview */}
-        <div className="lg:w-3/5 flex-shrink-0">
+        <div className="lg:w-3/5 flex-shrink-0 border-t-2 border-l-2">
           <div className="sticky top-6">
             <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
               <div className="border-b border-slate-200 bg-slate-50/50 px-6 py-4">

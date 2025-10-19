@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/Auth/AuthContext";
 import {
   FaTimes,
@@ -11,7 +11,6 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { BiMenu, BiHome, BiCategoryAlt } from "react-icons/bi";
-
 import { AiOutlineFileText } from "react-icons/ai";
 import { ImProfile } from "react-icons/im";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
@@ -21,6 +20,7 @@ const Sidebar = () => {
   const { user, setUser, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname(); // Get current path for active link
 
   const userLinks = [
     {
@@ -37,11 +37,6 @@ const Sidebar = () => {
       name: "History",
       href: "/dashboard/history",
       icon: <FaHistory className="w-5 h-5" />,
-    },
-    {
-      name: "Home",
-      href: "/templates",
-      icon: <BiHome className="w-5 h-5" />,
     },
   ];
 
@@ -68,17 +63,20 @@ const Sidebar = () => {
     },
     {
       name: "Manage Templates",
-      href: "/dashboard/manage-templates",
+      href: "/dashboard/manageTemplates",
       icon: <CgTemplate className="w-5 h-5" />,
-    },
-    {
-      name: "Home",
-      href: "/templates",
-      icon: <BiHome className="w-5 h-5" />,
     },
   ];
 
   const links = user?.role === "admin" ? adminLinks : userLinks;
+
+  // Check if a link is active
+  const isActiveLink = (href: string) => {
+    if (href === "/dashboard") {
+      return pathname === href;
+    }
+    return pathname.startsWith(href);
+  };
 
   // 🔹 Logout handler
   const handleLogout = () => {
@@ -102,52 +100,55 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static top-0 left-0 h-full w-64  text-black p-6 z-40 transform ${
+        className={`fixed lg:static top-0 left-0  w-64 border-t-2 bg-white lg:bg-[#ffffff] border-gray-200 text-black p-6 z-40 transform ${
           open ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 transition-transform duration-300 ease-in-out`}
+        } lg:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col`}
       >
         {/* Header */}
         <div className="flex items-center justify-between mt-8 mb-8">
           <h2 className="text-2xl font-bold">Dashboard</h2>
           <button
-            className="lg:hidden text-white"
+            className="lg:hidden text-gray-600 hover:text-gray-800"
             onClick={() => setOpen(false)}
           >
             <FaTimes className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="space-y-2">
-          {links.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-3 hover:bg-white/20 px-4 py-2 rounded-md transition-all"
-            >
-              {link.icon}
-              <span>{link.name}</span>
-            </Link>
-          ))}
+        {/* Navigation Links - Grow to take available space */}
+        <nav className="space-y-2 flex-1">
+          {links.map((link) => {
+            const isActive = isActiveLink(link.href);
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-md transition-all ${
+                  isActive
+                    ? "bg-black text-white"
+                    : "text-black hover:bg-gray-100"
+                }`}
+              >
+                <span className={isActive ? "text-white" : "text-current"}>
+                  {link.icon}
+                </span>
+                <span className="font-medium">{link.name}</span>
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Logout Button */}
+        {/* User Info */}
+
+        {/* Logout Button - Always at the bottom */}
         <button
           onClick={handleLogout}
-          className="mt-10 w-full flex items-center justify-center border-2 gap-3 bg-purple-800 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md transition-all"
+          className="flex items-center justify-center gap-3  hover:bg-black hover:text-white font-semibold py-3 px-4 rounded-md transition-all mt-auto"
         >
           <FaSignOutAlt className="w-5 h-5" />
-          Logout
+          <span>Logout</span>
         </button>
-
-        {/* User Info (optional small footer) */}
-        {user && (
-          <div className="absolute bottom-6 left-6 right-6 bg-white/10 rounded-lg p-3 text-sm text-center">
-            <p className="font-semibold">{user.name}</p>
-            <p className="text-xs opacity-80">{user.role}</p>
-          </div>
-        )}
       </aside>
     </>
   );

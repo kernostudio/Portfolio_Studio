@@ -18,7 +18,7 @@ export default function SignInPage() {
   const router = useRouter();
   const { user } = useAuth();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/dashboard";
+  const redirectTo = searchParams.get("redirectTo") || "/dashboard/profile";
 
   useEffect(() => {
     setIsMounted(true);

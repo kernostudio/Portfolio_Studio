@@ -20,8 +20,16 @@ app.use(express.json()); // Parse incoming JSON requests
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true,
+    origin: [
+      "http://localhost:3000",
+      "https://protfoliohut-d6xvnxega-rakiburrahman007s-projects.vercel.app",
+      "https://protfoliohut-9wi18hcor-rakiburrahman007s-projects.vercel.app",
+      "https://portfoliostudio-theta.vercel.app",
+      "https://protfoliohut.vercel.app",
+      "https://*.vercel.app", // Allow all Vercel subdomains
+    ],
+    credentials: true, // This is critical
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   })
 );
 

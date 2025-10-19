@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://portfoliostudio-theta.vercel.app",
   withCredentials: true,
 });
 const UseAxiosPublic = (): AxiosInstance => {

@@ -111,6 +111,7 @@ const getAllUserTemplates = async (userId: string) => {
         select: {
           title: true,
           description: true,
+          templateImgUrl: true,
         },
       },
     },

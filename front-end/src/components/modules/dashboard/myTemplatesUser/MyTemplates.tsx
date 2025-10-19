@@ -14,10 +14,12 @@ import {
   Calendar,
   ArrowUpDown,
   MoreVertical,
+  Image as ImageIcon,
 } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useAuth } from "@/Auth/AuthContext";
+import Image from "next/image";
 
 interface UserTemplate {
   id: string;
@@ -78,15 +80,30 @@ export default function MyTemplates({ id }: { id: string }) {
     router.push(`/user-template/${id}/${templateId}`);
   };
 
-  const handleDelete = async (templateId: string) => {
+  const handleDelete = async (templateId: string, templateTitle: string) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This action cannot be undone!",
-      icon: "warning",
+      title: "Delete Template?",
+      html: `
+        <div class="text-center">
+          <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+          </div>
+          <p class="text-lg font-semibold text-gray-900 mb-2">"${templateTitle}"</p>
+          <p class="text-gray-600">This action cannot be undone and the template will be permanently deleted.</p>
+        </div>
+      `,
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Delete",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#6b7280",
+      reverseButtons: true,
+      customClass: {
+        confirmButton: "px-6 py-3 rounded-lg font-medium",
+        cancelButton: "px-6 py-3 rounded-lg font-medium",
+      },
     });
 
     if (result.isConfirmed) {
@@ -106,17 +123,38 @@ export default function MyTemplates({ id }: { id: string }) {
     router.push(`/edit-user-owned-template/${templateId}`);
   };
 
-  const handlePublish = async (templateId: string) => {
+  const handlePublish = async (templateId: string, templateTitle: string) => {
     const { value: formValues } = await Swal.fire({
-      title: "Publish template",
-      html:
-        `<p class="text-sm text-gray-600 mb-2">Choose domain type and provide a domain or subdomain</p>` +
-        `<select id="domainType" class="swal2-input">
-         <option value="subdomain">Subdomain (e.g. myname)</option>
-         <option value="custom">Custom domain (e.g. example.com)</option>
-       </select>` +
-        `<input id="domain" class="swal2-input" placeholder="subdomain or domain" />` +
-        `<textarea id="note" class="swal2-textarea" placeholder="Optional note (e.g. prefer https)"></textarea>`,
+      title: "Publish Template",
+      html: `
+        <div class="text-left">
+          <p class="text-sm text-gray-600 mb-4">Publish "<span class="font-semibold">${templateTitle}</span>" to make it live</p>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Domain Type</label>
+            <select id="domainType" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+              <option value="subdomain">Subdomain (e.g. myname.yoursite.com)</option>
+              <option value="custom">Custom Domain (e.g. example.com)</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Domain Name</label>
+            <input 
+              id="domain" 
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+              placeholder="Enter subdomain or domain"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Notes (Optional)</label>
+            <textarea 
+              id="note" 
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+              placeholder="Any special requirements or notes..."
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+      `,
       focusConfirm: false,
       preConfirm: () => {
         const domainType = (
@@ -129,11 +167,20 @@ export default function MyTemplates({ id }: { id: string }) {
           document.getElementById("note") as HTMLTextAreaElement
         ).value?.trim();
         if (!domain) {
-          Swal.showValidationMessage("Please enter a subdomain or domain");
+          Swal.showValidationMessage("Please enter a domain name");
         }
         return { domainType, domain, note };
       },
       showCancelButton: true,
+      confirmButtonText: "Submit for Review",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#3b82f6",
+      cancelButtonColor: "#6b7280",
+      customClass: {
+        popup: "rounded-xl",
+        confirmButton: "px-6 py-3 rounded-lg font-medium",
+        cancelButton: "px-6 py-3 rounded-lg font-medium",
+      },
     });
 
     if (!formValues) return;
@@ -169,16 +216,34 @@ export default function MyTemplates({ id }: { id: string }) {
   // Mobile Card View
   const MobileTemplateCard = ({ template }: { template: UserTemplate }) => {
     return (
-      <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-        <div className="flex justify-between items-start mb-3">
-          <div className="flex-1">
-            <h3 className="font-semibold text-gray-900 truncate">
+      <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+        {/* Template Image and Header */}
+        <div className="flex gap-3 mb-3">
+          <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg overflow-hidden flex-shrink-0 border">
+            {template.template?.templateImgUrl ? (
+              <Image
+                src={template.template.templateImgUrl}
+                alt={template.template?.title || "Template"}
+                width={64}
+                height={64}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                <ImageIcon className="w-6 h-6 text-gray-400" />
+              </div>
+            )}
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-gray-900 truncate text-sm">
               {template.template?.title || "Untitled Template"}
             </h3>
-            <p className="text-sm text-gray-500 mt-1">
-              ID: {template.id.slice(0, 8)}...
+            <p className="text-xs text-gray-500 mt-1">
+              Updated {formatDate(template.updatedAt)}
             </p>
           </div>
+
           <div className="relative">
             <button
               onClick={() =>
@@ -186,19 +251,19 @@ export default function MyTemplates({ id }: { id: string }) {
                   activeDropdown === template.id ? null : template.id
                 )
               }
-              className="p-1 hover:bg-gray-100 rounded"
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <MoreVertical className="w-4 h-4" />
             </button>
 
             {activeDropdown === template.id && (
-              <div className="absolute right-0 top-8 bg-white border border-gray-200 rounded-lg shadow-lg z-10 w-48 py-1">
+              <div className="absolute right-0 top-10 bg-white border border-gray-200 rounded-lg shadow-lg z-10 w-48 py-1">
                 <button
                   onClick={() => {
                     handlePreview(template.id);
                     setActiveDropdown(null);
                   }}
-                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                   <Eye className="w-4 h-4" />
                   Preview
@@ -208,27 +273,33 @@ export default function MyTemplates({ id }: { id: string }) {
                     handleUpdate(template.id);
                     setActiveDropdown(null);
                   }}
-                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                   <Edit3 className="w-4 h-4" />
                   Edit
                 </button>
                 <button
                   onClick={() => {
-                    handlePublish(template.id);
+                    handlePublish(
+                      template.id,
+                      template.template?.title || "Template"
+                    );
                     setActiveDropdown(null);
                   }}
-                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                   <Globe className="w-4 h-4" />
                   Publish
                 </button>
                 <button
                   onClick={() => {
-                    handleDelete(template.id);
+                    handleDelete(
+                      template.id,
+                      template.template?.title || "Template"
+                    );
                     setActiveDropdown(null);
                   }}
-                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                  className="flex items-center gap-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                 >
                   <Trash2 className="w-4 h-4" />
                   Delete
@@ -238,34 +309,29 @@ export default function MyTemplates({ id }: { id: string }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-          <div className="flex items-center gap-1">
-            <Calendar className="w-3 h-3" />
-            {formatDate(template.updatedAt)}
-          </div>
-        </div>
-
-        {/* Quick Actions - Visible on mobile */}
+        {/* Quick Actions */}
         <div className="flex justify-between border-t pt-3">
           <button
             onClick={() => handlePreview(template.id)}
-            className="flex items-center gap-1 px-3 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded"
+            className="flex items-center gap-2 px-3 py-2 text-xs text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
           >
-            <Eye className="w-4 h-4" />
+            <Eye className="w-3 h-3" />
             View
           </button>
           <button
             onClick={() => handleUpdate(template.id)}
-            className="flex items-center gap-1 px-3 py-1 text-sm text-green-600 hover:bg-green-50 rounded"
+            className="flex items-center gap-2 px-3 py-2 text-xs text-green-600 hover:bg-green-50 rounded-lg transition-colors"
           >
-            <Edit3 className="w-4 h-4" />
+            <Edit3 className="w-3 h-3" />
             Edit
           </button>
           <button
-            onClick={() => handlePublish(template.id)}
-            className="flex items-center gap-1 px-3 py-1 text-sm text-purple-600 hover:bg-purple-50 rounded"
+            onClick={() =>
+              handlePublish(template.id, template.template?.title || "Template")
+            }
+            className="flex items-center gap-2 px-3 py-2 text-xs text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
           >
-            <Globe className="w-4 h-4" />
+            <Globe className="w-3 h-3" />
             Publish
           </button>
         </div>
@@ -275,21 +341,28 @@ export default function MyTemplates({ id }: { id: string }) {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center py-12">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-        <span className="ml-2 text-gray-600">Loading templates...</span>
+      <div className="flex justify-center items-center min-h-screen py-12">
+        <div className="flex flex-col items-center space-y-4">
+          <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+          <span className="text-gray-600">Loading your templates...</span>
+        </div>
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center min-h-screen py-12">
         <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <p className="text-gray-500 text-lg">No templates available</p>
-        <p className="text-gray-400 text-sm mt-2">
-          Create your first template to get started
+        <p className="text-gray-500 text-lg">
+          Failed to load ,templates not found
         </p>
+        <button
+          onClick={() => refetch()}
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Try Again
+        </button>
       </div>
     );
   }
@@ -298,216 +371,175 @@ export default function MyTemplates({ id }: { id: string }) {
   const templates = Array.isArray(data) ? data : data ? [data] : [];
 
   return (
-    <div className="bg-white rounded-lg border mt-16 lg:mt-5 border-gray-200 shadow-sm overflow-hidden">
-      {/* Header */}
-      <div className="px-4 py-4 border-b border-gray-200 bg-gray-50 sm:px-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900">
-              My Templates
-            </h2>
-            <p className="text-sm text-gray-600 mt-1">
-              {templates.length} template{templates.length !== 1 ? "s" : ""}{" "}
-              found
-            </p>
+    <div className="min-h-screen bg-gray-50 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">My Templates</h1>
+          <p className="text-gray-600 mt-2">
+            Manage and publish your created templates
+          </p>
+          <div className="mt-4 bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">
+                  Total Templates
+                </p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {templates.length}
+                </p>
+              </div>
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <FileText className="w-6 h-6 text-blue-600" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Desktop Table View - Hidden on mobile */}
-      <div className="hidden lg:block overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-50 border-b border-gray-200">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                <div className="flex items-center gap-1">
-                  Template Name
-                  <ArrowUpDown className="w-4 h-4" />
-                </div>
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Created At
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                <div className="flex items-center gap-1">
-                  Last Modified
-                  <ArrowUpDown className="w-4 h-4" />
-                </div>
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {templates.length > 0 ? (
-              templates.map((template: UserTemplate) => {
-                return (
-                  <tr
-                    key={template.id}
-                    className="hover:bg-gray-50 transition-colors"
-                  >
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">
-                          {template.template?.title || "Untitled Template"}
+        {/* Desktop Table View */}
+        <div className="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Template
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Created
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Last Modified
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {templates.length > 0 ? (
+                  templates.map((template: UserTemplate) => (
+                    <tr
+                      key={template.id}
+                      className="hover:bg-gray-50 transition-colors"
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg overflow-hidden flex-shrink-0 border">
+                            {template.template?.templateImgUrl ? (
+                              <Image
+                                src={template.template.templateImgUrl}
+                                alt={template.template?.title || "Template"}
+                                width={48}
+                                height={48}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                                <ImageIcon className="w-5 h-5 text-gray-400" />
+                              </div>
+                            )}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="text-sm font-semibold text-gray-900 truncate">
+                              {template.template?.title || "Untitled Template"}
+                            </h3>
+                          </div>
                         </div>
-                        <div className="text-sm text-gray-500">
-                          ID: {template.id.slice(0, 8)}...
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-gray-400" />
+                          {formatDate(template.createdAt)}
                         </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {formatDate(template.createdAt)}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {formatDate(template.updatedAt)}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => handlePreview(template.id)}
-                          className="flex items-center gap-1 p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                          title="Preview"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handleUpdate(template.id)}
-                          className="flex items-center gap-1 p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
-                          title="Edit"
-                        >
-                          <Edit3 className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handlePublish(template.id)}
-                          className="flex items-center gap-1 p-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors"
-                          title="Publish"
-                        >
-                          <Globe className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handleDelete(template.id)}
-                          className="flex items-center gap-1 p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                          title="Delete"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-gray-400" />
+                          {formatDate(template.updatedAt)}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => handlePreview(template.id)}
+                            className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                            title="Preview"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleUpdate(template.id)}
+                            className="p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                            title="Edit"
+                          >
+                            <Edit3 className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() =>
+                              handlePublish(
+                                template.id,
+                                template.template?.title || "Template"
+                              )
+                            }
+                            className="p-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                            title="Publish"
+                          >
+                            <Globe className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() =>
+                              handleDelete(
+                                template.id,
+                                template.template?.title || "Template"
+                              )
+                            }
+                            className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-12 text-center">
+                      <div className="flex flex-col items-center justify-center text-gray-500">
+                        <FileText className="w-16 h-16 text-gray-300 mb-4" />
+                        <p className="text-lg font-medium">
+                          No templates found
+                        </p>
+                        <p className="text-gray-400 mt-2">
+                          Create your first template to get started
+                        </p>
                       </div>
                     </td>
                   </tr>
-                );
-              })
-            ) : (
-              <tr>
-                <td colSpan={4} className="px-6 py-12 text-center">
-                  <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                  <p className="text-gray-500">
-                    No templates found for this user.
-                  </p>
-                  <p className="text-gray-400 text-sm mt-2">
-                    Create your first template to get started
-                  </p>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Tablet View - Cards with more compact layout */}
-      <div className="hidden md:block lg:hidden">
-        <div className="grid grid-cols-1 gap-4 p-4">
-          {templates.length > 0 ? (
-            templates.map((template: UserTemplate) => {
-              return (
-                <div
-                  key={template.id}
-                  className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-sm font-semibold text-gray-900 truncate">
-                        {template.template?.title || "Untitled Template"}
-                      </h3>
-                      <p className="text-xs text-gray-500 mt-1">
-                        ID: {template.id.slice(0, 8)}...
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      Created: {formatDate(template.createdAt)}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      Updated: {formatDate(template.updatedAt)}
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end gap-2 border-t pt-3">
-                    <button
-                      onClick={() => handlePreview(template.id)}
-                      className="flex items-center gap-1 p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                      title="Preview"
-                    >
-                      <Eye className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleUpdate(template.id)}
-                      className="flex items-center gap-1 p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
-                      title="Edit"
-                    >
-                      <Edit3 className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handlePublish(template.id)}
-                      className="flex items-center gap-1 p-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors"
-                      title="Publish"
-                    >
-                      <Globe className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(template.id)}
-                      className="flex items-center gap-1 p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                      title="Delete"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <div className="text-center py-8">
-              <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500">No templates found for this user.</p>
-            </div>
-          )}
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      {/* Mobile View - Cards */}
-      <div className="md:hidden">
-        <div className="p-4 space-y-4">
-          {templates.length > 0 ? (
-            templates.map((template: UserTemplate) => (
-              <MobileTemplateCard key={template.id} template={template} />
-            ))
-          ) : (
-            <div className="text-center py-8">
-              <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500">No templates found for this user.</p>
-            </div>
-          )}
+        {/* Mobile & Tablet View */}
+        <div className="lg:hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {templates.length > 0 ? (
+              templates.map((template: UserTemplate) => (
+                <MobileTemplateCard key={template.id} template={template} />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 text-lg">No templates found</p>
+                <p className="text-gray-400 mt-2">
+                  Create your first template to get started
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -292,7 +292,7 @@ export default function CreateTemplateForm() {
           <button
             type="submit"
             disabled={createTemplateMutation.isPending}
-            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-700 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
           >
             <FiFilePlus className="text-lg" />
             {createTemplateMutation.isPending
