@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import UiUxDesigner from "./UiUxDesigner";
 import NavBarDashboard from "../shared/NavBarDashboard";
 import { API_BASE_URL } from "@/utils/config";
+import { useRouter } from "next/navigation";
 
 export default function UiUxDesignerEdit({ placeholder, id }) {
   const [formData, setFormData] = useState(placeholder || {});
@@ -14,7 +15,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
   const [activeSection, setActiveSection] = useState("root");
   const axiosPublic = UseAxiosPublic();
   const { user } = useAuth();
-
+  const router = useRouter();
   // Generic change handler
   const handleChange = (section, key, value, index = null, subKey = null) => {
     setFormData((prev) => {
@@ -92,6 +93,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
         toast.success(
           "Template updated successfully check dashboard my templates!"
         );
+        router.push(`/dashboard/myTemplates/${user?.id}`);
       } catch (error) {
         // If not found (404), create it
         if (error.response && error.response.status === 404) {
@@ -103,6 +105,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
           toast.success(
             "Template created successfully check dashboard my templates!"
           );
+          router.push(`/dashboard/myTemplates/${user?.id}`);
         } else {
           // Other errors (not 404)
           console.error("❌ Unexpected error:", error);
