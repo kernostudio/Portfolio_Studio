@@ -144,15 +144,7 @@ export default function MyTemplates({ id }: { id: string }) {
               placeholder="Enter subdomain or domain"
             />
           </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Notes (Optional)</label>
-            <textarea 
-              id="note" 
-              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-              placeholder="Any special requirements or notes..."
-              rows="3"
-            ></textarea>
-          </div>
+        
         </div>
       `,
       focusConfirm: false,

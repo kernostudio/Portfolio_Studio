@@ -10,11 +10,17 @@ router.post(
   authorize(["user", "admin"]),
   templatePublishController.createPublishRequest
 );
-router.post(
-  "/:id",
+router.get(
+  "/",
+  authenticate,
+  authorize(["admin"]),
+  templatePublishController.getallPublishRequest
+);
+router.get(
+  "/user/all",
   authenticate,
   authorize(["user", "admin"]),
-  templatePublishController.getSinglePublishRequest
+  templatePublishController.getUserAllPublishRequests
 );
 
 router.patch(

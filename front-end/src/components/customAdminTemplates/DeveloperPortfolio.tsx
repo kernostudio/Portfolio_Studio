@@ -393,7 +393,7 @@ export default function DeveloperPortfolio({
         <div className="w-72 h-72 md:w-72 lg:w-1/3 md:h-full">
           <div className="relative inline-block">
             <div
-              className="absolute -right-10 -bottom-10 w-full h-full rounded-xl"
+              className="absolute -right-10 -bottom-10 w-full h-full hidden md:block rounded-xl"
               style={{ backgroundColor: hero.imageShadowColor }}
             ></div>
             <img
@@ -461,11 +461,11 @@ export default function DeveloperPortfolio({
             </div>
 
             <div className="relative inline-block w-72 h-72 md:h-80">
-              <div className="absolute right-0 -bottom-14 w-full h-full bg-gray-200 rounded-xl"></div>
+              <div className="absolute hidden md:block right-0 -bottom-14 w-full h-full bg-gray-200 rounded-xl"></div>
               <img
                 src={about.aboutImage}
                 alt="about profile"
-                className="absolute left-10 z-10 w-72 rounded-xl border-8 border-white object-cover shadow-lg"
+                className="absolute  md:left-10 z-10 w-72 rounded-xl border-8 border-white object-cover shadow-lg"
               />
             </div>
           </div>
@@ -698,11 +698,11 @@ export default function DeveloperPortfolio({
         </p>
         <div className="flex justify-center mt-14">
           <div className="space-y-3">
-            <div className="flex gap-3 items-center font-bold text-2xl">
+            <div className="flex gap-3 items-center font-bold md:text-2xl">
               <MdEmail style={{ color: contact.iconColor }} />
               <h1 style={{ color: contact.emailColor }}>{contact.email}</h1>
             </div>
-            <div className="flex gap-3 justify-center items-center font-bold text-2xl">
+            <div className="flex gap-3 justify-center items-center font-bold md:text-2xl">
               <PhoneCall style={{ color: contact.iconColor }} />
               <h1 style={{ color: contact.phoneColor }}>{contact.phone}</h1>
             </div>

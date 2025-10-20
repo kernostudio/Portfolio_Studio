@@ -59,6 +59,27 @@ export const getSinglePublishRequest = async (userTemplateId: string) => {
 
   return publish;
 };
+export const getUserAllPublishRequests = async (userId: string) => {
+  const publishRequests = await prisma.userTemplatePublish.findMany({
+    where: {
+      userTemplate: {
+        userId,
+      },
+    },
+    include: {
+      userTemplate: {
+        include: {
+          template: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return publishRequests;
+};
 
 export const updatePublishStatus = async (
   publishId: string,
@@ -78,6 +99,27 @@ export const getPublishByDomain = async (domain: string) => {
     where: { domain, status: "approved" },
     include: {
       userTemplate: { include: { template: true } },
+    },
+  });
+
+  return publish;
+};
+export const getallPublishRequest = async () => {
+  const publish = await prisma.userTemplatePublish.findMany({
+    include: {
+      userTemplate: {
+        include: {
+          user: {
+            select: { id: true, fullName: true, email: true },
+          },
+          template: {
+            select: { id: true, title: true, templateImgUrl: true },
+          },
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 

@@ -139,7 +139,7 @@ export default function Navbar() {
             ))}
             {user ? (
               <Link
-                href={`/dashboard`}
+                href={`/dashboard/profile`}
                 className="flex  i gap-1 rounded-full  hover:border-purple-900 items-center"
               >
                 Dashboard

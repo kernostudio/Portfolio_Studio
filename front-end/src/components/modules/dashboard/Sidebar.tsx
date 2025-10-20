@@ -13,7 +13,7 @@ import {
 import { BiMenu, BiHome, BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineFileText } from "react-icons/ai";
 import { ImProfile } from "react-icons/im";
-import { MdOutlineCreateNewFolder } from "react-icons/md";
+import { MdOutlineCreateNewFolder, MdPublish } from "react-icons/md";
 import { CgTemplate } from "react-icons/cg";
 
 const Sidebar = () => {
@@ -34,9 +34,9 @@ const Sidebar = () => {
       icon: <AiOutlineFileText className="w-5 h-5" />,
     },
     {
-      name: "History",
-      href: "/dashboard/history",
-      icon: <FaHistory className="w-5 h-5" />,
+      name: "Publish Requests",
+      href: "/dashboard/myPublishRequest",
+      icon: <MdPublish className="w-5 h-5" />,
     },
   ];
 
@@ -65,6 +65,11 @@ const Sidebar = () => {
       name: "Manage Templates",
       href: "/dashboard/manageTemplates",
       icon: <CgTemplate className="w-5 h-5" />,
+    },
+    {
+      name: "Publish Requests",
+      href: "/dashboard/managePublishRequest",
+      icon: <MdPublish className="w-5 h-5" />,
     },
   ];
 
