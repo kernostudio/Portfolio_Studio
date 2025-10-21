@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { TextFade } from "@/components/shared/TextFade";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -50,13 +51,15 @@ export default function Faq() {
       </div> */}
       <div className="bg-gradient-to-r mt-10 from-[#f9fbff] via-[#e3f3ff] to-[#f9fbff] space-y-5">
         {faqs.map((faq, index) => (
-          <div
+          <motion.div
             key={index}
+            layout
+            transition={{ layout: { duration: 0.4, ease: "easeInOut" } }}
             className="bg-white rounded-xl p-5 cursor-pointer transition"
             onClick={() => toggleFAQ(index)}
           >
-            <div className="flex justify-between  items-center">
-              <h3 className="font-semibold text-[20px] text-gray-800">
+            <motion.div layout className="flex justify-between items-center">
+              <h3 className="font-semibold text-[18px] md:text-[20px] text-gray-800">
                 {faq.question}
               </h3>
               {openIndex === index ? (
@@ -64,13 +67,23 @@ export default function Faq() {
               ) : (
                 <ChevronDown className="w-5 h-5 border-2 rounded-full text-gray-900" />
               )}
-            </div>
-            {openIndex === index && (
-              <p className="mt-3 text-gray-800 w-3/5 text-[16px] text-start whitespace-pre-line">
-                {faq.answer}
-              </p>
-            )}
-          </div>
+            </motion.div>
+
+            <AnimatePresence>
+              {openIndex === index && (
+                <motion.p
+                  key="content"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="mt-3 text-gray-700 w-full md:w-3/5 text-[16px] text-start whitespace-pre-line overflow-hidden"
+                >
+                  {faq.answer}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </motion.div>
         ))}
       </div>
     </div>
