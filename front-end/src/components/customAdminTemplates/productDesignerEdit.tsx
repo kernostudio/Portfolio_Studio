@@ -893,12 +893,15 @@ export default function ProductDesignerEdit({ placeholder, id }) {
     <div className="min-h-screen bg-white">
       <NavBarDashboard />
       <div className="w-11/12 mx-auto">
-        <Link
-          href="/templates"
-          className="h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-200 cursor-pointer hover:bg-gray-300 transition-all duration-200"
-        >
-          <FaArrowLeft className="text-black" />
-        </Link>
+        <div className="flex gap-4 items-center">
+          <Link
+            href="/templates"
+            className="h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-200 cursor-pointer hover:bg-gray-300 transition-all duration-200"
+          >
+            <FaArrowLeft className="text-black" />
+          </Link>
+          <span className="font-medium">Back</span>
+        </div>
       </div>
       <div className="flex flex-col lg:flex-row gap-6 max-w-8xl mx-auto p-4 lg:p-6">
         {/* LEFT COLUMN - Navigation and Form Editor */}
