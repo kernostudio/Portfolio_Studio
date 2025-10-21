@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import ProductDesigner from "./ProductDesigner";
 import NavBarDashboard from "../shared/NavBarDashboard";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export default function ProductDesignerEdit({ placeholder, id }) {
   const [formData, setFormData] = useState(placeholder || {});
@@ -891,7 +893,12 @@ export default function ProductDesignerEdit({ placeholder, id }) {
     <div className="min-h-screen bg-white">
       <NavBarDashboard />
       <div className="w-11/12 mx-auto">
-        <h1 className="font-bold ">Portfolio Studio Editor</h1>
+        <Link
+          href="/templates"
+          className="h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-200 cursor-pointer hover:bg-gray-300 transition-all duration-200"
+        >
+          <FaArrowLeft className="text-black" />
+        </Link>
       </div>
       <div className="flex flex-col lg:flex-row gap-6 max-w-8xl mx-auto p-4 lg:p-6">
         {/* LEFT COLUMN - Navigation and Form Editor */}
