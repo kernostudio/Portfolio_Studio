@@ -19,7 +19,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Sidebar />
 
           {/* Main Content */}
-          <main className="flex-1 p-6 overflow-auto border-l-2  border-t-2 ">
+          <main className="flex-1 overflow-auto border-l-1  border-t-1 ">
             {children}
           </main>
         </div>
