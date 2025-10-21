@@ -1,14 +1,20 @@
+import { TextFade } from "@/components/shared/TextFade";
+
 export default function Features() {
   return (
     <div className="w-11/12 mx-auto pt-32">
-      <h1 className="md:text-[40px] text-xl text-center">
-        Why Choose <span className="font-semibold">Portfolio</span>{" "}
-        <span className="font-bold">Studio</span>
-      </h1>
-      <p className="text-center mt-5 md:text-xl ">
-        Our users report a 90% higher chance of getting job interviews with{" "}
-        <br /> CVs created using Portfolio Studio templates.
-      </p>
+      <div>
+        <TextFade direction="up" staggerChildren={0.15}>
+          <h1 className="md:text-[40px] text-xl text-center">
+            Why Choose <span className="font-semibold">Portfolio</span>{" "}
+            <span className="font-bold">Studio</span>
+          </h1>
+          <p className="text-center mt-5 md:text-xl ">
+            Our users report a 90% higher chance of getting job interviews with{" "}
+            <br /> CVs created using Portfolio Studio templates.
+          </p>
+        </TextFade>
+      </div>
       <div className=" flex justify-center">
         <div className="mt-16 grid  grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 justify-center">
           <div className="bg-[#e9f4ff] border-4 h-[154px] w-[154px] border-white rounded-2xl">

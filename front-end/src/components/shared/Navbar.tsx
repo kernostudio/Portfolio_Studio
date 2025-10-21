@@ -166,8 +166,8 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`${
                     pathname === link.href
-                      ? "font-bold text-gray-900 hover:text-purple-600"
-                      : "font-medium text-gray-600 hover:text-purple-600"
+                      ? "font-bold text-gray-900 hover:text-black"
+                      : "font-medium text-gray-600 hover:text-black"
                   } block transition`}
                 >
                   {link.name}
@@ -176,7 +176,7 @@ export default function Navbar() {
               {user ? (
                 <Link
                   href={`/dashboard/profile`}
-                  className="flex gap-2 rounded-full hover:border-purple-900 items-center"
+                  className="flex gap-2 rounded-full hover:border-black items-center"
                 >
                   Dashboard
                   <img
