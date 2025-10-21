@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TextFade } from "../shared/TextFade";
 
 export default function SignInPage() {
   const { login } = useAuth();
@@ -55,36 +56,40 @@ export default function SignInPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f9fbff] to-[#e3f3ff] px-4 py-8">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Side - Branding */}
-        <div className="text-center lg:text-left space-y-6 animate-fade-in">
-          <div className="flex items-center justify-center lg:justify-start gap-3">
-            <h1 className="text-3xl font-bold text-black">Portfolio Studio</h1>
+        <TextFade direction="up" staggerChildren={0.15}>
+          <div className="text-center lg:text-left space-y-6 animate-fade-in">
+            <div className="flex items-center justify-center lg:justify-start gap-3">
+              <h1 className="text-3xl font-bold text-black">
+                Portfolio Studio
+              </h1>
+            </div>
+
+            <h2 className="text-4xl lg:text-5xl font-bold text-black leading-tight">
+              Browse Stunning Templates
+            </h2>
+
+            <p className="text-xl text-gray-800 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              Discover beautiful templates by category, customize with simple
+              edits, and publish with one click. No coding or design skills
+              required.
+            </p>
+
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8">
+              <div className="flex items-center gap-2 text-gray-800">
+                <div className="w-2 h-2 bg-black rounded-full"></div>
+                <span>Professional Designs</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-800">
+                <div className="w-2 h-2 bg-black rounded-full"></div>
+                <span>Easy Customization</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-800">
+                <div className="w-2 h-2 bg-black rounded-full"></div>
+                <span>One-Click Publishing</span>
+              </div>
+            </div>
           </div>
-
-          <h2 className="text-4xl lg:text-5xl font-bold text-black leading-tight">
-            Browse Stunning Templates
-          </h2>
-
-          <p className="text-xl text-gray-800 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-            Discover beautiful templates by category, customize with simple
-            edits, and publish with one click. No coding or design skills
-            required.
-          </p>
-
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8">
-            <div className="flex items-center gap-2 text-gray-800">
-              <div className="w-2 h-2 bg-black rounded-full"></div>
-              <span>Professional Designs</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-800">
-              <div className="w-2 h-2 bg-black rounded-full"></div>
-              <span>Easy Customization</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-800">
-              <div className="w-2 h-2 bg-black rounded-full"></div>
-              <span>One-Click Publishing</span>
-            </div>
-          </div>
-        </div>
+        </TextFade>
 
         {/* Right Side - Sign In Form */}
         <div className="flex justify-center lg:justify-end">
