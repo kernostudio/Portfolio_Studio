@@ -4,3 +4,7 @@ body {
   background-color: #f9fbff; /* Tailwind gray-50 alternative */
   color: #1a202c; /* Tailwind gray-900 alternative */
 }
+
+.perspective-1000 {
+  perspective: 1000px;
+}
