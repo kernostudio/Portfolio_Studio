@@ -15,6 +15,7 @@ import { AiOutlineFileText } from "react-icons/ai";
 import { ImProfile } from "react-icons/im";
 import { MdOutlineCreateNewFolder, MdPublish } from "react-icons/md";
 import { CgTemplate } from "react-icons/cg";
+import { ImExit } from "react-icons/im";
 
 const Sidebar = () => {
   const { user, setUser, logout } = useAuth();
@@ -37,6 +38,11 @@ const Sidebar = () => {
       name: "Publish Requests",
       href: "/dashboard/myPublishRequest",
       icon: <MdPublish className="w-5 h-5" />,
+    },
+    {
+      name: "Exit",
+      href: "/templates",
+      icon: <ImExit className="w-5 h-5" />,
     },
   ];
 
