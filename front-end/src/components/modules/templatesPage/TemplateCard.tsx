@@ -58,9 +58,9 @@ export default function TemplateCard({ template, user }: TemplateCardProps) {
       <div className="flex justify-between gap-2 mt-4">
         <button
           onClick={() => handleCardClick(template.id)}
-          className="font-semibold hover:font-bold transition"
+          className="font-semibold hover:font-bold transition cursor-pointer"
         >
-          Preview
+          See Preview
         </button>
 
         <button
@@ -71,7 +71,7 @@ export default function TemplateCard({ template, user }: TemplateCardProps) {
                   `/templates/signin?redirectTo=/templateCustomize/${template.id}`
                 )
           }
-          className=" bg-black  text-white px-3 py-2 rounded hover:bg-gray-700 transition"
+          className="cursor-pointer bg-black  text-white px-3 py-2 rounded hover:bg-gray-700 transition"
         >
           Use Template
         </button>
