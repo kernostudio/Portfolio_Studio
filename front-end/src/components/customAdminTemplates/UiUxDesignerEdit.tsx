@@ -1,4 +1,12 @@
 "use client";
+import { GoGear } from "react-icons/go";
+import { GoHome } from "react-icons/go";
+import { GoNote } from "react-icons/go";
+import { GoPerson } from "react-icons/go";
+import { GoRocket } from "react-icons/go";
+import { GoComment } from "react-icons/go";
+import { GoArrowDown } from "react-icons/go";
+import { GoRepo } from "react-icons/go";
 
 import { useAuth } from "@/Auth/AuthContext";
 import UseAxiosPublic from "@/hooks/axiosPublic";
@@ -123,14 +131,14 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
   };
 
   const sections = [
-    { id: "root", name: "Root Settings", icon: "⚙️" },
-    { id: "nav", name: "Navigation", icon: "🧭" },
-    { id: "hero", name: "Hero Section", icon: "🌟" },
-    { id: "about", name: "About Section", icon: "👤" },
-    { id: "services", name: "Services", icon: "🛠️" },
-    { id: "projects", name: "Projects", icon: "💼" },
-    { id: "contact", name: "Contact", icon: "📞" },
-    { id: "footer", name: "Footer", icon: "🔻" },
+    { id: "root", name: "Root Settings", icon: GoGear },
+    { id: "nav", name: "Navigation", icon: GoHome },
+    { id: "hero", name: "Hero", icon: GoNote },
+    { id: "about", name: "About", icon: GoPerson },
+    { id: "services", name: "Services", icon: GoRocket },
+    { id: "projects", name: "Projects", icon: GoRepo },
+    { id: "contact", name: "Contact", icon: GoComment },
+    { id: "footer", name: "Footer", icon: GoArrowDown },
   ];
 
   // Render form content for active section
@@ -1599,11 +1607,11 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
       </div>
       <div className="flex flex-col lg:flex-row gap-6 max-w-8xl mx-auto p-4 lg:p-6">
         {/* LEFT COLUMN - Navigation and Form Editor */}
-        <div className="lg:w-2/5 flex flex-col gap-6">
+        <div className="lg:w-1/4 flex flex-col gap-6">
           {/* SIDEBAR NAVIGATION */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
             <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-              <span>📋</span> Sections
+              Sections
             </h2>
             <nav className="space-y-2">
               {sections.map((section) => (
@@ -1616,7 +1624,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       : "text-slate-600 hover:bg-slate-50 hover:text-slate-800"
                   }`}
                 >
-                  <span className="text-lg">{section.icon}</span>
+                  <span className="text-lg">{<section.icon />}</span>
                   <span className="font-medium text-sm">{section.name}</span>
                 </button>
               ))}
@@ -1667,7 +1675,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
         </div>
 
         {/* RIGHT COLUMN - Live Preview */}
-        <div className="lg:w-3/5 flex-shrink-0 border-t-2 border-l-2">
+        <div className="lg:w-3/4 flex-shrink-0 border-t-1 border-l-1">
           <div className="sticky top-6">
             <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
               <div className="border-b border-slate-200 bg-slate-50/50 px-6 py-4">
