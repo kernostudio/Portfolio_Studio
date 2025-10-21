@@ -151,12 +151,13 @@ export default function Reviews() {
 
           <div className="max-w-xl mt-4 md:ml-24 mx-auto bg-white shadow-sm rounded-tl-2xl rounded-bl-2xl rounded-br-2xl p-6"></div>
 
-          <button className="flex items-center gap-1 lg:ml-28 mt-10 mb-10 hover:text-blue-800">
+          <div className="my-10"></div>
+          {/* <button className="flex items-center gap-1 lg:ml-28 mt-10 mb-10 hover:text-blue-800">
             Load more{" "}
             <span>
               <img src="https://i.ibb.co.com/FNqQQSF/loadmore.png" alt="" />
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
