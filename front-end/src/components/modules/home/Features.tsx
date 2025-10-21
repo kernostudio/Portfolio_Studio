@@ -28,7 +28,7 @@ export default function Features() {
           {items.map((item, idx) => (
             <div
               key={idx}
-              className="relative group rounded-2xl w-[154px] h-[154px] bg-[#e9f4ff] overflow-hidden"
+              className="relative group rounded-3xl w-[154px] h-[154px] bg-[#e9f4ff] overflow-hidden"
             >
               {/* Outer SVG border */}
               <svg
