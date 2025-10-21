@@ -1,12 +1,15 @@
 "use client";
+import { TextFade } from "@/components/shared/TextFade";
 import React from "react";
 
 export default function HowToCreate() {
   return (
     <div className="w-11/12 mx-auto mt-16">
-      <h1 className="text-xl md:text-[40px] text-center">
-        How to Create your <span className="font-bold">Portfolio</span>
-      </h1>
+      <TextFade direction="up" staggerChildren={0.15}>
+        <h1 className="text-xl md:text-[40px] text-center">
+          How to Create your <span className="font-bold">Portfolio</span>
+        </h1>
+      </TextFade>
       <div className="mt-16 flex justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="relative w-72 h-60 bg-white border-[#7f683f]  border rounded-2xl shadow-md flex flex-col justify-center items-center text-center p-6">

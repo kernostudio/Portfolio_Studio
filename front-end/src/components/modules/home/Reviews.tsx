@@ -1,16 +1,102 @@
+"use client";
+import { TextFade } from "@/components/shared/TextFade";
+import { motion } from "framer-motion";
+
 export default function Reviews() {
+  const reviews = [
+    {
+      text: "omg i cannot believe i am getting a interview after using this. the recommendations is well thought off. highly recommend everyone to use this website.",
+      name: "Michelle V.",
+      role: "Sr. Digital Marketing Manager",
+      avatar: "https://i.ibb.co.com/C36wY2qM/michelb.png",
+    },
+    {
+      text: "omg i cannot believe i am getting a interview after using this. the recommendations is well thought off. highly recommend everyone to use this website.",
+      name: "Shiva V.",
+      role: "Senior Recruiter",
+      avatar: "https://i.ibb.co.com/Rp3g9wgF/top.png",
+    },
+    {
+      text: "The custom resume feature saved me so much time and effort. It made sure my resume matched the job descriptions perfectly. I am gonna use it for every job I apply.",
+      name: "Ken D.",
+      role: "Senior Recruiter",
+      avatar: "https://i.ibb.co.com/5pRSKxH/shiva.png",
+    },
+    {
+      text: "Really easy to use and understand. I loved how I could take direct action on suggestions and not just learn about them.",
+      name: "Michelle V.",
+      role: "Sr. Digital Marketing Manager",
+      avatar: "https://i.ibb.co.com/2Yf7t7qQ/kend.png",
+    },
+    {
+      text: "omg i cannot believe i am getting a interview after using this. the recommendations is well thought off. highly recommend everyone to use this website.",
+      name: "Bob V.",
+      role: "Sr. Digital Marketing Manager",
+      avatar: "https://i.ibb.co.com/C36wY2qM/michelb.png",
+    },
+  ];
+
+  function ReviewsScroller() {
+    const REPETITIONS = 30;
+    const reviewLoop = [];
+
+    for (let i = 0; i < REPETITIONS; i++) {
+      for (const review of reviews) {
+        reviewLoop.push({ ...review });
+      }
+    }
+
+    return (
+      <div className="relative h-[450px] overflow-hidden mt-8">
+        <motion.div
+          className="flex flex-col gap-4"
+          animate={{ y: [-0, -reviews.length * 180] }} // scroll distance = one set of reviews
+          transition={{
+            duration: reviews.length * 6, // slower for smoother scroll
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        >
+          {reviewLoop.map((review, idx) => (
+            <div
+              key={idx}
+              className="max-w-2xl mx-auto bg-white shadow-sm rounded-2xl p-6"
+            >
+              <img src="https://i.ibb.co.com/QvsbjmXb/quote.png" alt="" />
+              <p className="text-[16px] text-center mt-2">{review.text}</p>
+              <div className="flex items-center gap-3 mt-5">
+                <img
+                  src={review.avatar}
+                  alt={review.name}
+                  className="w-8 h-8 rounded-full"
+                />
+                <p className="text-sm text-gray-800">
+                  <span className="font-semibold">{review.name}</span>{" "}
+                  <span className="text-gray-500">/ {review.role}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div id="blog" className="w-10/12 mx-auto mt-20">
-      <h1 className=" text-xl text-center  lg:text-[36px]">
-        Voice From <span className="font-bold">the world</span>
-      </h1>
-      <p className="lg:text-[18px] text-center mt-5 text-sm">
-        What our users say after using Portfolio Studio and how <br /> it helped
-        them improve their Resume
-      </p>
-      <div className="md:flex mt-10 bg-gradient-to-r from-[#f9fbff] via-[#e3f3ff] to-[#f9fbff] justify-between">
-        <div>
-          <div className="relative w-80 h-80 mx-auto mt-20">
+      <TextFade direction="up" staggerChildren={0.15}>
+        <h1 className=" text-xl text-center  lg:text-[36px]">
+          Voice From <span className="font-bold">the world</span>
+        </h1>
+        <p className="lg:text-[18px] text-center mt-5 text-sm">
+          What our users say after using Portfolio Studio and how <br /> it
+          helped them improve their Resume
+        </p>
+      </TextFade>
+
+      <div className="md:grid md:grid-cols-3 mt-10 pb-10 bg-gradient-to-r from-[#f9fbff] via-[#e3f3ff] to-[#f9fbff] justify-between">
+        <div className=" flex justify-center items-center">
+          <div className="relative w-80 h-80 mx-auto mt-5">
             <div className="absolute inset-0 m-auto w-[120px] h-[120px] rounded-2xl overflow-hidden">
               <img
                 src="https://i.ibb.co.com/p92DXVQ/middle.png"
@@ -51,113 +137,10 @@ export default function Reviews() {
               />
             </div>
           </div>
-          <div className="space-y-2 text-sm">
-            <h1 className="flex items-center gap-2">
-              <span className="font-semibold">Michelle V.</span>
-              <span className="font-light">Sr. Digital Marketing Manager</span>
-            </h1>
-
-            <h1 className="flex items-center gap-2">
-              <span className="font-semibold">Shiva V.</span>
-              <span className="font-light">Senior Recruiter</span>
-            </h1>
-
-            <h1 className="flex items-center gap-2">
-              <span className="font-semibold">Ken D.</span>
-              <span className="font-light">Instructional Designer</span>
-            </h1>
-
-            <h1 className="flex items-center gap-2">
-              <span className="font-semibold">Ken D.</span>
-              <span className="font-light">Senior Recruiter</span>
-            </h1>
-
-            <h1 className="flex items-center gap-2">
-              <span className="font-semibold">Ken D.</span>
-              <span className="font-light">Senior Recruiter</span>
-            </h1>
-          </div>
         </div>
 
-        <div className="mt-8">
-          <div className="max-w-2xl mx-auto bg-white shadow-sm rounded-tl-2xl rounded-bl-2xl rounded-br-2xl p-6">
-            <img src="https://i.ibb.co.com/QvsbjmXb/quote.png" alt="" />
-
-            <p className="text-[16px] text-center">
-              omg i cannot believe i am getting a interview after using this.
-              the recommendations is well thought off. highly recommend everyone
-              to use this website.
-            </p>
-
-            <div className="flex items-center gap-3 mt-5">
-              <img
-                src="https://i.ibb.co.com/C36wY2qM/michelb.png"
-                alt="Michelle V."
-                className="w-8 h-8 rounded-full"
-              />
-              <p className="text-sm text-gray-800">
-                <span className="font-semibold">Michelle V.</span>{" "}
-                <span className="text-gray-500">
-                  / Sr. Digital Marketing Manager
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <div className="max-w-[550px] mt-4 md:ml-30 mx-auto bg-white shadow-sm rounded-tl-2xl rounded-bl-2xl rounded-br-2xl p-6">
-            <img src="https://i.ibb.co.com/QvsbjmXb/quote.png" alt="" />
-
-            <p className="text-[16px] text-center">
-              The custom resume feature saved me so much time and effort. It
-              made sure my resume matched the job descriptions perfectly. I am
-              gonna use it for every job I apply.
-            </p>
-
-            <div className="flex items-center gap-3 mt-5">
-              <img
-                src="https://i.ibb.co.com/5pRSKxH/shiva.png"
-                alt="Shiva V."
-                className="w-8 h-8 rounded-full"
-              />
-              <p className="text-sm text-gray-800">
-                <span className="font-semibold">Ken D.</span>{" "}
-                <span className="text-gray-500">Senior Recruiter</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="max-w-xl mt-4 md:ml-24 mx-auto bg-white shadow-sm rounded-tl-2xl rounded-bl-2xl rounded-br-2xl p-6">
-            <img src="https://i.ibb.co.com/QvsbjmXb/quote.png" alt="" />
-
-            <p className="text-[16px] text-center">
-              Really easy to use and understand. I loved how I could take direct
-              action on suggestions and not just learn about them.
-            </p>
-
-            <div className="flex items-center gap-3 mt-5">
-              <img
-                src="https://i.ibb.co.com/2Yf7t7qQ/kend.png"
-                alt="Ken D."
-                className="w-8 h-8 rounded-full"
-              />
-              <p className="text-sm text-gray-800">
-                <span className="font-semibold">Michelle V.</span>{" "}
-                <span className="text-gray-500">
-                  / Sr. Digital Marketing Manager
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <div className="max-w-xl mt-4 md:ml-24 mx-auto bg-white shadow-sm rounded-tl-2xl rounded-bl-2xl rounded-br-2xl p-6"></div>
-
-          <div className="my-10"></div>
-          {/* <button className="flex items-center gap-1 lg:ml-28 mt-10 mb-10 hover:text-blue-800">
-            Load more{" "}
-            <span>
-              <img src="https://i.ibb.co.com/FNqQQSF/loadmore.png" alt="" />
-            </span>
-          </button> */}
+        <div className="col-span-2">
+          <ReviewsScroller />
         </div>
       </div>
     </div>
