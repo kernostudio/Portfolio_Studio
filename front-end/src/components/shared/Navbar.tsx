@@ -1,17 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { HiMenu, HiX } from "react-icons/hi"; // <-- import icons
-import butonIcon from "../../../public/img/Group.png";
-import Image from "next/image";
 import { useAuth } from "@/Auth/AuthContext";
 import UseAxiosPublic from "@/hooks/axiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { FaUserCircle } from "react-icons/fa";
-import { GrDashboard } from "react-icons/gr";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { HiMenu, HiX } from "react-icons/hi"; // <-- import icons
 interface UserProfile {
   id: string;
   fullName: string;
@@ -54,7 +50,7 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0 text-2xl  text-black">
               <Link href="/">
-                PortFolio <span className="font-bold">Studio</span>
+                Portfolio <span className="font-bold">Studio</span>
               </Link>
             </div>
           </div>{" "}

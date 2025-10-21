@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { ImExit } from "react-icons/im";
 
 export default function NavBarDashboard() {
@@ -9,7 +8,7 @@ export default function NavBarDashboard() {
         <div></div>
         <div>
           <h1 className="lg:text-[24px] text-xl">
-            PortFolio <span className="font-bold">Studio</span>
+            Portfolio <span className="font-bold">Studio</span>
           </h1>
         </div>
         <div>

@@ -1,6 +1,6 @@
 import {
-  FaLinkedinIn,
   FaInstagram,
+  FaLinkedinIn,
   FaTiktok,
   FaXTwitter,
 } from "react-icons/fa6";
@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="w-10/12 mx-auto pt-10">
         <div className="lg:flex justify-between lg:items-center space-y-8 lg:space-y-0">
           <h1 className="text-xl">
-            PortFolio <span className="font-bold">Studio</span>
+            Portfolio <span className="font-bold">Studio</span>
           </h1>
           <div className="flex gap-3 lg:justify-start">
             {[FaLinkedinIn, FaInstagram, FaTiktok, FaXTwitter].map(

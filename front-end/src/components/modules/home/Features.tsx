@@ -1,6 +1,3 @@
-import Image from "next/image";
-import { FiArrowUpRight } from "react-icons/fi";
-import img from "../../../../public/img/image.png";
 export default function Features() {
   return (
     <div className="w-11/12 mx-auto pt-32">
@@ -10,7 +7,7 @@ export default function Features() {
       </h1>
       <p className="text-center mt-5 md:text-xl ">
         Our users report a 90% higher chance of getting job interviews with{" "}
-        <br /> CVs created using PortFolio Studio templates.
+        <br /> CVs created using Portfolio Studio templates.
       </p>
       <div className=" flex justify-center">
         <div className="mt-16 grid  grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 justify-center">
