@@ -144,7 +144,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-6 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🎨</span> Background Color
+                Background Color
               </h3>
               <div className="flex items-center gap-4">
                 <input
@@ -169,7 +169,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Logo */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🏢</span> Logo Settings
+                Logo Settings
               </h3>
               <input
                 type="text"
@@ -185,7 +185,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Navigation Links */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🔗</span> Navigation Links
+                Navigation Links
               </h3>
               <div className="space-y-4">
                 {formData.nav?.links?.map((link, idx) => (
@@ -243,7 +243,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Social Links */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🌐</span> Social Media
+                Social Media
               </h3>
               <div className="space-y-4">
                 {formData.nav?.socials?.map((social, idx) => (
@@ -301,7 +301,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Colors */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🎨</span> Color Scheme
+                Color Scheme
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
@@ -441,7 +441,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Profile Image Upload */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🖼️</span> Profile Image
+                Profile Image
               </h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-1">
@@ -484,7 +484,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Hero Colors */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🎨</span> Hero Colors
+                Hero Colors
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
@@ -530,7 +530,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-8 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📝</span> About Content
+                About Content
               </h3>
               <div className="space-y-4">
                 <div>
@@ -567,7 +567,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Timeline */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📅</span> Timeline
+                Timeline
               </h3>
               <div className="space-y-4">
                 {formData.about?.timeline?.map((item, idx) => (
@@ -629,7 +629,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-8 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>💼</span> Work Section
+                Work Section
               </h3>
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -650,7 +650,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Work Items */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🖼️</span> Work Items
+                Work Items
               </h3>
               <div className="space-y-6">
                 {formData.work?.items?.map((item, idx) => (
@@ -766,7 +766,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-8 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📞</span> Contact Information
+                Contact Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -802,7 +802,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
 
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📧</span> Contact Details
+                Contact Details
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -853,7 +853,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Contact Image */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🖼️</span> Contact Image
+                Contact Image
               </h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-1">
@@ -912,7 +912,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
       </div>
       <div className="flex flex-col lg:flex-row gap-6 max-w-8xl mx-auto p-4 lg:p-6">
         {/* LEFT COLUMN - Navigation and Form Editor */}
-        <div className="lg:w-1/4 flex flex-col gap-6">
+        <div className="lg:w-2/5 flex flex-col gap-6">
           {/* SIDEBAR NAVIGATION */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
             <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
@@ -947,10 +947,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                   Saving...
                 </>
               ) : (
-                <>
-                  <span>💾</span>
-                  Save All Changes
-                </>
+                <>Save All Changes</>
               )}
             </button>
           </div>
@@ -980,13 +977,10 @@ export default function ProductDesignerEdit({ placeholder, id }) {
         </div>
 
         {/* RIGHT COLUMN - Live Preview */}
-        <div className="lg:w-3/4 flex-shrink-0 border-t-1 border-l-1">
+        <div className="lg:w-3/5 flex-shrink-0 border-t-1 border-l-1">
           <div className="sticky top-6">
             <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
               <div className="border-b border-slate-200 bg-slate-50/50 px-6 py-4">
-                <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                  <span>👁️</span> Live Preview
-                </h2>
                 <p className="text-slate-600 text-sm">
                   Real-time template preview
                 </p>
