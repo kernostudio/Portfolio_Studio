@@ -104,10 +104,6 @@ export default function Navbar() {
                 className="flex gap-3 rounded-full hover:opacity-80 items-center"
               >
                 Dashboard
-                <img
-                  src="https://i.ibb.co.com/whFmwwtW/Vector-4.png"
-                  alt="dashboard"
-                />
               </Link>
             ) : (
               <>
