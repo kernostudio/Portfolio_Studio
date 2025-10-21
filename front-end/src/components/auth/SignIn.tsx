@@ -57,9 +57,6 @@ export default function SignInPage() {
         {/* Left Side - Branding */}
         <div className="text-center lg:text-left space-y-6 animate-fade-in">
           <div className="flex items-center justify-center lg:justify-start gap-3">
-            <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">PS</span>
-            </div>
             <h1 className="text-3xl font-bold text-black">Portfolio Studio</h1>
           </div>
 
