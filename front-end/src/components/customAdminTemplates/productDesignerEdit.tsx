@@ -918,7 +918,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
               Sections
             </h2>
-            <nav className="space-y-2">
+            <nav className="space-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
               {sections.map((section) => (
                 <button
                   key={section.id}
