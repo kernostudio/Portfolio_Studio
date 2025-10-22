@@ -155,7 +155,7 @@ const Sidebar = () => {
         {/* Logout Button - Always at the bottom */}
         <button
           onClick={handleLogout}
-          className="flex items-center justify-center gap-3  hover:bg-black hover:text-white font-semibold py-3 px-4 rounded-md transition-all mt-auto"
+          className="flex items-center justify-center gap-3 border cursor-pointer  hover:bg-black hover:text-white font-semibold py-3 px-4 rounded-md transition-all mt-auto"
         >
           <FaSignOutAlt className="w-5 h-5" />
           <span>Logout</span>
