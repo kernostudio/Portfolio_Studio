@@ -146,7 +146,7 @@ export default function Profile() {
               {/* Avatar Section */}
               <div className="text-center mb-6">
                 <div className="relative inline-block">
-                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-gradient-to-br from-blue-100 to-cyan-100">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-gradient-to-br from-gray-100 to-cyan-100">
                     {imagePreview ? (
                       <Image
                         src={imagePreview}
@@ -156,13 +156,13 @@ export default function Profile() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <FiUser className="w-16 h-16 text-blue-400" />
+                        <FiUser className="w-16 h-16 text-gray-400" />
                       </div>
                     )}
                   </div>
 
                   {editing && (
-                    <label className="absolute bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full cursor-pointer hover:bg-blue-600 transition-colors">
+                    <label className="absolute bottom-2 right-2 bg-gray-500 text-white p-2 rounded-full cursor-pointer hover:bg-black transition-colors">
                       <FiCamera className="w-4 h-4" />
                       <input
                         type="file"
@@ -244,7 +244,7 @@ export default function Profile() {
                     value={formData.fullName}
                     onChange={handleChange}
                     disabled={!editing}
-                    className={`w-full px-4 py-3 border rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-1 focus:ring-gray-500 focus:border-gray-500 outline-none transition-all ${
                       editing
                         ? "border-gray-300 bg-white shadow-sm"
                         : "border-gray-200 bg-gray-50"
@@ -280,7 +280,7 @@ export default function Profile() {
                       type="file"
                       accept="image/*"
                       onChange={handleFileChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
                     />
                   </div>
                 )}
@@ -291,7 +291,7 @@ export default function Profile() {
                     {/* <button
                       type="submit"
                       disabled={updateMutation.isPending}
-                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 px-6 rounded-xl font-medium hover:from-blue-600 hover:to-cyan-600 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-gray-500 to-cyan-500 text-white py-3 px-6 rounded-xl font-medium hover:from-black hover:to-cyan-600 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {updateMutation.isPending ? "Saving..." : <>Save</>}
                     </button> */}
@@ -325,7 +325,7 @@ export default function Profile() {
 // Skeleton Loader
 function ProfileSkeleton() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <div className="h-8 bg-gray-200 rounded w-48 mx-auto mb-2"></div>

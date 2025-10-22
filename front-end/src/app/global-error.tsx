@@ -30,7 +30,7 @@ export default function GlobalError({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={reset}
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
               >
                 <RefreshCw className="w-5 h-5" />
                 Try Again

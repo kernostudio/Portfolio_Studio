@@ -119,7 +119,7 @@ export default function ManageTemplates() {
     return (
       <div className="flex justify-center items-center min-h-64">
         <div className="flex flex-col items-center space-y-4">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-black" />
           <span className="text-gray-600">Loading templates...</span>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default function ManageTemplates() {
           </p>
           <button
             onClick={() => refetch()}
-            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="mt-4 bg-black text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
             Try Again
           </button>
@@ -170,7 +170,7 @@ export default function ManageTemplates() {
                 </p>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <FiImage className="w-6 h-6 text-blue-600" />
+                <FiImage className="w-6 h-6 text-black" />
               </div>
             </div>
           </div>
@@ -287,7 +287,7 @@ export default function ManageTemplates() {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handlePreviewClick(template.id)}
-                            className="text-blue-600 hover:text-blue-900 p-2 rounded-lg hover:bg-blue-50 transition-colors"
+                            className="text-black hover:text-blue-900 p-2 rounded-lg hover:bg-blue-50 transition-colors"
                             title="View Template"
                           >
                             <FiEye className="w-4 h-4" />
