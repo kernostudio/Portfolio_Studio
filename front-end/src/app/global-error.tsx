@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, Home, RefreshCw } from "lucide-react";
+import { GoAlert, GoHome, GoSync } from "react-icons/go";
 
 export default function GlobalError({
   error,
@@ -16,7 +16,7 @@ export default function GlobalError({
           <div className="max-w-lg w-full text-center">
             <div className="mb-8 flex justify-center">
               <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center">
-                <AlertTriangle className="w-12 h-12 text-red-600" />
+                <GoAlert className="w-12 h-12 text-red-600" />
               </div>
             </div>
 
@@ -32,14 +32,14 @@ export default function GlobalError({
                 onClick={reset}
                 className="inline-flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
               >
-                <RefreshCw className="w-5 h-5" />
+                <GoSync className="w-5 h-5" />
                 Try Again
               </button>
               <button
                 onClick={() => (window.location.href = "/")}
                 className="inline-flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 px-6 rounded-lg transition-colors"
               >
-                <Home className="w-5 h-5" />
+                <GoHome className="w-5 h-5" />
                 Go Home
               </button>
             </div>

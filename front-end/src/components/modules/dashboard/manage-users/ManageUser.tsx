@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "@/hooks/axiosPublic";
 import Image from "next/image";
-import { FaUserCircle } from "react-icons/fa";
+import { GoPerson } from "react-icons/go";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
@@ -128,7 +128,7 @@ export default function ManageUser() {
                           className="w-10 h-10 rounded-full object-cover"
                         />
                       ) : (
-                        <FaUserCircle className="text-gray-400 w-10 h-10" />
+                        <GoPerson className="text-gray-400 w-10 h-10" />
                       )}
                     </td>
                     <td className="px-4 py-3 font-medium">{user.fullName}</td>
@@ -176,7 +176,7 @@ export default function ManageUser() {
                     className="w-14 h-14 rounded-full object-cover"
                   />
                 ) : (
-                  <FaUserCircle className="text-gray-400 w-14 h-14" />
+                  <GoPerson className="text-gray-400 w-14 h-14" />
                 )}
                 <div className="flex-1 w-full">
                   <h3 className="font-medium text-lg">{user.fullName}</h3>

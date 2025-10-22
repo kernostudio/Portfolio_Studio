@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { GoChevronDown, GoChevronUp } from "react-icons/go";
 import { TextFade } from "@/components/shared/TextFade";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -63,9 +63,9 @@ export default function Faq() {
                 {faq.question}
               </h3>
               {openIndex === index ? (
-                <ChevronUp className="w-5 h-5 border-2 rounded-full text-gray-900" />
+                <GoChevronUp className="w-5 h-5 border-2 rounded-full text-gray-900" />
               ) : (
-                <ChevronDown className="w-5 h-5 border-2 rounded-full text-gray-900" />
+                <GoChevronDown className="w-5 h-5 border-2 rounded-full text-gray-900" />
               )}
             </motion.div>
 

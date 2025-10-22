@@ -1,17 +1,20 @@
 "use client";
+
+import { ImSpinner8 } from "react-icons/im";
 import UseAxiosPublic from "@/hooks/axiosPublic";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import {
-  FiTrash2,
-  FiEye,
-  FiImage,
-  FiCalendar,
-  FiSearch,
-  FiPlus,
-} from "react-icons/fi";
-import { Loader2 } from "lucide-react";
+  GoTrash,
+  GoEye,
+  GoImage,
+  GoCalendar,
+  GoSearch,
+  GoPlus,
+  GoSync,
+} from "react-icons/go";
+
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
@@ -119,7 +122,7 @@ export default function ManageTemplates() {
     return (
       <div className="flex justify-center items-center min-h-64">
         <div className="flex flex-col items-center space-y-4">
-          <Loader2 className="w-8 h-8 animate-spin text-black" />
+          <ImSpinner8 className="w-8 h-8 animate-spin text-black" />
           <span className="text-gray-600">Loading templates...</span>
         </div>
       </div>
@@ -129,17 +132,7 @@ export default function ManageTemplates() {
   if (isError) {
     return (
       <div className="flex justify-center items-center min-h-64">
-        <div className="text-center">
-          <p className="text-red-600 text-lg font-medium">
-            Failed to load templates
-          </p>
-          <button
-            onClick={() => refetch()}
-            className="mt-4 bg-black text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Try Again
-          </button>
-        </div>
+        <GoSync className="w-8 h-8 animate-spin text-black" />
       </div>
     );
   }
@@ -170,7 +163,7 @@ export default function ManageTemplates() {
                 </p>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <FiImage className="w-6 h-6 text-black" />
+                <GoImage className="w-6 h-6 text-black" />
               </div>
             </div>
           </div>
@@ -182,7 +175,7 @@ export default function ManageTemplates() {
             <div className="flex flex-col sm:flex-row gap-4 flex-1">
               {/* Search */}
               <div className="relative flex-1 max-w-md">
-                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <GoSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
                   placeholder="Search templates by title or description..."
@@ -197,7 +190,7 @@ export default function ManageTemplates() {
               onClick={() => handleClick()}
               className="bg-black hover:bg-gray-700 text-white font-medium py-2 px-6 rounded-lg transition-colors flex items-center gap-2"
             >
-              <FiPlus className="w-5 h-5" />
+              <GoPlus className="w-5 h-5" />
               New Template
             </button>
           </div>
@@ -228,7 +221,7 @@ export default function ManageTemplates() {
                   <tr>
                     <td colSpan={4} className="px-6 py-12 text-center">
                       <div className="flex flex-col items-center justify-center text-gray-500">
-                        <FiImage className="w-12 h-12 mb-4 text-gray-300" />
+                        <GoImage className="w-12 h-12 mb-4 text-gray-300" />
                         <p className="text-lg font-medium">
                           No templates found
                         </p>
@@ -257,7 +250,7 @@ export default function ManageTemplates() {
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                                <FiImage className="w-6 h-6 text-gray-400" />
+                                <GoImage className="w-6 h-6 text-gray-400" />
                               </div>
                             )}
                           </div>
@@ -279,7 +272,7 @@ export default function ManageTemplates() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2 text-sm text-gray-500">
-                          <FiCalendar className="w-4 h-4 text-gray-400" />
+                          <GoCalendar className="w-4 h-4 text-gray-400" />
                           {formatDate(template.createdAt)}
                         </div>
                       </td>
@@ -290,7 +283,7 @@ export default function ManageTemplates() {
                             className="text-black hover:text-blue-900 p-2 rounded-lg hover:bg-blue-50 transition-colors"
                             title="View Template"
                           >
-                            <FiEye className="w-4 h-4" />
+                            <GoEye className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() =>
@@ -301,9 +294,9 @@ export default function ManageTemplates() {
                             title="Delete Template"
                           >
                             {deleteMutation.isPending ? (
-                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <ImSpinner8 className="w-4 h-4 animate-spin" />
                             ) : (
-                              <FiTrash2 className="w-4 h-4" />
+                              <GoTrash className="w-4 h-4" />
                             )}
                           </button>
                         </div>

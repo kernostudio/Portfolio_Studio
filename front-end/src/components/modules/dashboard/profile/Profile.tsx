@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
+import { IoCameraOutline } from "react-icons/io5";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import {
-  FiEdit,
-  FiSave,
-  FiCamera,
-  FiUser,
-  FiMail,
-  FiCheck,
-} from "react-icons/fi";
+  GoPencil,
+  GoDeviceCameraVideo,
+  GoPerson,
+  GoMail,
+  GoCheck,
+} from "react-icons/go";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UseAxiosPublic from "@/hooks/axiosPublic";
@@ -156,14 +155,14 @@ export default function Profile() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <FiUser className="w-16 h-16 text-gray-400" />
+                        <GoPerson className="w-16 h-16 text-gray-400" />
                       </div>
                     )}
                   </div>
 
                   {editing && (
                     <label className="absolute bottom-2 right-2 bg-gray-500 text-white p-2 rounded-full cursor-pointer hover:bg-black transition-colors">
-                      <FiCamera className="w-4 h-4" />
+                      <GoDeviceCameraVideo className="w-4 h-4" />
                       <input
                         type="file"
                         accept="image/*"
@@ -196,7 +195,7 @@ export default function Profile() {
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Status</span>
                   <span className="flex items-center gap-1 text-green-600 font-medium">
-                    <FiCheck className="w-4 h-4" />
+                    <GoCheck className="w-4 h-4" />
                     Active
                   </span>
                 </div>
@@ -226,7 +225,7 @@ export default function Profile() {
                       : "text-white hover:text-gray-700 bg-black hover:bg-gray-100"
                   }`}
                 >
-                  <FiEdit className="w-4 h-4" />
+                  <GoPencil className="w-4 h-4" />
                   {editing ? "Cancel" : "Edit Profile"}
                 </button>
               </div>
@@ -235,7 +234,7 @@ export default function Profile() {
                 {/* Full Name Field */}
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                    <FiUser className="w-4 h-4" />
+                    <GoPerson className="w-4 h-4" />
                     Full Name
                   </label>
                   <input
@@ -255,7 +254,7 @@ export default function Profile() {
                 {/* Email Field */}
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                    <FiMail className="w-4 h-4" />
+                    <GoMail className="w-4 h-4" />
                     Email Address
                   </label>
                   <input
@@ -273,7 +272,7 @@ export default function Profile() {
                 {editing && (
                   <div className="lg:hidden space-y-2">
                     <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                      <FiCamera className="w-4 h-4" />
+                      <IoCameraOutline className="w-4 h-4" />
                       Profile Picture
                     </label>
                     <input

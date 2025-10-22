@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ImExit } from "react-icons/im";
+import { GoArrowLeft } from "react-icons/go";
 
 export default function NavBarDashboard() {
   return (
@@ -17,7 +17,7 @@ export default function NavBarDashboard() {
         flex items-center gap-3 text-xl"
             href="/templates"
           >
-            Exit <ImExit></ImExit>
+            Exit <GoArrowLeft></GoArrowLeft>
           </Link>
         </div> */}
       </div>

@@ -129,6 +129,7 @@ export default function MyTemplates({ id }: { id: string }) {
       html: `
         <div class="text-left">
           <p class="text-sm text-gray-600 mb-4">Publish "<span class="font-semibold">${templateTitle}</span>" to make it live</p>
+          <p class="text-sm text-gray-400 mb-4 italic">May take upto 3 days to be reviewed and published. Once your portfolio is reviewed, you will be notified through email.</p>
           <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700 mb-2">Domain Type</label>
             <select id="domainType" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500">

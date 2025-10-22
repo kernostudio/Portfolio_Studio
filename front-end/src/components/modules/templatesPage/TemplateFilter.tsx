@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/hooks/axiosPublic";
 import { useState, useEffect } from "react";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { GoSearch } from "react-icons/go";
 
 interface Category {
   id: string;
@@ -51,7 +51,7 @@ export default function TemplatesFilter({
               className="w-full pr-10 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black text-base"
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-              <FaMagnifyingGlass className="h-5 w-5 text-gray-400" />
+              <GoSearch className="h-5 w-5 text-gray-400" />
             </div>
           </div>
         </div>

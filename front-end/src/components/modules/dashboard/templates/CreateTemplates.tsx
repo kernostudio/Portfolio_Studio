@@ -4,7 +4,7 @@
 import useAxiosPublic from "@/hooks/axiosPublic";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState, ChangeEvent, FormEvent } from "react";
-import { FiFilePlus, FiUpload } from "react-icons/fi";
+import { GoUpload } from "react-icons/go";
 import { toast } from "react-toastify";
 
 interface Category {
@@ -261,7 +261,7 @@ export default function CreateTemplateForm() {
               />
               <label htmlFor="template-image" className="cursor-pointer block">
                 <div className="flex flex-col items-center justify-center gap-2">
-                  <FiUpload className="text-2xl text-gray-400" />
+                  <GoUpload className="text-2xl text-gray-400" />
                   <span className="text-sm text-gray-600">
                     Click to upload template image
                   </span>

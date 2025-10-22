@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Home, ArrowLeft, FileQuestion } from "lucide-react";
+import { GoHome, GoArrowLeft, GoQuestion } from "react-icons/go";
 
 export default function NotFound() {
   return (
@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="max-w-lg w-full text-center">
         <div className="mb-8 flex justify-center">
           <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center">
-            <FileQuestion className="w-12 h-12 text-red-600" />
+            <GoQuestion className="w-12 h-12 text-red-600" />
           </div>
         </div>
 
@@ -25,14 +25,14 @@ export default function NotFound() {
             href="/"
             className="inline-flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
           >
-            <Home className="w-5 h-5" />
+            <GoHome className="w-5 h-5" />
             Go Home
           </Link>
           <button
             onClick={() => window.history.back()}
             className="inline-flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 px-6 rounded-lg transition-colors"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <GoArrowLeft className="w-5 h-5" />
             Go Back
           </button>
         </div>

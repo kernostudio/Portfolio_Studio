@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useAuth } from "@/Auth/AuthContext";
@@ -7,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
+import { GoGrabber, GoX } from "react-icons/go";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface UserProfile {
@@ -135,9 +134,9 @@ export default function Navbar() {
               className="text-gray-700 focus:outline-none"
             >
               {isOpen ? (
-                <HiX className="h-6 w-6" />
+                <GoX className="h-6 w-6" />
               ) : (
-                <HiMenu className="h-6 w-6" />
+                <GoGrabber className="h-6 w-6" />
               )}
             </button>
           </div>
@@ -175,10 +174,6 @@ export default function Navbar() {
                   className="flex gap-2 rounded-full hover:border-black items-center"
                 >
                   Dashboard
-                  <img
-                    src="https://i.ibb.co.com/whFmwwtW/Vector-4.png"
-                    alt="dashboard"
-                  />
                 </Link>
               ) : (
                 <>
