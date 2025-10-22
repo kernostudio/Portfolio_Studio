@@ -96,7 +96,7 @@ const Sidebar = () => {
   };
 
   return (
-    <>
+    <div className="h-full">
       {/* Mobile Toggle Button */}
       <button
         className="lg:hidden p-2 fixed top-4 left-4 z-50 bg-gray-200 rounded-md shadow-md"
@@ -111,7 +111,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static top-0 left-0  w-64 border-t-1 bg-white lg:bg-[#ffffff] border-gray-200 text-black p-6 z-40 transform ${
+        className={`h-full fixed lg:static top-0 left-0  w-64 border-t-1 bg-white lg:bg-[#ffffff] border-gray-200 text-black p-6 z-40 transform ${
           open ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col`}
       >
@@ -161,7 +161,7 @@ const Sidebar = () => {
           <span>Logout</span>
         </button>
       </aside>
-    </>
+    </div>
   );
 };
 
