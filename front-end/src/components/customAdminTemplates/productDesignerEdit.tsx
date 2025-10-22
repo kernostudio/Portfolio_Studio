@@ -178,7 +178,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                   handleChange("nav", "logo", { text: e.target.value })
                 }
                 placeholder="Your logo text..."
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
               />
             </div>
 
@@ -211,7 +211,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -231,7 +231,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="/home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -269,7 +269,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Twitter"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -289,7 +289,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="https://twitter.com/username"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -375,7 +375,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "jobTitle", e.target.value)
                   }
                   placeholder="Senior Product Designer"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -387,7 +387,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                   value={formData.hero?.name || ""}
                   onChange={(e) => handleChange("hero", "name", e.target.value)}
                   placeholder="John Doe"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -403,7 +403,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                 }
                 placeholder="Passionate product designer with 8+ years of experience..."
                 rows="4"
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all resize-vertical"
               />
             </div>
 
@@ -419,7 +419,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "cta", { text: e.target.value })
                   }
                   placeholder="View My Work"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -433,7 +433,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "cta", { link: e.target.value })
                   }
                   placeholder="/work"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -544,7 +544,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("about", "heading", e.target.value)
                     }
                     placeholder="About Me"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -558,7 +558,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Tell your story..."
                     rows="4"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -593,7 +593,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="2014-2018"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div className="md:col-span-3">
@@ -613,7 +613,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                           }
                           placeholder="Timeline description..."
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent resize-vertical"
                         />
                       </div>
                     </div>
@@ -642,7 +642,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("work", "heading", e.target.value)
                   }
                   placeholder="My Work"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -676,7 +676,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Project Title"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -696,7 +696,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                           }
                           placeholder="Project description..."
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent resize-vertical"
                         />
                       </div>
                       <div>
@@ -716,7 +716,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="November 24, 2019"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -780,7 +780,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "heading", e.target.value)
                     }
                     placeholder="Contact Me"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -794,7 +794,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Contact description..."
                     rows="3"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -816,7 +816,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "email", e.target.value)
                     }
                     placeholder="johndoe@mail.com"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -830,7 +830,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "phone", e.target.value)
                     }
                     placeholder="+1234567890"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                   />
                 </div>
                 <div className="md:col-span-2">
@@ -844,7 +844,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "website", e.target.value)
                     }
                     placeholder="behance.com/johndoe"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                   />
                 </div>
               </div>
