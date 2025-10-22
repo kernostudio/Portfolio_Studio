@@ -57,12 +57,9 @@ export default function CreateCategoryForm() {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-120px)] px-4 py-8">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+      <div className="w-full max-w-md bg-white rounded-3xl p-8 border border-gray-100">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2 bg-gray-100 rounded-xl">
-            <FiPlusCircle className="text-black text-2xl" />
-          </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-900">
               Create Category
@@ -120,12 +117,9 @@ export default function CreateCategoryForm() {
           <button
             type="submit"
             disabled={createCategoryMutation.isPending}
-            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-700 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-400 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-700 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-400 disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
           >
-            <FiPlusCircle className="text-lg" />
-            {createCategoryMutation.isPending
-              ? "Creating Category..."
-              : "Create Category"}
+            {createCategoryMutation.isPending ? "Saving..." : "Save"}
           </button>
         </form>
       </div>
