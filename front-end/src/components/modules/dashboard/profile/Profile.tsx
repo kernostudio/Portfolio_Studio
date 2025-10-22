@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
+import { IoCameraOutline } from "react-icons/io5";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import {
-  FiEdit,
-  FiSave,
-  FiCamera,
-  FiUser,
-  FiMail,
-  FiCheck,
-} from "react-icons/fi";
+  GoPencil,
+  GoDeviceCameraVideo,
+  GoPerson,
+  GoMail,
+  GoCheck,
+} from "react-icons/go";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UseAxiosPublic from "@/hooks/axiosPublic";
@@ -139,31 +138,31 @@ export default function Profile() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {/* Left Column - Avatar & Stats */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sticky top-8">
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 h-full">
               {/* Avatar Section */}
               <div className="text-center mb-6">
                 <div className="relative inline-block">
-                  <div className="w-32 h-32 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-blue-100 to-cyan-100">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-gradient-to-br from-gray-100 to-cyan-100">
                     {imagePreview ? (
                       <Image
                         src={imagePreview}
                         alt="Avatar"
                         fill
-                        className="object-cover"
+                        className="object-cover rounded-full"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <FiUser className="w-16 h-16 text-blue-400" />
+                        <GoPerson className="w-16 h-16 text-gray-400" />
                       </div>
                     )}
                   </div>
 
                   {editing && (
-                    <label className="absolute bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg cursor-pointer hover:bg-blue-600 transition-colors">
-                      <FiCamera className="w-4 h-4" />
+                    <label className="absolute bottom-2 right-2 bg-gray-500 text-white p-2 rounded-full cursor-pointer hover:bg-black transition-colors">
+                      <GoDeviceCameraVideo className="w-4 h-4" />
                       <input
                         type="file"
                         accept="image/*"
@@ -178,12 +177,6 @@ export default function Profile() {
                   {profile.fullName}
                 </h2>
                 <p className="text-gray-600">{profile.email}</p>
-
-                {profile.role && (
-                  <span className="inline-block mt-2 px-3 py-1 bg-black text-white rounded-full text-sm font-medium">
-                    {profile.role}
-                  </span>
-                )}
               </div>
 
               {/* Stats */}
@@ -202,7 +195,7 @@ export default function Profile() {
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Status</span>
                   <span className="flex items-center gap-1 text-green-600 font-medium">
-                    <FiCheck className="w-4 h-4" />
+                    <GoCheck className="w-4 h-4" />
                     Active
                   </span>
                 </div>
@@ -212,7 +205,7 @@ export default function Profile() {
 
           {/* Right Column - Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div className="bg-white rounded-2xl border border-gray-100 p-8 h-full">
               {/* Form Header */}
               <div className="flex items-center justify-between mb-8">
                 <div>
@@ -232,7 +225,7 @@ export default function Profile() {
                       : "text-white hover:text-gray-700 bg-black hover:bg-gray-100"
                   }`}
                 >
-                  <FiEdit className="w-4 h-4" />
+                  <GoPencil className="w-4 h-4" />
                   {editing ? "Cancel" : "Edit Profile"}
                 </button>
               </div>
@@ -241,7 +234,7 @@ export default function Profile() {
                 {/* Full Name Field */}
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                    <FiUser className="w-4 h-4" />
+                    <GoPerson className="w-4 h-4" />
                     Full Name
                   </label>
                   <input
@@ -250,7 +243,7 @@ export default function Profile() {
                     value={formData.fullName}
                     onChange={handleChange}
                     disabled={!editing}
-                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-1 focus:ring-gray-500 focus:border-gray-500 outline-none transition-all ${
                       editing
                         ? "border-gray-300 bg-white shadow-sm"
                         : "border-gray-200 bg-gray-50"
@@ -261,7 +254,7 @@ export default function Profile() {
                 {/* Email Field */}
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                    <FiMail className="w-4 h-4" />
+                    <GoMail className="w-4 h-4" />
                     Email Address
                   </label>
                   <input
@@ -279,14 +272,14 @@ export default function Profile() {
                 {editing && (
                   <div className="lg:hidden space-y-2">
                     <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                      <FiCamera className="w-4 h-4" />
+                      <IoCameraOutline className="w-4 h-4" />
                       Profile Picture
                     </label>
                     <input
                       type="file"
                       accept="image/*"
                       onChange={handleFileChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
                     />
                   </div>
                 )}
@@ -294,25 +287,26 @@ export default function Profile() {
                 {/* Save Button */}
                 {editing && (
                   <div className="flex gap-3 pt-4">
+                    {/* <button
+                      type="submit"
+                      disabled={updateMutation.isPending}
+                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-gray-500 to-cyan-500 text-white py-3 px-6 rounded-xl font-medium hover:from-black hover:to-cyan-600 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {updateMutation.isPending ? "Saving..." : <>Save</>}
+                    </button> */}
+
                     <button
                       type="submit"
                       disabled={updateMutation.isPending}
-                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 px-6 rounded-xl font-medium hover:from-blue-600 hover:to-cyan-600 transition-all shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-white hover:text-gray-700 bg-black hover:bg-gray-100`}
                     >
-                      {updateMutation.isPending ? (
-                        "Saving..."
-                      ) : (
-                        <>
-                          <FiSave className="w-4 h-4" />
-                          Save Changes
-                        </>
-                      )}
+                      {updateMutation.isPending ? "Saving..." : <>Save</>}
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setEditing(false)}
-                      className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors"
+                      className="cursor-pointer px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors"
                     >
                       Cancel
                     </button>
@@ -330,7 +324,7 @@ export default function Profile() {
 // Skeleton Loader
 function ProfileSkeleton() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <div className="h-8 bg-gray-200 rounded w-48 mx-auto mb-2"></div>

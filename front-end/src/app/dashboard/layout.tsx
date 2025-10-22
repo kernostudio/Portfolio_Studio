@@ -9,17 +9,17 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <ProtectedRoute>
-      <div className="flex flex-col bg-white ">
+      <div className="flex flex-col bg-white h-[100vh] ">
         {/* Top Navbar */}
         <NavBarDashboard />
 
         {/* Sidebar + Main Content */}
-        <div className="flex  overflow-auto">
+        <div className="flex  overflow-auto h-full">
           {/* Sidebar */}
           <Sidebar />
 
           {/* Main Content */}
-          <main className="flex-1 p-6 overflow-auto border-l-2  border-t-2 ">
+          <main className="flex-1 overflow-auto border-l-1  border-t-1 h-full">
             {children}
           </main>
         </div>

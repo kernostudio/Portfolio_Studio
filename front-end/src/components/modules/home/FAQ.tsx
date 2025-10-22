@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { GoChevronDown, GoChevronUp } from "react-icons/go";
+import { TextFade } from "@/components/shared/TextFade";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -35,39 +37,53 @@ export default function Faq() {
 
   return (
     <div className="w-10/12 mt-28 mx-auto   space-y-4">
-      <h1 className="font-bold text-center lg:text-[36px] text-xl">
-        Frequently <br /> Asked Questions
-      </h1>
-      <div className="w-full max-w-lg  mx-auto mt-6 mb-10">
+      <TextFade direction="up" staggerChildren={0.15}>
+        <h1 className="font-bold text-center lg:text-[36px] text-xl">
+          Frequently <br /> Asked Questions
+        </h1>
+      </TextFade>
+      {/* <div className="w-full max-w-lg  mx-auto mt-6 mb-10">
         <input
           type="text"
           placeholder="Search your questions"
-          className="w-full px-4 py-2 rounded-full  bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 placeholder-gray-400"
+          className="w-full px-4 py-2 rounded-full  bg-white focus:outline-none focus:ring-1 focus:ring-indigo-500 text-gray-900 placeholder-gray-400"
         />
-      </div>
-      <div className="bg-gradient-to-r from-[#f9fbff] via-[#e3f3ff] to-[#f9fbff] space-y-5">
+      </div> */}
+      <div className="bg-gradient-to-r mt-10 from-[#f9fbff] via-[#e3f3ff] to-[#f9fbff] space-y-5">
         {faqs.map((faq, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-white rounded-xl shadow p-5 cursor-pointer transition"
+            layout
+            transition={{ layout: { duration: 0.4, ease: "easeInOut" } }}
+            className="bg-white rounded-xl p-5 cursor-pointer transition"
             onClick={() => toggleFAQ(index)}
           >
-            <div className="flex justify-between  items-center">
-              <h3 className="font-semibold text-[20px] text-gray-800">
+            <motion.div layout className="flex justify-between items-center">
+              <h3 className="font-semibold text-[18px] md:text-[20px] text-gray-800">
                 {faq.question}
               </h3>
               {openIndex === index ? (
-                <ChevronUp className="w-5 h-5 border-2 rounded-full text-gray-900" />
+                <GoChevronUp className="w-5 h-5 border-2 rounded-full text-gray-900" />
               ) : (
-                <ChevronDown className="w-5 h-5 border-2 rounded-full text-gray-900" />
+                <GoChevronDown className="w-5 h-5 border-2 rounded-full text-gray-900" />
               )}
-            </div>
-            {openIndex === index && (
-              <p className="mt-3 text-gray-800 w-3/5 text-[16px] text-start whitespace-pre-line">
-                {faq.answer}
-              </p>
-            )}
-          </div>
+            </motion.div>
+
+            <AnimatePresence>
+              {openIndex === index && (
+                <motion.p
+                  key="content"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="mt-3 text-gray-700 w-full md:w-3/5 text-[16px] text-start whitespace-pre-line overflow-hidden"
+                >
+                  {faq.answer}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </motion.div>
         ))}
       </div>
     </div>

@@ -5,16 +5,20 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/Auth/AuthContext";
 import {
-  FaTimes,
-  FaUserFriends,
-  FaHistory,
-  FaSignOutAlt,
-} from "react-icons/fa";
-import { BiMenu, BiHome, BiCategoryAlt } from "react-icons/bi";
-import { AiOutlineFileText } from "react-icons/ai";
-import { ImProfile } from "react-icons/im";
-import { MdOutlineCreateNewFolder, MdPublish } from "react-icons/md";
-import { CgTemplate } from "react-icons/cg";
+  GoX,
+  GoPeople,
+  GoHistory,
+  GoSignOut,
+  GoGrabber,
+  GoHome,
+  GoTag,
+  GoNote,
+  GoPerson,
+  GoFileDirectory,
+  GoUpload,
+  GoRepo,
+  GoArrowLeft,
+} from "react-icons/go";
 
 const Sidebar = () => {
   const { user, setUser, logout } = useAuth();
@@ -26,17 +30,22 @@ const Sidebar = () => {
     {
       name: "Profile",
       href: "/dashboard/profile",
-      icon: <ImProfile className="w-5 h-5" />,
+      icon: <GoPerson className="w-5 h-5" />,
     },
     {
       name: "My Templates",
       href: `/dashboard/myTemplates/${user?.id}`,
-      icon: <AiOutlineFileText className="w-5 h-5" />,
+      icon: <GoNote className="w-5 h-5" />,
     },
     {
       name: "Publish Requests",
       href: "/dashboard/myPublishRequest",
-      icon: <MdPublish className="w-5 h-5" />,
+      icon: <GoUpload className="w-5 h-5" />,
+    },
+    {
+      name: "Exit",
+      href: "/templates",
+      icon: <GoArrowLeft className="w-5 h-5" />,
     },
   ];
 
@@ -44,32 +53,32 @@ const Sidebar = () => {
     {
       name: "Profile",
       href: "/dashboard/profile",
-      icon: <ImProfile className="w-5 h-5" />,
+      icon: <GoPerson className="w-5 h-5" />,
     },
     {
       name: "Create Category",
       href: "/dashboard/create-category",
-      icon: <BiCategoryAlt className="w-5 h-5" />,
+      icon: <GoTag className="w-5 h-5" />,
     },
     {
       name: "Create Template",
       href: "/dashboard/create-template",
-      icon: <MdOutlineCreateNewFolder className="w-5 h-5" />,
+      icon: <GoFileDirectory className="w-5 h-5" />,
     },
     {
       name: "Manage Users",
       href: "/dashboard/manage-user",
-      icon: <FaUserFriends className="w-5 h-5" />,
+      icon: <GoPeople className="w-5 h-5" />,
     },
     {
       name: "Manage Templates",
       href: "/dashboard/manageTemplates",
-      icon: <CgTemplate className="w-5 h-5" />,
+      icon: <GoRepo className="w-5 h-5" />,
     },
     {
       name: "Publish Requests",
       href: "/dashboard/managePublishRequest",
-      icon: <MdPublish className="w-5 h-5" />,
+      icon: <GoUpload className="w-5 h-5" />,
     },
   ];
 
@@ -90,22 +99,22 @@ const Sidebar = () => {
   };
 
   return (
-    <>
+    <div className="h-full">
       {/* Mobile Toggle Button */}
       <button
         className="lg:hidden p-2 fixed top-4 left-4 z-50 bg-gray-200 rounded-md shadow-md"
         onClick={() => setOpen(!open)}
       >
         {open ? (
-          <FaTimes className="w-6 h-6" />
+          <GoX className="w-6 h-6" />
         ) : (
-          <BiMenu className="w-6 h-6" />
+          <GoGrabber className="w-6 h-6" />
         )}
       </button>
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static top-0 left-0  w-64 border-t-2 bg-white lg:bg-[#ffffff] border-gray-200 text-black p-6 z-40 transform ${
+        className={`h-full fixed lg:static top-0 left-0  w-64 border-t-1 bg-white lg:bg-[#ffffff] border-gray-200 text-black p-6 z-40 transform ${
           open ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col`}
       >
@@ -116,7 +125,7 @@ const Sidebar = () => {
             className="lg:hidden text-gray-600 hover:text-gray-800"
             onClick={() => setOpen(false)}
           >
-            <FaTimes className="w-5 h-5" />
+            <GoX className="w-5 h-5" />
           </button>
         </div>
 
@@ -149,13 +158,13 @@ const Sidebar = () => {
         {/* Logout Button - Always at the bottom */}
         <button
           onClick={handleLogout}
-          className="flex items-center justify-center gap-3  hover:bg-black hover:text-white font-semibold py-3 px-4 rounded-md transition-all mt-auto"
+          className="flex items-center justify-center gap-3 border cursor-pointer  hover:bg-black hover:text-white font-semibold py-3 px-4 rounded-md transition-all mt-auto"
         >
-          <FaSignOutAlt className="w-5 h-5" />
+          <GoSignOut className="w-5 h-5" />
           <span>Logout</span>
         </button>
       </aside>
-    </>
+    </div>
   );
 };
 

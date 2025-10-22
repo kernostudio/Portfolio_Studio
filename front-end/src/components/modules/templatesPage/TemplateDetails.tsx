@@ -3,7 +3,7 @@ import UseAxiosPublic from "@/hooks/axiosPublic";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { FaEdit } from "react-icons/fa";
+
 import { templatesMap } from "@/components/tampletsMap/TampletsMap";
 
 interface TemplateViewerProps {

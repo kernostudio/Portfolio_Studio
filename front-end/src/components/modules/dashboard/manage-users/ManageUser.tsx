@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "@/hooks/axiosPublic";
 import Image from "next/image";
-import { FaUserCircle } from "react-icons/fa";
+import { GoPerson } from "react-icons/go";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
@@ -79,8 +79,18 @@ export default function ManageUser() {
     }
   };
 
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
-    <div className="w-11/12 mx-auto mt-10">
+    <div className="w-11/12 mx-auto my-10">
       <h2 className="text-2xl font-semibold mb-5">Manage Users</h2>
 
       {isLoading ? (
@@ -90,7 +100,7 @@ export default function ManageUser() {
       ) : (
         <>
           {/* 🖥️ Table view for medium & larger screens */}
-          <div className="hidden md:block overflow-x-auto bg-white rounded-xl shadow border">
+          <div className="hidden md:block overflow-x-auto bg-white rounded-xl border border-gray-200">
             <table className="min-w-full text-sm text-left">
               <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
                 <tr>
@@ -104,7 +114,10 @@ export default function ManageUser() {
               </thead>
               <tbody>
                 {users.map((user: any) => (
-                  <tr key={user.id} className="border-b hover:bg-gray-50">
+                  <tr
+                    key={user.id}
+                    className="border-b border-gray-200 hover:bg-gray-50"
+                  >
                     <td className="px-4 py-3">
                       {user.avatarUrl ? (
                         <Image
@@ -115,30 +128,24 @@ export default function ManageUser() {
                           className="w-10 h-10 rounded-full object-cover"
                         />
                       ) : (
-                        <FaUserCircle className="text-gray-400 w-10 h-10" />
+                        <GoPerson className="text-gray-400 w-10 h-10" />
                       )}
                     </td>
                     <td className="px-4 py-3 font-medium">{user.fullName}</td>
                     <td className="px-4 py-3">{user.email}</td>
                     <td className="px-4 py-3 capitalize">{user.role}</td>
-                    <td className="px-4 py-3">
-                      {new Date(user.createdAt).toLocaleDateString()}
-                    </td>
+                    <td className="px-4 py-3">{formatDate(user.createdAt)}</td>
                     <td className="px-4 py-3 flex justify-center gap-2">
                       <button
                         onClick={() => handleDelete(user.id)}
-                        className="px-3 py-1 bg-red-500 text-white rounded-md text-xs hover:bg-red-600"
+                        className="px-4 py-2 bg-black text-white rounded-md text-xs hover:bg-white hover:text-black border transition-all duration-200"
                       >
                         Delete
                       </button>
                       <button
                         onClick={() => handleRoleUpdate(user.id, user.role)}
                         disabled={updating === user.id}
-                        className={`px-3 py-1 text-white rounded-md text-xs ${
-                          user.role === "admin"
-                            ? "bg-blue-500 hover:bg-blue-600"
-                            : "bg-green-500 hover:bg-green-600"
-                        }`}
+                        className={`px-4 py-2 text-black rounded-md text-xs bg-white hover:bg-black hover:text-white border transition-all duration-200`}
                       >
                         {updating === user.id
                           ? "Updating..."
@@ -158,7 +165,7 @@ export default function ManageUser() {
             {users.map((user: any) => (
               <div
                 key={user.id}
-                className="bg-white border rounded-lg p-4 shadow-sm flex flex-wrap items-start gap-4"
+                className="bg-white border rounded-lg p-4 flex flex-wrap items-start gap-4"
               >
                 {user.avatarUrl ? (
                   <Image
@@ -169,7 +176,7 @@ export default function ManageUser() {
                     className="w-14 h-14 rounded-full object-cover"
                   />
                 ) : (
-                  <FaUserCircle className="text-gray-400 w-14 h-14" />
+                  <GoPerson className="text-gray-400 w-14 h-14" />
                 )}
                 <div className="flex-1 w-full">
                   <h3 className="font-medium text-lg">{user.fullName}</h3>
@@ -180,18 +187,14 @@ export default function ManageUser() {
                   <div className="flex flex-wrap gap-2 w-full">
                     <button
                       onClick={() => handleDelete(user.id)}
-                      className="px-3 py-1 bg-red-500 text-white text-xs rounded-md hover:bg-red-600"
+                      className="px-3 py-1 bg-black text-white text-xs rounded-md hover:bg-white hover:text-black border transition-all duration-200"
                     >
                       Delete
                     </button>
                     <button
                       onClick={() => handleRoleUpdate(user.id, user.role)}
                       disabled={updating === user.id}
-                      className={`px-3 py-1 text-white text-xs rounded-md ${
-                        user.role === "admin"
-                          ? "bg-blue-500 hover:bg-blue-600"
-                          : "bg-green-500 hover:bg-green-600"
-                      }`}
+                      className={`px-3 py-1 text-black text-xs rounded-md bg-white hover:bg-black hover:text-white border transition-all duration-200`}
                     >
                       {updating === user.id
                         ? "Updating..."
@@ -210,7 +213,7 @@ export default function ManageUser() {
             <button
               onClick={() => setPage((p) => Math.max(p - 1, 1))}
               disabled={page === 1}
-              className="px-4 py-2 border rounded-md disabled:opacity-50"
+              className="px-4 py-2 border rounded-md disabled:opacity-50 bg-white hover:bg-black text-black hover:text-white transition-all duration-200"
             >
               Previous
             </button>
@@ -224,7 +227,7 @@ export default function ManageUser() {
                 )
               }
               disabled={page === meta?.totalPages}
-              className="px-4 py-2 border rounded-md disabled:opacity-50"
+              className="px-4 py-2 border rounded-md disabled:opacity-50 hover:bg-black text-black hover:text-white transition-all duration-200"
             >
               Next
             </button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { AlertTriangle, Home, RefreshCw } from "lucide-react";
+import { GoAlert, GoHome, GoSync } from "react-icons/go";
 
 export default function Error({
   error,
@@ -19,7 +19,7 @@ export default function Error({
       <div className="max-w-lg w-full text-center">
         <div className="mb-8 flex justify-center">
           <div className="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center">
-            <AlertTriangle className="w-12 h-12 text-yellow-600" />
+            <GoAlert className="w-12 h-12 text-yellow-600" />
           </div>
         </div>
 
@@ -33,16 +33,16 @@ export default function Error({
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={reset}
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
           >
-            <RefreshCw className="w-5 h-5" />
+            <GoSync className="w-5 h-5" />
             Try Again
           </button>
           <button
             onClick={() => (window.location.href = "/")}
             className="inline-flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 px-6 rounded-lg transition-colors"
           >
-            <Home className="w-5 h-5" />
+            <GoHome className="w-5 h-5" />
             Go Home
           </button>
         </div>

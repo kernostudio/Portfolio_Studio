@@ -1,5 +1,12 @@
 "use client";
 
+import { GoGear } from "react-icons/go";
+import { GoHome } from "react-icons/go";
+import { GoNote } from "react-icons/go";
+import { GoPerson } from "react-icons/go";
+import { GoRepo } from "react-icons/go";
+import { GoComment } from "react-icons/go";
+
 import { useAuth } from "@/Auth/AuthContext";
 import UseAxiosPublic from "@/hooks/axiosPublic";
 import React, { useState } from "react";
@@ -7,6 +14,8 @@ import { toast } from "react-toastify";
 import ProductDesigner from "./ProductDesigner";
 import NavBarDashboard from "../shared/NavBarDashboard";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export default function ProductDesignerEdit({ placeholder, id }) {
   const [formData, setFormData] = useState(placeholder || {});
@@ -119,12 +128,12 @@ export default function ProductDesignerEdit({ placeholder, id }) {
   };
 
   const sections = [
-    { id: "root", name: "Root Settings", icon: "⚙️" },
-    { id: "nav", name: "Navigation", icon: "🧭" },
-    { id: "hero", name: "Hero Section", icon: "🌟" },
-    { id: "about", name: "About Section", icon: "👤" },
-    { id: "work", name: "Work Section", icon: "💼" },
-    { id: "contact", name: "Contact Section", icon: "📞" },
+    { id: "root", name: "Root Settings", icon: GoGear },
+    { id: "nav", name: "Navigation", icon: GoHome },
+    { id: "hero", name: "Hero", icon: GoNote },
+    { id: "about", name: "About", icon: GoPerson },
+    { id: "work", name: "Work", icon: GoRepo },
+    { id: "contact", name: "Contact", icon: GoComment },
   ];
 
   // Render form content for active section
@@ -135,7 +144,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-6 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🎨</span> Background Color
+                Background Color
               </h3>
               <div className="flex items-center gap-4">
                 <input
@@ -160,7 +169,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Logo */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🏢</span> Logo Settings
+                Logo Settings
               </h3>
               <input
                 type="text"
@@ -169,14 +178,14 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                   handleChange("nav", "logo", { text: e.target.value })
                 }
                 placeholder="Your logo text..."
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
               />
             </div>
 
             {/* Navigation Links */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🔗</span> Navigation Links
+                Navigation Links
               </h3>
               <div className="space-y-4">
                 {formData.nav?.links?.map((link, idx) => (
@@ -202,7 +211,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -222,7 +231,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="/home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -234,7 +243,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Social Links */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🌐</span> Social Media
+                Social Media
               </h3>
               <div className="space-y-4">
                 {formData.nav?.socials?.map((social, idx) => (
@@ -260,7 +269,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Twitter"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -280,7 +289,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="https://twitter.com/username"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -292,7 +301,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Colors */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🎨</span> Color Scheme
+                Color Scheme
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
@@ -366,7 +375,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "jobTitle", e.target.value)
                   }
                   placeholder="Senior Product Designer"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -378,7 +387,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                   value={formData.hero?.name || ""}
                   onChange={(e) => handleChange("hero", "name", e.target.value)}
                   placeholder="John Doe"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -394,7 +403,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                 }
                 placeholder="Passionate product designer with 8+ years of experience..."
                 rows="4"
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all resize-vertical"
               />
             </div>
 
@@ -410,7 +419,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "cta", { text: e.target.value })
                   }
                   placeholder="View My Work"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -424,7 +433,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "cta", { link: e.target.value })
                   }
                   placeholder="/work"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -432,7 +441,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Profile Image Upload */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🖼️</span> Profile Image
+                Profile Image
               </h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-1">
@@ -449,11 +458,11 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                         e.target.files[0]
                       )
                     }
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-black hover:file:bg-gray-100 transition-all"
                   />
                   {uploading && (
-                    <div className="text-sm text-blue-600 mt-2 flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+                    <div className="text-sm text-black mt-2 flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                       Uploading image...
                     </div>
                   )}
@@ -475,7 +484,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Hero Colors */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🎨</span> Hero Colors
+                Hero Colors
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
@@ -521,7 +530,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-8 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📝</span> About Content
+                About Content
               </h3>
               <div className="space-y-4">
                 <div>
@@ -535,7 +544,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("about", "heading", e.target.value)
                     }
                     placeholder="About Me"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -549,7 +558,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Tell your story..."
                     rows="4"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -558,7 +567,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Timeline */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📅</span> Timeline
+                Timeline
               </h3>
               <div className="space-y-4">
                 {formData.about?.timeline?.map((item, idx) => (
@@ -584,7 +593,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="2014-2018"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div className="md:col-span-3">
@@ -604,7 +613,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                           }
                           placeholder="Timeline description..."
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent resize-vertical"
                         />
                       </div>
                     </div>
@@ -620,7 +629,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-8 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>💼</span> Work Section
+                Work Section
               </h3>
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -633,7 +642,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     handleChange("work", "heading", e.target.value)
                   }
                   placeholder="My Work"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -641,7 +650,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Work Items */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🖼️</span> Work Items
+                Work Items
               </h3>
               <div className="space-y-6">
                 {formData.work?.items?.map((item, idx) => (
@@ -667,7 +676,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Project Title"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -687,7 +696,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                           }
                           placeholder="Project description..."
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent resize-vertical"
                         />
                       </div>
                       <div>
@@ -707,7 +716,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="November 24, 2019"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -726,11 +735,11 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                               "image"
                             )
                           }
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-black hover:file:bg-gray-100 "
                         />
                         {uploading && (
-                          <p className="text-sm text-blue-600 mt-2 flex items-center gap-2">
-                            <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+                          <p className="text-sm text-black mt-2 flex items-center gap-2">
+                            <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                             Uploading image...
                           </p>
                         )}
@@ -757,7 +766,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           <div className="space-y-8 animate-fadeIn">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📞</span> Contact Information
+                Contact Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -771,7 +780,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "heading", e.target.value)
                     }
                     placeholder="Contact Me"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -785,7 +794,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Contact description..."
                     rows="3"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-black focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -793,7 +802,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
 
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>📧</span> Contact Details
+                Contact Details
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -807,7 +816,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "email", e.target.value)
                     }
                     placeholder="johndoe@mail.com"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -821,7 +830,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "phone", e.target.value)
                     }
                     placeholder="+1234567890"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                   />
                 </div>
                 <div className="md:col-span-2">
@@ -835,7 +844,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "website", e.target.value)
                     }
                     placeholder="behance.com/johndoe"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-black focus:border-transparent"
                   />
                 </div>
               </div>
@@ -844,7 +853,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
             {/* Contact Image */}
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <span>🖼️</span> Contact Image
+                Contact Image
               </h3>
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-1">
@@ -857,11 +866,11 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                     onChange={(e) =>
                       handleFileUpload("contact", "image", e.target.files[0])
                     }
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-black hover:file:bg-gray-100 transition-all"
                   />
                   {uploading && (
-                    <p className="text-sm text-blue-600 mt-2 flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+                    <p className="text-sm text-black mt-2 flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                       Uploading image...
                     </p>
                   )}
@@ -891,7 +900,15 @@ export default function ProductDesignerEdit({ placeholder, id }) {
     <div className="min-h-screen bg-white">
       <NavBarDashboard />
       <div className="w-11/12 mx-auto">
-        <h1 className="font-bold ">Portfolio Studio Editor</h1>
+        <div className="flex gap-4 items-center">
+          <Link
+            href="/templates"
+            className="h-[30px] w-[30px] rounded-full flex justify-center items-center bg-gray-200 cursor-pointer hover:bg-gray-300 transition-all duration-200"
+          >
+            <FaArrowLeft className="text-black" />
+          </Link>
+          <span className="font-medium">Back</span>
+        </div>
       </div>
       <div className="flex flex-col lg:flex-row gap-6 max-w-8xl mx-auto p-4 lg:p-6">
         {/* LEFT COLUMN - Navigation and Form Editor */}
@@ -899,9 +916,9 @@ export default function ProductDesignerEdit({ placeholder, id }) {
           {/* SIDEBAR NAVIGATION */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
             <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-              <span>📋</span> Sections
+              Sections
             </h2>
-            <nav className="space-y-2">
+            <nav className="space-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
               {sections.map((section) => (
                 <button
                   key={section.id}
@@ -912,7 +929,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                       : "text-slate-600 hover:bg-slate-50 hover:text-slate-800"
                   }`}
                 >
-                  <span className="text-lg">{section.icon}</span>
+                  <span className="text-lg">{<section.icon />}</span>
                   <span className="font-medium text-sm">{section.name}</span>
                 </button>
               ))}
@@ -930,10 +947,7 @@ export default function ProductDesignerEdit({ placeholder, id }) {
                   Saving...
                 </>
               ) : (
-                <>
-                  <span>💾</span>
-                  Save All Changes
-                </>
+                <>Save All Changes</>
               )}
             </button>
           </div>
@@ -963,13 +977,10 @@ export default function ProductDesignerEdit({ placeholder, id }) {
         </div>
 
         {/* RIGHT COLUMN - Live Preview */}
-        <div className="lg:w-3/5 flex-shrink-0 border-t-2 border-l-2">
+        <div className="lg:w-3/5 flex-shrink-0 border-t-1 border-l-1">
           <div className="sticky top-6">
             <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
               <div className="border-b border-slate-200 bg-slate-50/50 px-6 py-4">
-                <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                  <span>👁️</span> Live Preview
-                </h2>
                 <p className="text-slate-600 text-sm">
                   Real-time template preview
                 </p>

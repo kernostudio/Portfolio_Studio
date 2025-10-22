@@ -4,7 +4,7 @@
 import useAxiosPublic from "@/hooks/axiosPublic";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState, ChangeEvent, FormEvent } from "react";
-import { FiFilePlus, FiUpload } from "react-icons/fi";
+import { GoUpload } from "react-icons/go";
 import { toast } from "react-toastify";
 
 interface Category {
@@ -125,12 +125,9 @@ export default function CreateTemplateForm() {
 
   return (
     <div className="flex justify-center items-center w-full min-h-[calc(100vh-120px)] px-4 py-8">
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+      <div className="w-full max-w-2xl bg-white rounded-3xl p-8 border border-gray-100">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2 bg-gray-200 rounded-xl">
-            <FiFilePlus className="text-black text-2xl" />
-          </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-900">
               Create Template
@@ -153,7 +150,7 @@ export default function CreateTemplateForm() {
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="Enter template title"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black outline-none transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black outline-none transition-all bg-gray-50"
                 required
               />
             </div>
@@ -167,7 +164,7 @@ export default function CreateTemplateForm() {
                 value={formData.slug}
                 onChange={handleChange}
                 placeholder="Enter template slug"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
                 required
               />
             </div>
@@ -184,7 +181,7 @@ export default function CreateTemplateForm() {
               onChange={handleChange}
               placeholder="Describe your template purpose and features..."
               rows={3}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none resize-none transition-all bg-gray-50"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none resize-none transition-all bg-gray-50"
             />
           </div>
 
@@ -199,7 +196,7 @@ export default function CreateTemplateForm() {
                 value={formData.categoryId}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50 appearance-none"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50 appearance-none"
               >
                 <option value="">Choose category</option>
                 {isLoading ? (
@@ -226,7 +223,7 @@ export default function CreateTemplateForm() {
                 value={formData.previewUrl}
                 onChange={handleChange}
                 placeholder="https://example.com/preview"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
               />
             </div>
           </div>
@@ -242,7 +239,7 @@ export default function CreateTemplateForm() {
               onChange={handleChange}
               placeholder='{"root": {"bgColor": "#ffffff"}, "header": {"text": "Your Header"}}'
               rows={4}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none resize-none font-mono text-sm bg-gray-50 transition-all"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none resize-none font-mono text-sm bg-gray-50 transition-all"
             />
             <p className="text-xs text-gray-500 mt-2">
               Enter valid JSON format for template placeholders
@@ -264,7 +261,7 @@ export default function CreateTemplateForm() {
               />
               <label htmlFor="template-image" className="cursor-pointer block">
                 <div className="flex flex-col items-center justify-center gap-2">
-                  <FiUpload className="text-2xl text-gray-400" />
+                  <GoUpload className="text-2xl text-gray-400" />
                   <span className="text-sm text-gray-600">
                     Click to upload template image
                   </span>
@@ -292,12 +289,9 @@ export default function CreateTemplateForm() {
           <button
             type="submit"
             disabled={createTemplateMutation.isPending}
-            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-700 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-700 disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
           >
-            <FiFilePlus className="text-lg" />
-            {createTemplateMutation.isPending
-              ? "Creating Template..."
-              : "Create Template"}
+            {createTemplateMutation.isPending ? "Saving..." : "Save"}
           </button>
         </form>
       </div>
