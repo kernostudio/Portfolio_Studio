@@ -125,12 +125,9 @@ export default function CreateTemplateForm() {
 
   return (
     <div className="flex justify-center items-center w-full min-h-[calc(100vh-120px)] px-4 py-8">
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+      <div className="w-full max-w-2xl bg-white rounded-3xl p-8 border border-gray-100">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2 bg-gray-200 rounded-xl">
-            <FiFilePlus className="text-black text-2xl" />
-          </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-900">
               Create Template
@@ -292,12 +289,9 @@ export default function CreateTemplateForm() {
           <button
             type="submit"
             disabled={createTemplateMutation.isPending}
-            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-700 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-black text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:bg-gray-700 disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
           >
-            <FiFilePlus className="text-lg" />
-            {createTemplateMutation.isPending
-              ? "Creating Template..."
-              : "Create Template"}
+            {createTemplateMutation.isPending ? "Saving..." : "Save"}
           </button>
         </form>
       </div>
