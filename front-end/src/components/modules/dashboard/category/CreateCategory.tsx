@@ -87,7 +87,7 @@ export default function CreateCategoryForm() {
               onChange={handleChange}
               required
               placeholder="e.g., Business Cards, Social Media"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black outline-none transition-all bg-gray-50 placeholder-gray-400"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black outline-none transition-all bg-gray-50 placeholder-gray-400"
             />
           </div>
 
@@ -106,7 +106,7 @@ export default function CreateCategoryForm() {
               onChange={handleChange}
               placeholder="Describe what this category is used for..."
               rows={4}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black outline-none resize-none transition-all bg-gray-50 placeholder-gray-400"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black outline-none resize-none transition-all bg-gray-50 placeholder-gray-400"
             ></textarea>
             <p className="text-xs text-gray-500 mt-2">
               Optional: Help users understand this category&apos;s purpose

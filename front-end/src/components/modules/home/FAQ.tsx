@@ -46,7 +46,7 @@ export default function Faq() {
         <input
           type="text"
           placeholder="Search your questions"
-          className="w-full px-4 py-2 rounded-full  bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 placeholder-gray-400"
+          className="w-full px-4 py-2 rounded-full  bg-white focus:outline-none focus:ring-1 focus:ring-indigo-500 text-gray-900 placeholder-gray-400"
         />
       </div> */}
       <div className="bg-gradient-to-r mt-10 from-[#f9fbff] via-[#e3f3ff] to-[#f9fbff] space-y-5">

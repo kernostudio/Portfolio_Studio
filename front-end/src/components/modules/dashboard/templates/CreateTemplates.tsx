@@ -150,7 +150,7 @@ export default function CreateTemplateForm() {
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="Enter template title"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black outline-none transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black outline-none transition-all bg-gray-50"
                 required
               />
             </div>
@@ -164,7 +164,7 @@ export default function CreateTemplateForm() {
                 value={formData.slug}
                 onChange={handleChange}
                 placeholder="Enter template slug"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
                 required
               />
             </div>
@@ -181,7 +181,7 @@ export default function CreateTemplateForm() {
               onChange={handleChange}
               placeholder="Describe your template purpose and features..."
               rows={3}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none resize-none transition-all bg-gray-50"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none resize-none transition-all bg-gray-50"
             />
           </div>
 
@@ -196,7 +196,7 @@ export default function CreateTemplateForm() {
                 value={formData.categoryId}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50 appearance-none"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50 appearance-none"
               >
                 <option value="">Choose category</option>
                 {isLoading ? (
@@ -223,7 +223,7 @@ export default function CreateTemplateForm() {
                 value={formData.previewUrl}
                 onChange={handleChange}
                 placeholder="https://example.com/preview"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none transition-all bg-gray-50"
               />
             </div>
           </div>
@@ -239,7 +239,7 @@ export default function CreateTemplateForm() {
               onChange={handleChange}
               placeholder='{"root": {"bgColor": "#ffffff"}, "header": {"text": "Your Header"}}'
               rows={4}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black focus:border-black  outline-none resize-none font-mono text-sm bg-gray-50 transition-all"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-1 focus:ring-black focus:border-black  outline-none resize-none font-mono text-sm bg-gray-50 transition-all"
             />
             <p className="text-xs text-gray-500 mt-2">
               Enter valid JSON format for template placeholders

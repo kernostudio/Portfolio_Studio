@@ -188,7 +188,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("nav", "logo", { text: e.target.value })
                     }
                     placeholder="Your logo text..."
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -243,7 +243,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -263,7 +263,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="/home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -289,7 +289,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("nav", "ctaButton", { text: e.target.value })
                     }
                     placeholder="Download CV"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -303,7 +303,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("nav", "ctaButton", { url: e.target.value })
                     }
                     placeholder="https://example.com/cv.pdf"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -397,7 +397,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "greeting", e.target.value)
                   }
                   placeholder="Hi I am"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -409,7 +409,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                   value={formData.hero?.name || ""}
                   onChange={(e) => handleChange("hero", "name", e.target.value)}
                   placeholder="John Doe"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -426,7 +426,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     handleChange("hero", "title", e.target.value)
                   }
                   placeholder="UI & UX Designer"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -442,7 +442,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                 }
                 placeholder="Passionate UI/UX designer with experience..."
                 rows="4"
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
               />
             </div>
 
@@ -465,7 +465,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       })
                     }
                     placeholder="Hire Me"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -479,7 +479,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("hero", "ctaButton", { url: e.target.value })
                     }
                     placeholder="mailto:example@email.com"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -620,7 +620,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("about", "heading", e.target.value)
                     }
                     placeholder="About Me"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -634,7 +634,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Tell your story..."
                     rows="4"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -708,7 +708,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="UX Design"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -730,7 +730,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="85"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -793,7 +793,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("services", "heading", e.target.value)
                     }
                     placeholder="Services"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -807,7 +807,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Services description..."
                     rows="3"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -842,7 +842,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="UI/UX Design"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -862,7 +862,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                           }
                           placeholder="Service description..."
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
                         />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -883,7 +883,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                               )
                             }
                             placeholder="https://example.com/icon.png"
-                            className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                         <div>
@@ -956,7 +956,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("projects", "heading", e.target.value)
                     }
                     placeholder="My Projects"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -970,7 +970,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Projects description..."
                     rows="3"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -1005,7 +1005,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="E-commerce Mobile App"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1025,7 +1025,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                           }
                           placeholder="Project description..."
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
                         />
                       </div>
                       <div>
@@ -1045,7 +1045,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="https://example.com/project"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1067,7 +1067,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Mobile, E-commerce, UI/UX"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1131,7 +1131,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "heading", e.target.value)
                     }
                     placeholder="Let's Work Together"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -1145,7 +1145,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Contact description..."
                     rows="3"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
                   />
                 </div>
               </div>
@@ -1168,7 +1168,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("contact", "cta", { title: e.target.value })
                     }
                     placeholder="Ready to start your project?"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -1184,7 +1184,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     }
                     placeholder="Let's schedule a call and discuss your requirements"
                     rows="2"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1201,7 +1201,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                         })
                       }
                       placeholder="Schedule a Call"
-                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -1217,7 +1217,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                         })
                       }
                       placeholder="mailto:example@email.com"
-                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -1251,7 +1251,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                               "type"
                             )
                           }
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         >
                           <option value="email">Email</option>
                           <option value="phone">Phone</option>
@@ -1275,7 +1275,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Email"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1295,7 +1295,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="example@email.com"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1315,7 +1315,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="mailto:example@email.com"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div className="md:col-span-2">
@@ -1335,7 +1335,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Response within 24 hours"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -1366,7 +1366,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                       handleChange("footer", "logo", { text: e.target.value })
                     }
                     placeholder="Your logo text..."
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -1421,7 +1421,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1441,7 +1441,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="/home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -1479,7 +1479,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Facebook"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1499,7 +1499,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="https://facebook.com/username"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1519,7 +1519,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="FaFacebookF"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -1544,7 +1544,7 @@ export default function UiUxDesignerEdit({ placeholder, id }) {
                     handleChange("footer", "copyright", e.target.value)
                   }
                   placeholder="© 2024 Your Name. All Rights Reserved."
-                  className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                 />
               </div>
             </div>

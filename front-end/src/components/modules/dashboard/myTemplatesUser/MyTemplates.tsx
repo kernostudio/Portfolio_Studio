@@ -131,7 +131,7 @@ export default function MyTemplates({ id }: { id: string }) {
           <p class="text-sm text-gray-600 mb-4">Publish "<span class="font-semibold">${templateTitle}</span>" to make it live</p>
           <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700 mb-2">Domain Type</label>
-            <select id="domainType" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <select id="domainType" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
               <option value="subdomain">Subdomain (e.g. myname.yoursite.com)</option>
               <option value="custom">Custom Domain (e.g. example.com)</option>
             </select>
@@ -140,7 +140,7 @@ export default function MyTemplates({ id }: { id: string }) {
             <label class="block text-sm font-medium text-gray-700 mb-2">Domain Name</label>
             <input 
               id="domain" 
-              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500" 
               placeholder="Enter subdomain or domain"
             />
           </div>

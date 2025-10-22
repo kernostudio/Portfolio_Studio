@@ -48,7 +48,7 @@ export default function TemplatesFilter({
               placeholder="Search Templates..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pr-10 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-base"
+              className="w-full pr-10 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black text-base"
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
               <FaMagnifyingGlass className="h-5 w-5 text-gray-400" />

@@ -244,7 +244,7 @@ export default function Profile() {
                     value={formData.fullName}
                     onChange={handleChange}
                     disabled={!editing}
-                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
                       editing
                         ? "border-gray-300 bg-white shadow-sm"
                         : "border-gray-200 bg-gray-50"

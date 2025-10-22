@@ -209,7 +209,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("nav", "logo", { text: e.target.value })
                     }
                     placeholder="Your logo text..."
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -264,7 +264,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -284,7 +284,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="/home"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -310,7 +310,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("nav", "ctaButton", { text: e.target.value })
                     }
                     placeholder="Download CV"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -324,7 +324,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("nav", "ctaButton", { url: e.target.value })
                     }
                     placeholder="https://example.com/cv.pdf"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -416,7 +416,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                   value={formData.hero?.name || ""}
                   onChange={(e) => handleChange("hero", "name", e.target.value)}
                   placeholder="John Doe"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -430,7 +430,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                     handleChange("hero", "greeting", e.target.value)
                   }
                   placeholder="👋"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -447,7 +447,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                     handleChange("hero", "title", e.target.value)
                   }
                   placeholder="Full Stack Developer"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
               <div>
@@ -461,7 +461,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                     handleChange("hero", "location", e.target.value)
                   }
                   placeholder="City, Country"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -477,7 +477,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                 }
                 placeholder="Professional description..."
                 rows="4"
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-vertical"
               />
             </div>
 
@@ -495,7 +495,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       e.target.value === "true"
                     )
                   }
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                 >
                   <option value="true">Available</option>
                   <option value="false">Not Available</option>
@@ -621,7 +621,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("about", "title", e.target.value)
                     }
                     placeholder="About Me"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -635,7 +635,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("about", "heading", e.target.value)
                     }
                     placeholder="Curious about me? Here you have it:"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -658,7 +658,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                         handleChange("about", "paragraphs", e.target.value, idx)
                       }
                       rows="3"
-                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
                     />
                   </div>
                 ))}
@@ -680,7 +680,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                         handleChange("about", "quickBits", e.target.value, idx)
                       }
                       placeholder="Quick bit about you..."
-                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                     />
                   </div>
                 ))}
@@ -698,7 +698,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                   handleChange("about", "finalParagraph", e.target.value)
                 }
                 rows="3"
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
               />
             </div>
 
@@ -812,7 +812,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("skills", "title", e.target.value)
                     }
                     placeholder="Skills"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -847,7 +847,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="JavaScript"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -867,7 +867,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="https://example.com/icon.png"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -942,7 +942,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                         e.target.value === "true"
                       )
                     }
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   >
                     <option value="true">Show</option>
                     <option value="false">Hide</option>
@@ -959,7 +959,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("experience", "title", e.target.value)
                     }
                     placeholder="Experience"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -973,7 +973,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("experience", "subtitle", e.target.value)
                     }
                     placeholder="Here is a quick summary of my most recent experiences:"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -1008,7 +1008,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Senior Developer"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1029,7 +1029,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                               )
                             }
                             placeholder="Tech Company"
-                            className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                         <div>
@@ -1049,7 +1049,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                               )
                             }
                             placeholder="Jan 2020 - Present"
-                            className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                       </div>
@@ -1069,7 +1069,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
                         />
                       </div>
                       <div>
@@ -1089,7 +1089,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Remote"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1111,7 +1111,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="React, Node.js, TypeScript"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1330,7 +1330,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("work", "title", e.target.value)
                     }
                     placeholder="Works"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -1344,7 +1344,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("work", "subtitle", e.target.value)
                     }
                     placeholder="Some of the noteworthy projects I have built:"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -1379,7 +1379,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="Project Name"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1398,7 +1398,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           rows="3"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
                         />
                       </div>
                       <div>
@@ -1418,7 +1418,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="https://github.com/username"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1436,7 +1436,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                               "layout"
                             )
                           }
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         >
                           <option value="left">Left</option>
                           <option value="right">Right</option>
@@ -1559,7 +1559,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                                   )
                                 }
                                 placeholder="Technology"
-                                className="border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                className="border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                               />
                               <input
                                 type="color"
@@ -1662,7 +1662,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("contact", "title", e.target.value)
                     }
                     placeholder="Get In Touch"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -1675,7 +1675,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("contact", "subtitle", e.target.value)
                     }
                     rows="2"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent resize-vertical"
                   />
                 </div>
               </div>
@@ -1698,7 +1698,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("contact", "email", e.target.value)
                     }
                     placeholder="your@email.com"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -1712,7 +1712,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("contact", "phone", e.target.value)
                     }
                     placeholder="+1234567890"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -1747,7 +1747,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="GitHub"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1767,7 +1767,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="FaGithub"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -1787,7 +1787,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                             )
                           }
                           placeholder="https://github.com/username"
-                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -1812,7 +1812,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                     handleChange("contact", "socialText", e.target.value)
                   }
                   placeholder="You may also find me on these platforms!"
-                  className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-purple-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -1888,7 +1888,7 @@ export default function DeveloperPortfolioEdit({ placeholder, id }) {
                       handleChange("footer", "text", e.target.value)
                     }
                     placeholder="© 2023 | Designed and coded with ❤️️ by Your Name"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>

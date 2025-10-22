@@ -103,7 +103,7 @@ export default function SignUpPage() {
                     value={fullName}
                     required
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 bg-white text-black placeholder-gray-500"
+                    className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent transition-all duration-200 bg-white text-black placeholder-gray-500"
                     placeholder="Enter your full name"
                   />
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
@@ -134,7 +134,7 @@ export default function SignUpPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 bg-white text-black placeholder-gray-500"
+                    className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent transition-all duration-200 bg-white text-black placeholder-gray-500"
                     placeholder="Enter your email"
                   />
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
@@ -165,7 +165,7 @@ export default function SignUpPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-200 bg-white text-black placeholder-gray-500"
+                    className="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent transition-all duration-200 bg-white text-black placeholder-gray-500"
                     placeholder="Create a password"
                   />
                   <button
