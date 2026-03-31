@@ -20,10 +20,11 @@ export const authenticate = async (
     const token = req.cookies.accessToken;
 
     if (!token) {
-      throw new AppError(
-        httpStatus.UNAUTHORIZED,
-        "Unauthorized: No token provided"
-      );
+      // Return 401 but don't throw a noisy AppError if we want to be quiet
+      return res.status(httpStatus.UNAUTHORIZED).json({
+        success: false,
+        message: "Unauthorized: No token provided",
+      });
     }
 
     const decoded = jwt.verify(
@@ -53,7 +54,10 @@ export const authenticate = async (
       sameSite: "lax",
     });
 
-    throw new AppError(httpStatus.FORBIDDEN, "Invalid or expired token");
+    return res.status(httpStatus.UNAUTHORIZED).json({
+      success: false,
+      message: "Session expired or invalid. Please login again.",
+    });
   }
 };
 

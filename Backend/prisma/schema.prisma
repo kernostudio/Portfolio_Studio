@@ -1,16 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -18,27 +13,27 @@ model User {
   fullName  String
   email     String         @unique
   password  String
-  role      String         @default("user") // "user", "admin"
+  role      String         @default("user")
   avatarUrl String?
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
-  templates UserTemplate[]
   history   History[]
+  templates UserTemplate[]
 }
 
 model Template {
-  id            String         @id @default(uuid())
-  title         String
-  description   String?
-  categoryId    String
-  slug   String
-  placeholders  Json
+  id             String         @id @default(uuid())
+  title          String
+  description    String?
+  categoryId     String
+  slug           String
+  placeholders   Json
   templateImgUrl String
-  previewUrl    String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  category      Category       @relation(fields: [categoryId], references: [id])
-  userTemplates UserTemplate[]
+  previewUrl     String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  category       Category       @relation(fields: [categoryId], references: [id])
+  userTemplates  UserTemplate[]
 }
 
 model Category {
@@ -56,8 +51,8 @@ model UserTemplate {
   sectionsData    Json?
   createdAt       DateTime              @default(now())
   updatedAt       DateTime              @updatedAt
-  user            User                  @relation(fields: [userId], references: [id])
   template        Template              @relation(fields: [templateId], references: [id])
+  user            User                  @relation(fields: [userId], references: [id])
   publishRequests UserTemplatePublish[]
 }
 
@@ -69,21 +64,20 @@ model History {
   user      User     @relation(fields: [userId], references: [id])
 }
 
-enum PublishStatus {
-  pending
-  approved
-  rejected
-}
-
 model UserTemplatePublish {
   id             String        @id @default(uuid())
   userTemplateId String
   domainType     String
   domain         String?
   note           String?
-  status         PublishStatus @default(pending) // Enum: pending | approved | rejected
+  status         PublishStatus @default(pending)
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
+  userTemplate   UserTemplate  @relation(fields: [userTemplateId], references: [id], onDelete: Cascade)
+}
 
-  userTemplate UserTemplate @relation(fields: [userTemplateId], references: [id],onDelete: Cascade)
+enum PublishStatus {
+  pending
+  approved
+  rejected
 }

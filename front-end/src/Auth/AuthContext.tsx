@@ -2,20 +2,20 @@
 "use client";
 import React, {
   createContext,
-  useState,
-  useEffect,
-  useContext,
   ReactNode,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
+import { ToastContainer } from "react-toastify";
 import {
-  registerUser,
+  fetchUserProfile,
   loginUser,
   logoutUser,
-  fetchUserProfile,
+  registerUser,
   updateUserProfile,
   UserData,
 } from "./authapi";
-import { ToastContainer } from "react-toastify";
 
 export interface User {
   id: string;
@@ -88,13 +88,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // ✅ Register new user
   const register = async (userData: UserData) => {
     const response = await registerUser(userData);
-    const profileResponse = await fetchUserProfile();
+    // Attempt to fetch profile but handle cases where the cookie isn't ready yet
+    const profileResponse = await fetchUserProfile().catch(() => null);
+
     const registeredUser: User = {
       id: response.data.userId,
       name: response.data.name,
       email: response.data.email,
       role: response.data.role,
-      avatarUrl: profileResponse.data.user.avatarUrl,
+      avatarUrl: profileResponse?.data?.user?.avatarUrl || "",
     };
     setUser(registeredUser);
     localStorage.setItem("user", JSON.stringify(registeredUser));
@@ -104,13 +106,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // ✅ Login user (backend sets cookie)
   const login = async (userData: UserData) => {
     const response = await loginUser(userData);
-    const profileResponse = await fetchUserProfile();
+    // Attempt to fetch profile but handle cases where the cookie isn't ready yet
+    const profileResponse = await fetchUserProfile().catch(() => null);
+
     const loggedInUser: User = {
       id: response.data.userId,
       name: response.data.name,
       email: response.data.email,
       role: response.data.role,
-      avatarUrl: profileResponse.data.user.avatarUrl,
+      avatarUrl: profileResponse?.data?.user?.avatarUrl || "",
     };
     setUser(loggedInUser);
     localStorage.setItem("user", JSON.stringify(loggedInUser));

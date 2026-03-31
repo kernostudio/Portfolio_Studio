@@ -37,7 +37,10 @@ export default function SignUpPage() {
       toast.success("Registration successful!");
       route.push("/templates/signin");
     } catch (err: any) {
-      toast.error(err.response?.data?.message || "Something went wrong");
+      console.error("Registration failed:", err);
+      toast.error(
+        err.response?.data?.message || err.message || "Something went wrong"
+      );
     } finally {
       setLoading(false);
     }

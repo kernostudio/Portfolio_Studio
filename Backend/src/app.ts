@@ -22,6 +22,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "http://localhost:3001",
       "https://protfoliohut-d6xvnxega-rakiburrahman007s-projects.vercel.app",
       "https://protfoliohut-9wi18hcor-rakiburrahman007s-projects.vercel.app",
       "https://portfoliostudio-theta.vercel.app",

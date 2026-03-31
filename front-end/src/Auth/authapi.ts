@@ -43,8 +43,8 @@ export const fetchUserProfile = async () => {
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    if (error.response?.status === 403) {
-      // User not logged in
+    if (error.response?.status === 403 || error.response?.status === 401) {
+      // User not logged in or token invalid - silent failure
       return null;
     }
     throw error; // Other errors we still want to throw
