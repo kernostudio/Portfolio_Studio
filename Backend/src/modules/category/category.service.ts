@@ -19,9 +19,6 @@ const createCategory = async (payload: Prisma.CategoryCreateInput) => {
 
 const getAllCategory = async () => {
   const result = await prisma.category.findMany();
-  if (result.length <= 0) {
-    throw new AppError(httpStatus.NOT_FOUND, "no category found");
-  }
   return result;
 };
 const deleteCategory = async (id: string) => {

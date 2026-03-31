@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import AppError from "../errorHelpers/errorHelper";
+import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
+import AppError from "../errorHelpers/errorHelper";
 
 interface ErrorType extends Error {
   statusCode?: number;
@@ -14,7 +14,12 @@ export const globalErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  console.error(err);
+  // Only log full error for unexpected internal errors (500)
+  if (!(err instanceof AppError) || err.statusCode >= 500) {
+    console.error(err);
+  }
+  // Noisy client errors (401, 404, etc.) are silenced here.
+  // They are still returned to the client as JSON responses below.
 
   // 1️⃣ Custom application errors
   if (err instanceof AppError) {

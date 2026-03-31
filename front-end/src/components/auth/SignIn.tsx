@@ -39,7 +39,10 @@ export default function SignInPage() {
       toast.success("Welcome back! Sign in successful!");
       router.push(redirectTo);
     } catch (err: any) {
-      toast.error(err.response?.data?.message || "Something went wrong");
+      console.error("Login failed:", err);
+      toast.error(
+        err.response?.data?.message || err.message || "Something went wrong"
+      );
     } finally {
       setLoading(false);
     }

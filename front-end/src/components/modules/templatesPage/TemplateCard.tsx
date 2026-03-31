@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 interface Category {
   name?: string;
@@ -55,12 +54,12 @@ export default function TemplateCard({ template, user }: TemplateCardProps) {
       </div>
       <p className="text-gray-600 text-sm">{template?.description}</p>
 
-      <div className="flex justify-between gap-2 mt-4">
+      <div className="flex flex-col gap-3 mt-6">
         <button
           onClick={() => handleCardClick(template.id)}
-          className="font-semibold hover:font-bold transition cursor-pointer"
+          className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-sm"
         >
-          See Preview
+          See Preview & Details
         </button>
 
         <button
@@ -71,7 +70,7 @@ export default function TemplateCard({ template, user }: TemplateCardProps) {
                   `/templates/signin?redirectTo=/templateCustomize/${template.id}`
                 )
           }
-          className="cursor-pointer bg-black  text-white px-3 py-2 rounded hover:bg-gray-700 transition"
+          className="w-full py-3 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
         >
           Use Template
         </button>
