@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+body {
+  background-color: #f9fbff; /* Tailwind gray-50 alternative */
+  color: #1a202c; /* Tailwind gray-900 alternative */
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Animate the blue ray border once on hover */
+
+.ray-border {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.6))
+    drop-shadow(0 0 12px rgba(59, 130, 246, 0.4));
+  transition: opacity 0.3s ease;
+}
+
+/* When hovered, trigger one-time border animation */
+.group:hover .ray-border {
+  opacity: 1;
+  animation: drawBorderOnce 1.5s ease forwards;
+}
+
+/* One full travel of the ray */
+@keyframes drawBorderOnce {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Add subtle card lift & glow on hover */
+.group:hover {
+  transform: translateY(-6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+}

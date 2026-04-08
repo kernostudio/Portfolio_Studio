@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String         @id @default(uuid())
+  fullName  String
+  email     String         @unique
+  password  String
+  role      String         @default("user")
+  avatarUrl String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  history   History[]
+  templates UserTemplate[]
+}
+
+model Template {
+  id             String         @id @default(uuid())
+  title          String
+  description    String?
+  categoryId     String
+  slug           String
+  placeholders   Json
+  templateImgUrl String
+  previewUrl     String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  category       Category       @relation(fields: [categoryId], references: [id])
+  userTemplates  UserTemplate[]
+}
+
+model Category {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  description String?
+  templates   Template[]
+}
+
+model UserTemplate {
+  id              String                @id @default(uuid())
+  userId          String
+  templateId      String
+  filledValues    Json
+  sectionsData    Json?
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  template        Template              @relation(fields: [templateId], references: [id])
+  user            User                  @relation(fields: [userId], references: [id])
+  publishRequests UserTemplatePublish[]
+}
+
+model History {
+  id        String   @id @default(uuid())
+  userId    String
+  action    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model UserTemplatePublish {
+  id             String        @id @default(uuid())
+  userTemplateId String
+  domainType     String
+  domain         String?
+  note           String?
+  status         PublishStatus @default(pending)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  userTemplate   UserTemplate  @relation(fields: [userTemplateId], references: [id], onDelete: Cascade)
+}
+
+enum PublishStatus {
+  pending
+  approved
+  rejected
+}
